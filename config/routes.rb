@@ -1,4 +1,5 @@
 Car::Application.routes.draw do
+  root 'index#index'
   get "index/index"
   get "index/login"
   get "index/logout"

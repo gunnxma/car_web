@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cooperate_type_id: 1
+  name: MyString
+  rule: MyString
+  cooperate_relation_id: 1
+  cooperate_level_id: 1
+  contact: MyString
+  phone: MyString
+  period_start: 2014-06-16 13:38:33
+  period_end: 2014-06-16 13:38:33
+  describe: MyString
+  status: 1
+
+two:
+  cooperate_type_id: 1
+  name: MyString
+  rule: MyString
+  cooperate_relation_id: 1
+  cooperate_level_id: 1
+  contact: MyString
+  phone: MyString
+  period_start: 2014-06-16 13:38:33
+  period_end: 2014-06-16 13:38:33
+  describe: MyString
+  status: 1

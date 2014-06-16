@@ -1,2 +1,29 @@
-<h1>Index#index</h1>
-<p>Find me in app/views/index/index.html.erb</p>
+<div class="ui small menu">
+  <div class="ui dropdown item">
+    Language <i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item">English</a>
+      <a class="item">Russian</a>
+      <a class="item">Spanish</a>
+    </div>
+  </div>
+  <div class="ui dropdown item">
+    Language <i class="dropdown icon"></i>
+    <div class="menu">
+      <a class="item">English</a>
+      <a class="item">Russian</a>
+      <a class="item">Spanish</a>
+    </div>
+  </div>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <div class="item">
+      <%= link_to "退出", { controller: "index", action: "logout" }, class: "ui teal button" %>
+    </div>
+  </div>
+</div>
