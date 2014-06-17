@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_info_id: 1
+  transmission: MyString
+  cc: MyString
+  cc_unit: MyString
+  transfer_number: 1
+  production_date: 2014-06-17 13:51:38
+  registration_date: 2014-06-17 13:51:38
+  registration_province: MyString
+  registration_city: MyString
+  registration_district: MyString
+  mileage: 
+  mileage: 
+  maintenance_mileage: 
+  maintenance_mileage: 
+  color: MyString
+  interior_color: MyString
+  body_class: MyString
+  emission_standard: MyString
+  with_plate_number: 1
+  use_nature: MyString
+  insurance_info: MyString
+  inspection_expire: 2014-06-17 13:51:38
+  compulsory_expire: 2014-06-17 13:51:38
+  compulsory_company: MyString
+  business_info: MyString
+  business_expire: 2014-06-17 13:51:38
+  business_company: MyString
+  insurance_record: MyString
+
+two:
+  car_info_id: 1
+  transmission: MyString
+  cc: MyString
+  cc_unit: MyString
+  transfer_number: 1
+  production_date: 2014-06-17 13:51:38
+  registration_date: 2014-06-17 13:51:38
+  registration_province: MyString
+  registration_city: MyString
+  registration_district: MyString
+  mileage: 
+  mileage: 
+  maintenance_mileage: 
+  maintenance_mileage: 
+  color: MyString
+  interior_color: MyString
+  body_class: MyString
+  emission_standard: MyString
+  with_plate_number: 1
+  use_nature: MyString
+  insurance_info: MyString
+  inspection_expire: 2014-06-17 13:51:38
+  compulsory_expire: 2014-06-17 13:51:38
+  compulsory_company: MyString
+  business_info: MyString
+  business_expire: 2014-06-17 13:51:38
+  business_company: MyString
+  insurance_record: MyString

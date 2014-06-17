@@ -1,0 +1,71 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_no: 1
+  saletype: MyString
+  brand: MyString
+  series: MyString
+  vin: MyString
+  engineid: MyString
+  platenumber: MyString
+  models: MyString
+  ownername: MyString
+  ownerphone: MyString
+  newsfrom: MyString
+  cooperation_id: 1
+  location: MyString
+  rating: MyString
+  customer_offer: 
+  customer_offer: 
+  evaluate_price: 
+  evaluate_price: 
+  procurement_price: 
+  procurement_price: 
+  newcar_price: 
+  newcar_price: 
+  suggested_price: 
+  suggested_price: 
+  maintenance_budget: 
+  maintenance_budget: 
+  selllimit_price: 
+  selllimit_price: 
+  price_hand: 
+  price_hand: 
+  description: MyString
+  user_id: 1
+  addtime: 2014-06-17 13:41:12
+
+two:
+  car_no: 1
+  saletype: MyString
+  brand: MyString
+  series: MyString
+  vin: MyString
+  engineid: MyString
+  platenumber: MyString
+  models: MyString
+  ownername: MyString
+  ownerphone: MyString
+  newsfrom: MyString
+  cooperation_id: 1
+  location: MyString
+  rating: MyString
+  customer_offer: 
+  customer_offer: 
+  evaluate_price: 
+  evaluate_price: 
+  procurement_price: 
+  procurement_price: 
+  newcar_price: 
+  newcar_price: 
+  suggested_price: 
+  suggested_price: 
+  maintenance_budget: 
+  maintenance_budget: 
+  selllimit_price: 
+  selllimit_price: 
+  price_hand: 
+  price_hand: 
+  description: MyString
+  user_id: 1
+  addtime: 2014-06-17 13:41:12

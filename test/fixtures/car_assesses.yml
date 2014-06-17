@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_info_id: 1
+  assess_appearance: MyString
+  assess_skeletons: MyString
+  assess_interior: MyString
+  assess_engine: MyString
+  assess_transmission: MyString
+  assess_comprehensive: MyString
+  user_id: 1
+
+two:
+  car_info_id: 1
+  assess_appearance: MyString
+  assess_skeletons: MyString
+  assess_interior: MyString
+  assess_engine: MyString
+  assess_transmission: MyString
+  assess_comprehensive: MyString
+  user_id: 1

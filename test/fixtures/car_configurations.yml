@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_info_id: 1
+  standard: MyString
+  safety: MyString
+  comfort: MyString
+  function: MyString
+  other: MyString
+
+two:
+  car_info_id: 1
+  standard: MyString
+  safety: MyString
+  comfort: MyString
+  function: MyString
+  other: MyString

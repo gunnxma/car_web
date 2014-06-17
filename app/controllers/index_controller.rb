@@ -1,6 +1,7 @@
 class IndexController < ApplicationController
   before_filter :check_power, :only => [ :index ]
-  def index    
+  def index  
+    
   end
 
   def login
