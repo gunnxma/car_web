@@ -11,10 +11,8 @@ class CreateCarProperties < ActiveRecord::Migration
       t.string :registration_province
       t.string :registration_city
       t.string :registration_district
-      t.decimal10 :mileage
-      t.decimal2 :mileage
-      t.decimal10 :maintenance_mileage
-      t.decimal2 :maintenance_mileage
+      t.decimal :mileage, :precision => 10, :scale => 2
+      t.decimal :maintenance_mileage, :precision => 10, :scale => 2
       t.string :color
       t.string :interior_color
       t.string :body_class

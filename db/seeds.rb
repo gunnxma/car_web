@@ -30,8 +30,8 @@ CooperateType.create(name: '婚庆礼仪公司')
 CooperateType.create(name: '政府单位')
 CooperateType.create(name: '其他')
 
-Cooperate_relation.create(name: '合作伙伴')
-Cooperate_relation.create(name: '供应商')
+CooperateRelation.create(name: '合作伙伴')
+CooperateRelation.create(name: '供应商')
 
 CooperateLevel.create(name: '一级')
 CooperateLevel.create(name: '二级')

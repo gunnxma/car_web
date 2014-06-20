@@ -15,23 +15,16 @@ class CreateCarInfos < ActiveRecord::Migration
       t.integer :cooperation_id
       t.string :location
       t.string :rating
-      t.decimal20 :customer_offer
-      t.decimal2 :customer_offer
-      t.decimal20 :evaluate_price
-      t.decimal2 :evaluate_price
-      t.decimal20 :procurement_price
-      t.decimal2 :procurement_price
-      t.decimal20 :newcar_price
-      t.decimal2 :newcar_price
-      t.decimal20 :suggested_price
-      t.decimal2 :suggested_price
-      t.decimal20 :maintenance_budget
-      t.decimal2 :maintenance_budget
-      t.decimal20 :selllimit_price
-      t.decimal2 :selllimit_price
-      t.decimal20 :price_hand
-      t.decimal2 :price_hand
+      t.decimal :customer_offer, :precision => 20, :scale => 2
+      t.decimal :evaluate_price, :precision => 20, :scale => 2
+      t.decimal :procurement_price, :precision => 20, :scale => 2
+      t.decimal :newcar_price, :precision => 20, :scale => 2
+      t.decimal :suggested_price, :precision => 20, :scale => 2
+      t.decimal :maintenance_budget, :precision => 20, :scale => 2
+      t.decimal :selllimit_price, :precision => 20, :scale => 2
+      t.decimal :price_hand, :precision => 20, :scale => 2
       t.string :description
+      t.integer :status
       t.integer :user_id
       t.datetime :addtime
 

@@ -15,3 +15,4 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
+//= require 'china_city/jquery.china_city'
