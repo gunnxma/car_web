@@ -8,20 +8,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="ui small menu">
+  <div class="ui inverted menu">
+    <div class="ui dropdown item">
+      信息设置 <i class="dropdown icon"></i>
+      <div class="menu">
+        <%= link_to "车辆品牌", :brands, :class => "item" %>
+      </div>
+    </div>
     <div class="ui dropdown item">
       车辆评估 <i class="dropdown icon"></i>
       <div class="menu">
         <a class="item">增加车辆</a>
         <a class="item">车辆评估</a>
-      </div>
-    </div>
-    <div class="ui dropdown item">
-      Language <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item">English</a>
-        <a class="item">Russian</a>
-        <a class="item">Spanish</a>
       </div>
     </div>
     <div class="right menu">

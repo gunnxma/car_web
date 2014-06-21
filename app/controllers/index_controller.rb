@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
   before_filter :check_power, :only => [ :index ]
-  layout "nohead", :only => :login
+  layout "nohead", :only => [ :login, :checklogin ]
   
   def index  
     
@@ -18,7 +18,7 @@ class IndexController < ApplicationController
       redirect_to :action => :index
     else
       flash[:notice] = "用户名密码错误！"
-      render "login"
+      redirect_to :action => :login
     end
   end
 

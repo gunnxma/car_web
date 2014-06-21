@@ -1,9 +1,20 @@
 Car::Application.routes.draw do
+  get "brands/index"
+  get "brands/create"
+  get "brands/new"
+  get "brands/edit"
+  get "brands/show"
+  get "brands/update"
+  get "brands/destroy"
   root 'index#index'
   get "index/index"
   get "index/login"
   get "index/logout"
   post "index/checklogin"
+  
+  resources :brands do
+    resources :series
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

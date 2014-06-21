@@ -1,7 +1,7 @@
 <div class="ui center aligned grid">
   <div class="six wide column">
-    <% if flash[:notice] %>
-    <div class="red ui message"><%= flash[:notice] %></div>
+    <% if flash[:notice] %>    
+    <div class="error ui message"><%= flash[:notice] %></div>
     <% end %>
     <%= form_for @user, url: { :action => "checklogin" } do |f| %>
     <div class="ui form segment">

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   
   def check_power
     if !current_user
-      redirect_to :action => :login
+      redirect_to :controller => :index, :action => :login
     else
       check_action unless current_user.id == 1
     end
