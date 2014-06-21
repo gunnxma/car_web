@@ -6,26 +6,32 @@
 </div>
 <div class="ui attached segment">
   <%= search_form_for @q, :method => "get" do |f| %>
-    <%= f.label :name_cont %>
+    <%= f.label "品牌名称" %>
     <%= f.search_field :name_cont %>
-    <%= f.label :initial_cont %>
+    <%= f.label "拼音首字母" %>
     <%= f.search_field :initial_cont %>
-    <%= f.submit %>
+    <%= f.submit "筛选", :class => "ui mini blue submit button" %>
   <% end %>
 </div>
 <div class="ui bottom attached segment">
   <table class="ui table segment">
     <thead>
       <tr><th>品牌名称</th>
-      <th>品牌系列</th>
+      <th>车系</th>
       <th>操作</th>
     </tr></thead>
     <tbody>
       <% @brands.each do |brand| %>
       <tr>
-        <td><%= brand.name %></td>
-        <td>Approved</td>
-        <td>None</td>
+        <td><%= "#{brand.initial} #{brand.name}" %></td>
+        <td>
+          <%= link_to "添加车系", new_brand_series_path(brand), :class => "ui mini blue button" %>
+          <%= link_to "查看车系", brand_series_index_path(brand), :class => "ui mini blue button" %>
+        </td>
+        <td>
+          <%= link_to "修改", edit_brand_path(brand), :class => "ui mini blue button" %>
+          <%= link_to "删除", brand_path(brand), :method => :delete, :class => "ui mini blue button", :confirm => "确定要删除吗？" %>
+        </td>
       </tr>
       <% end %>
     </tbody>

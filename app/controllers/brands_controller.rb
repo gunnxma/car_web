@@ -6,8 +6,9 @@ class BrandsController < ApplicationController
 
   def create
     @brand = Brand.new(brand_params)
+    @brand.initial = PinYin.abbr(@brand.name.first)
     if @brand.save
-      redirect_to :action => :index
+      redirect_to :action => :new
     else
       render "new"
     end
@@ -18,15 +19,27 @@ class BrandsController < ApplicationController
   end
 
   def edit
+    @brand = Brand.find(params[:id])
   end
 
   def show
   end
 
   def update
+    @brand = Brand.find(params[:id])
+    @brand.name = params[:brand][:name]
+    @brand.initial = PinYin.abbr(@brand.name.first)
+    if @brand.save
+      redirect_to :action => :index
+    else
+      render "edit"
+    end
   end
 
   def destroy
+    @brand = Brand.find(params[:id])
+    @brand.destroy
+    redirect_to :action => :index
   end
   
   private
