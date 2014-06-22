@@ -1,7 +1,7 @@
 class BrandsController < ApplicationController
   def index
     @q = Brand.search(params[:q])
-    @brands = @q.result.paginate(:page => params[:page], :per_page => 2)
+    @brands = @q.result.paginate(:page => params[:page]).order(:initial)
   end
 
   def create

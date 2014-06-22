@@ -1,0 +1,13 @@
+zh-CN:
+  will_paginate:
+    page_entries_info:
+      single_page:
+        zero:  "No %{model} found"
+        one:   "Displaying 1 %{model}"
+        other: "Displaying all %{count} %{model}"
+      single_page_html:
+        zero:  "没有符合条件的记录"
+        one:   "总共 <b>1</b> 条记录"
+        other: "总共 <b>%{count}</b> 条记录"
+      multi_page: "Displaying %{model} %{from} - %{to} of %{count} in total"
+      multi_page_html: "当前显示第 <b>%{from}&nbsp;-&nbsp;%{to}</b>条记录 总共 <b>%{count}</b> 条记录"

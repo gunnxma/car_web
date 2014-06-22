@@ -1,11 +1,4 @@
 Car::Application.routes.draw do
-  get "series/index"
-  get "series/create"
-  get "series/new"
-  get "series/edit"
-  get "series/show"
-  get "series/update"
-  get "series/destroy"
   root 'index#index'
   get "index/index"
   get "index/login"
