@@ -8,7 +8,7 @@ class SeriesController < ApplicationController
   def create
     @brand = Brand.find(params[:brand_id])
     @series = Series.new(series_params)
-    @series.initial = PinYin.abbr(@series.name.first)
+    @series.initial = PinYin.abbr(@series.name.first).downcase
     @brand.series << @series
     if @brand.save
       redirect_to :action => :new

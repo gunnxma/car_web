@@ -6,7 +6,7 @@ class BrandsController < ApplicationController
 
   def create
     @brand = Brand.new(brand_params)
-    @brand.initial = PinYin.abbr(@brand.name.first)
+    @brand.initial = PinYin.abbr(@brand.name.first).downcase
     if @brand.save
       redirect_to :action => :new
     else

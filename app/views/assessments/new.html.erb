@@ -1,0 +1,394 @@
+<div class="ui blue inverted center aligned top attached segment">
+  <p>添加车辆</p>
+</div>
+<div class="ui attached segment">
+  <%= link_to "返回列表", :assessments, :class => "ui mini blue button" %>
+</div>
+<div class="ui attached segment">
+  <% if flash[:notice] %>
+  <div class="ui error message">
+    <%= flash[:notice] %>
+  </div>
+  <% end %>
+  <% if @car.errors.any? %>
+  <div class="ui error message">
+    <% @car.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </div>
+  <% end %>
+
+  <%= form_for @car, url: :assessments do |f| %>
+  <div class="ui form segment">
+    <div class="three fields">
+      <div class="field">
+        <label>车辆编号</label>
+        <div class="ui mini input">
+          <%= f.text_field :car_no %>
+        </div>
+      </div>
+      <div class="field">
+        <label>车辆类型</label>
+        <div class="grouped inline fields">
+          <%= f.collection_radio_buttons :saletype, Saletype.all, :name, :name, {}, :class => "ui checkbox" %>
+        </div>
+      </div>
+      <div class="field">
+        <label>车辆品牌</label>
+        <div class="ui left labeled input">
+          <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, include_blank: true %>
+        <%= f.select :series, Series.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, include_blank: true %>
+        <div class="ui corner label">
+            <i class="asterisk icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>VIN码</label>
+        <div class="ui mini input">
+          <%= f.text_field :vin %>
+        </div>
+      </div>
+      <div class="field">
+        <label>发动机号</label>
+        <div class="ui mini input">
+          <%= f.text_field :engineid %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>车牌号</label>
+      <div class="ui mini input">
+        <%= f.text_field :platenumber, :placeholder => "请输入完整的车牌号，如：浙：A888R8" %>
+      </div>
+    </div>
+    <div class="field">
+      <label>车辆型号</label>
+      <div class="ui mini left labeled input">
+        <%= f.text_field :models %>
+        <div class="ui corner label">
+          <i class="asterisk icon"></i>
+        </div>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>车主姓名</label>
+        <div class="ui mini input">
+          <%= f.text_field :ownername %>
+        </div>
+      </div>
+      <div class="field">
+        <label>车主电话</label>
+        <div class="ui mini input">
+          <%= f.text_field :ownerphone %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>信息来源</label>
+      <div class="grouped inline fields">
+        <%= f.collection_radio_buttons :newsfrom, Newsfrom.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>车辆位置</label>
+      <div class="ui mini input">
+        <%= f.text_field :location, :placeholder => "表示车辆存放点。当前车辆的位置，可以是您的库存位置，也可以是您的合作伙伴的展厅。" %>
+      </div>
+    </div>
+    <div class="field">
+      <label>车辆等级</label>
+      <div class="grouped inline fields">
+        <%= f.collection_radio_buttons :rating, Rating.all, :name, :name %>
+      </div>
+    </div>
+  </div>
+    
+  <div class="ui form segment">
+    <div class="four fields">
+      <div class="field">
+        <label>客户报价</label>
+        <div class="ui mini input">
+          <%= f.text_field :customer_offer %>
+        </div>
+      </div>
+      <div class="field">
+        <label>评估价格</label>
+        <div class="ui mini input">
+          <%= f.text_field :evaluate_price %>
+        </div>
+      </div>
+      <div class="field">
+        <label>收购价格</label>
+        <div class="ui mini input">
+          <%= f.text_field :procurement_price %>
+        </div>
+      </div>
+      <div class="field">
+        <label>新车指导价</label>
+        <div class="ui mini input">
+          <%= f.text_field :newcar_price %>
+        </div>
+      </div>
+    </div>
+    <div class="four fields">
+      <div class="field">
+        <label>建议售价</label>
+        <div class="ui mini input">
+          <%= f.text_field :suggested_price %>
+        </div>
+      </div>
+      <div class="field">
+        <label>整备预算</label>
+        <div class="ui mini input">
+          <%= f.text_field :maintenance_budget %>
+        </div>
+      </div>
+      <div class="field">
+        <label>销售限价</label>
+        <div class="ui mini input">
+          <%= f.text_field :selllimit_price %>
+        </div>
+      </div>
+      <div class="field">
+        <label>新车到手价</label>
+        <div class="ui mini input">
+          <%= f.text_field :price_hand %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="fluid ui button">车辆属性</div>
+  
+  <%= f.fields_for :car_property do |b| %>
+  <div class="ui form segment">
+    <div class="three fields">
+      <div class="field">
+        <label>变速器</label>
+        <div class="grouped inline fields">
+          <%= b.collection_radio_buttons :transmission, Transmission.all, :name, :name %>
+        </div>
+      </div>    
+      <div class="field">
+        <label>排气量</label>
+        <div class="ui mini left labeled input" style="width:50%">
+          <%= b.text_field :cc %>
+          
+          <div class="ui corner label">
+            <i class="asterisk icon"></i>
+          </div>
+        </div>
+        <%= b.select :cc_unit, CcUnit.all.collect { |p| [ p.name, p.name ] }, {}, :class => "ui mini selection dropdown" %>
+      </div>
+      <div class="field">
+        <label>过户次数</label>
+        <div class="ui mini input">
+          <%= b.text_field :transfer_number %>
+        </div>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>出厂日期</label>
+        <div class="ui mini input">
+          <%= b.date_field :production_date %>
+        </div>
+      </div>
+      <div class="field">
+        <label>登记日期</label>
+        <div class="ui mini input">
+          <%= b.date_field :registration_date %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>上牌地区</label>
+      <div class="city-group">
+        <%= b.select :registration_province, options_for_select(ChinaCity.list), { include_blank: true }, :class => "ui mini selection dropdown city-select" %>
+        <%= b.select :registration_city, {}, { include_blank: true }, :class => "ui mini selection dropdown city-select" %>         
+        <%= b.select :registration_district, {}, { include_blank: true }, :class => "ui mini selection dropdown city-select" %>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>行驶里程</label>
+        <div class="ui mini input">
+          <%= b.text_field :mileage %>
+        </div>
+      </div>
+      <div class="field">
+        <label>最后保养里程</label>
+        <div class="ui mini input">
+          <%= b.text_field :maintenance_mileage %>
+        </div>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>车身颜色</label>
+        <div class="ui mini input">
+          <%= b.select :color, Color.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true }, :class => "ui mini selection dropdown city-select" %>
+        </div>
+      </div>
+      <div class="field">
+        <label>内饰颜色</label>
+        <div class="ui mini input">
+          <%= b.select :interior_color, InteriorColor.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true }, :class => "ui mini selection dropdown city-select" %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>车身类型</label>
+      <div class="grouped inline fields">
+        <%= b.collection_radio_buttons :body_class, BodyClass.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>排放类型</label>
+      <div class="grouped inline fields">
+        <%= b.collection_radio_buttons :emission_standard, EmissionStandard.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>使用性质</label>
+      <div class="grouped inline fields">
+        <%= b.collection_radio_buttons :use_nature, UseNature.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>年检到期</label>
+      <div class="ui mini input">
+        <%= b.date_field :inspection_expire %>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>交强险到期</label>
+        <div class="ui mini input">
+          <%= b.date_field :compulsory_expire %>
+        </div>
+      </div>
+      <div class="field">
+        <label>交强险公司</label>
+        <div class="ui mini input">
+          <%= b.select :compulsory_company, CompulsoryCompany.all.collect { |p| [ p.name, p.name ] }, { include_blank: true }, :class => "ui mini selection dropdown" %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>商业险信息</label>
+      <div class="grouped inline fields">
+        <%= b.collection_check_boxes :business_info, BusinessInfo.all, :name, :name %>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <label>商业险到期</label>
+        <div class="ui mini input">
+          <%= b.date_field :business_expire %>
+        </div>
+      </div>
+      <div class="field">
+        <label>商业险公司</label>
+        <div class="ui mini input">
+          <%= b.select :business_company, BusinessCompany.all.collect { |p| [ p.name, p.name ] }, { include_blank: true }, :class => "ui mini selection dropdown" %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label>出险记录</label>
+      <div class="ui mini input">
+        <%= b.text_area :insurance_record %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  
+  
+  <div class="fluid ui button">车辆评估</div>
+  
+  <%= f.fields_for :car_assess do |b| %>
+  <div class="ui form segment">
+    <div class="field">
+      <label>外观评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_appearance %>
+      </div>
+    </div>
+    <div class="field">
+      <label>骨架评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_skeletons %>
+      </div>
+    </div>
+    <div class="field">
+      <label>内饰评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_interior %>
+      </div>
+    </div>
+    <div class="field">
+      <label>发动机评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_engine %>
+      </div>
+    </div>
+    <div class="field">
+      <label>变速箱评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_transmission %>
+      </div>
+    </div>
+    <div class="field">
+      <label>车辆综合评估描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :assess_comprehensive %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  
+  <div class="fluid ui button">车辆配置</div>
+  
+  <%= f.fields_for :car_configuration do |b| %>
+  <div class="ui form segment">
+    <div class="field">
+      <label>车辆配置</label>
+      <div class="grouped inline fields">
+        <%= b.collection_radio_buttons :standard, Standard.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>安全配置</label>
+      <div class="grouped inline fields">
+        <%= b.collection_check_boxes :safety, Safety.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>舒适配置</label>
+      <div class="grouped inline fields">
+        <%= b.collection_check_boxes :comfort, Comfort.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>功能配置</label>
+      <div class="grouped inline fields">
+        <%= b.collection_check_boxes :function, Function.all, :name, :name %>
+      </div>
+    </div>
+    <div class="field">
+      <label>其他配置描述</label>
+      <div class="ui mini input">
+        <%= b.text_area :other %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  
+  <%= f.submit "保存", :class => "ui blue submit button" %>
+  <% end %>
+</div>
