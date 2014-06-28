@@ -4,12 +4,29 @@
   <title>Car</title>
   <% # , "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+	<style type="text/css">
+	  body {
+		padding-bottom: 40px;
+	  }
+	  .sidebar-nav {
+		padding: 9px 0;
+	  }
+	</style>
+
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <div class="container-fluid">
+		<div class="row-fluid">
   <%= yield %>
-
+    </div>		
+	</div>
+  
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  
 </body>
 </html>

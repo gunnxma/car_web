@@ -1,32 +1,36 @@
-<div class="ui center aligned grid">
-  <div class="six wide column">
-    <% if flash[:notice] %>    
-    <div class="error ui message"><%= flash[:notice] %></div>
-    <% end %>
-    <%= form_for @user, url: { :action => "checklogin" } do |f| %>
-    <div class="ui form segment">
-      <div class="field">
-        <label>帐号</label>
-        <div class="ui left labeled icon input">
-          <%= f.text_field :account, :placeholder => "请输入登录帐号" %>
-          <i class="user icon"></i>
-          <div class="ui corner label">
-            <i class="asterisk icon"></i>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>密码</label>
-        <div class="ui left labeled icon input">
-          <%= f.password_field :pwd %>
-          <i class="lock icon"></i>
-          <div class="ui corner label">
-            <i class="asterisk icon"></i>
-          </div>
-        </div>
-      </div>
-      <input type="submit" class="ui blue submit button" value="登录" />
-    </div>
-    <% end %>
-  </div>
-</div>
+<div class="row-fluid">
+				<div class="span12 center login-header">
+					<h2>欢迎使用后台管理系统</h2>
+				</div><!--/span-->
+			</div><!--/row-->
+			
+			<div class="row-fluid">
+				<div class="well span5 center login-box">
+          <% if flash[:notice] %>  
+					<div class="alert alert-info">
+						<%= flash[:notice] %>
+					</div>
+          <% end %>
+          <%= form_for @user, url: { :action => "checklogin" }, :class => "form-horizontal" do |f| %>
+						<fieldset>
+							<div class="input-prepend" title="Username" data-rel="tooltip">
+								<span class="add-on"><i class="icon-user"></i></span>
+                <%= f.text_field :account, :placeholder => "请输入登录帐号", :class => "input-large span10", :autofocus => '' %>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="input-prepend" title="Password" data-rel="tooltip">
+								<span class="add-on"><i class="icon-lock"></i></span>
+                <%= f.password_field :pwd, :class => "input-large span10" %>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="clearfix"></div>
+
+							<p class="center span5">
+							<button type="submit" class="btn btn-primary">登录</button>
+							</p>
+						</fieldset>
+          <% end %>
+				</div><!--/span-->
+			</div><!--/row-->

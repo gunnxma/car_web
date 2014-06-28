@@ -1,0 +1,13 @@
+--多条件搜索
+<%= search_form_for @q, :method => "get" do |f| %>
+              <%= f.label "品牌名称" %>
+              <%= f.search_field :name_cont %>
+              <%= f.label "拼音首字母" %>
+              <%= f.search_field :initial_cont %>
+              <%= f.submit "筛选", :class => "ui mini blue submit button" %>
+            <% end %>
+
+--结果信息
+        <%= page_entries_info @brands %>
+--分页
+  <%= will_paginate @brands, renderer: SemanticPagination %>

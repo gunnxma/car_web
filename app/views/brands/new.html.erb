@@ -1,35 +1,64 @@
-<div class="ui blue inverted center aligned top attached segment">
-  <p>添加车辆品牌</p>
-</div>
-<div class="ui attached segment">
-  <%= link_to "返回列表", :brands, :class => "ui mini blue button" %>
-</div>
-<div class="ui attached segment">
-  <div class="ui error form segment">
-    <% if flash[:notice] %>
-    <div class="ui error message">
-      <%= flash[:notice] %>
-    </div>
-    <% end %>
-    <% if @brand.errors.any? %>
-    <div class="ui error message">
-      <% @brand.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </div>
-    <% end %>
+<div id="content" class="span10">
+			<!-- content starts -->
+			
 
-    <%= form_for @brand do |f| %>
-    <div class="field">
-      <label>品牌名称</label>
-      <div class="ui left input">
-        <%= f.text_field :name, :placeholder => "请输入品牌名称" %>
-        <div class="ui corner label">
-          <i class="asterisk icon"></i>
-        </div>
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a>信息设置</a>
+					</li>
+				</ul>
+			</div>
+      
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+  
+      <% if @brand.errors.any? %>
+      <div class="alert alert-info">
+        <% @brand.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
       </div>
-    </div>
-    <%= f.submit "保存", :class => "ui blue submit button" %>
-    <% end %>
-  </div>
-</div>
+      <% end %>
+  
+      <%= link_to "返回列表", :brands, :class => "btn btn-info" %>
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-edit"></i>添加车辆品牌</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+          
+					<div class="box-content">
+            <%= form_for @brand, :html => { :class => "form-horizontal" } do |f| %>
+							<fieldset>
+							  <div class="control-group">
+                  <%= f.label :name, "品牌名称", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :name, :class => "input-xlarge focused", :placeholder => "请输入品牌名称" %>
+                  </div>
+							  </div>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>
+            <% end %>
+					
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->
