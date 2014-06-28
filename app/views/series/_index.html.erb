@@ -1,0 +1,41 @@
+<div class="ui blue inverted center aligned top attached segment">
+  <p><%= @brand.name %>-车系</p>
+</div>
+<div class="ui attached segment">
+  <%= link_to "添加", new_brand_series_path(@brand), :class => "ui mini blue button" %>
+  <%= link_to "返回品牌列表", :brands, :class => "ui mini blue button" %>
+</div>
+<div class="ui attached segment">
+  <%= search_form_for @q, url: brand_series_index_path(@brand), :method => "get" do |f| %>
+    <%= f.label "车系名称" %>
+    <%= f.search_field :name_cont %>
+    <%= f.label "拼音首字母" %>
+    <%= f.search_field :initial_cont %>
+    <%= f.submit "筛选", :class => "ui mini blue submit button" %>
+  <% end %>
+</div>
+<div class="ui bottom attached segment">
+  <table class="ui table segment">
+    <thead>
+      <tr><th>车系名称</th>
+      <th>操作</th>
+    </tr></thead>
+    <tbody>
+      <% @series.each do |series| %>
+      <tr>
+        <td><div class="ui label"><%= series.initial %></div> <%= series.name %></td>
+        <td>
+          <%= link_to "修改", edit_brand_series_path(@brand, series), :class => "ui mini blue button" %>
+          <%= link_to "删除", brand_series_path(@brand, series), :method => :delete, :class => "ui mini blue button", :confirm => "确定要删除吗？" %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr><th colspan="3">
+        <%= page_entries_info @series %>
+      </th>
+    </tr></tfoot>
+  </table>
+  <%= will_paginate @series, renderer: SemanticPagination %>
+</div>

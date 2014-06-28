@@ -1,41 +1,62 @@
-<div class="ui blue inverted center aligned top attached segment">
-  <p><%= @brand.name %>-车系</p>
-</div>
-<div class="ui attached segment">
-  <%= link_to "添加", new_brand_series_path(@brand), :class => "ui mini blue button" %>
-  <%= link_to "返回品牌列表", :brands, :class => "ui mini blue button" %>
-</div>
-<div class="ui attached segment">
-  <%= search_form_for @q, url: brand_series_index_path(@brand), :method => "get" do |f| %>
-    <%= f.label "车系名称" %>
-    <%= f.search_field :name_cont %>
-    <%= f.label "拼音首字母" %>
-    <%= f.search_field :initial_cont %>
-    <%= f.submit "筛选", :class => "ui mini blue submit button" %>
-  <% end %>
-</div>
-<div class="ui bottom attached segment">
-  <table class="ui table segment">
-    <thead>
-      <tr><th>车系名称</th>
-      <th>操作</th>
-    </tr></thead>
-    <tbody>
-      <% @series.each do |series| %>
-      <tr>
-        <td><div class="ui label"><%= series.initial %></div> <%= series.name %></td>
-        <td>
-          <%= link_to "修改", edit_brand_series_path(@brand, series), :class => "ui mini blue button" %>
-          <%= link_to "删除", brand_series_path(@brand, series), :method => :delete, :class => "ui mini blue button", :confirm => "确定要删除吗？" %>
-        </td>
-      </tr>
+<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="/">Home</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a>信息设置</a>
+					</li>
+				</ul>
+			</div>
+
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
       <% end %>
-    </tbody>
-    <tfoot>
-      <tr><th colspan="3">
-        <%= page_entries_info @series %>
-      </th>
-    </tr></tfoot>
-  </table>
-  <%= will_paginate @series, renderer: SemanticPagination %>
-</div>
+      <%= link_to "添加车系", new_brand_series_path(@brand), :class => "btn btn-info" %>
+      <%= link_to "返回品牌列表", :brands, :class => "btn btn-info" %>
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-picture"></i><%= @brand.name %>-车系</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>车系名称</th>
+                  <th>操作</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+              <% @series.each do |series| %>
+							<tr>
+								<td><span class="label label-success"><%= series.initial %></span> <%= series.name %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_brand_series_path(@brand, series), :class => "btn btn-info" %>
+                  <%= link_to "删除", brand_series_path(@brand, series), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>
+              <% end %>
+						  </tbody>
+					  </table> 
+            
+            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->
