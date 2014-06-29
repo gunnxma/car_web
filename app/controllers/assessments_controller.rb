@@ -6,5 +6,6 @@ class AssessmentsController < ApplicationController
   
   def new
     @car = CarInfo.new
+    @car.saletype = "寄售"
   end
 end

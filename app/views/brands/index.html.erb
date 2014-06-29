@@ -5,10 +5,7 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="/">Home</a> <span class="divider">/</span>
-					</li>
-					<li>
-						<a>信息设置</a>
+						<%= link_to "添加品牌", :new_brand, :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -18,7 +15,7 @@
 				<%= flash[:notice] %>
 			</div>
       <% end %>
-      <%= link_to "添加品牌", :new_brand, :class => "btn btn-info" %>
+      
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
