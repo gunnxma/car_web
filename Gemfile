@@ -52,3 +52,5 @@ gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
 gem 'will_paginate', '~> 3.0'
 
 gem 'ruby-pinyin'
+
+gem 'rails_kindeditor'

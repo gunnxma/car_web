@@ -7,5 +7,7 @@ class AssessmentsController < ApplicationController
   def new
     @car = CarInfo.new
     @car.saletype = "寄售"
+    @car.car_property = CarProperty.create( :business_info => "" )
+    @car.car_configuration = CarConfiguration.create( :safety => "", :comfort => "", :function => "" )
   end
 end

@@ -13,6 +13,7 @@
 //= require jquery-1.7.2.min
 // require jquery.turbolinks
 //= require jquery_ujs
+//= require kindeditor
 // require_tree .
 // require turbolinks
 //= require 'china_city/jquery.china_city'
