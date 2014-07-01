@@ -5,6 +5,8 @@ Car::Application.routes.draw do
   get "index/logout"
   post "index/checklogin"
   
+  get 'series/ajax_search'
+  
   resources :brands do
     resources :series
   end

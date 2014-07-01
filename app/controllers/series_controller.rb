@@ -1,8 +1,17 @@
 class SeriesController < ApplicationController
   def index
     @brand = Brand.find(params[:brand_id])
-    @q = @brand.series.search(params[:q])
-    @series = @q.result.paginate(:page => params[:page]).order(:initial)
+    #@q = @brand.series.search(params[:q])
+    #@series = @q.result.paginate(:page => params[:page]).order(:initial)
+    @series = @brand.series
+  end
+  
+  def ajax_search
+    @brand = Brand.where(:name => params[:brand]).first
+    @series = @brand.series
+    respond_to do |format|
+      format.json { render :json => @series.to_json }
+    end
   end
 
   def create

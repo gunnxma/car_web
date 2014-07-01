@@ -68,8 +68,8 @@
                   <div class="control-group success">
                     <%= f.label :brand, "车辆品牌", :class => "control-label" %>
                     <div class="controls">
-                      <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, :style => "width:100px" %>
-                      <%= f.select :series, Series.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, :style => "width:100px" %>
+                      <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
+                      <%= f.select :series, {}, { include_blank: true }, :style => "width:100px" %>
                     </div>
                   </div>
                   <div class="control-group">
@@ -117,9 +117,15 @@
                     <div class="controls">
                       <% Newsfrom.all.each do |newsfrom| %>
                       <label class="checkbox inline">
-                        <%= f.radio_button :newsfrom, newsfrom.name %><%= newsfrom.name %>
+                        <%= f.radio_button :newsfrom, newsfrom.name, :onclick => "set_cooperation(this.value);" %><%= newsfrom.name %>
                       </label>
                       <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group" id="div_cooperation" style="display:<%= @car.newsfrom == "合作商户" ? "":"none"%>">
+                    <%= f.label :cooperation_id, "合作商户", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.select :cooperation_id, Cooperation.all.collect { |p| [ p.name, p.id ] }, { include_blank: true } %>
                     </div>
                   </div>
                   <div class="control-group">
@@ -194,7 +200,7 @@
                   <div class="control-group">
                     <%= f.label :description, "车辆描述", :class => "control-label" %>
                     <div class="controls">
-                      <%= f.kindeditor :description, :window_onload => true %>
+                      <%= f.kindeditor :description, :window_onload => true, :width => 700 %>
                     </div>
                   </div>
                   <div class="control-group">

@@ -52,3 +52,5 @@
 //= require jquery.uploadify-3.1.min
 //= require jquery.history
 //= require charisma
+
+//= require assessment
