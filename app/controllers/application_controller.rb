@@ -24,6 +24,17 @@ class ApplicationController < ActionController::Base
   def check_action
     # todo check current_user has current_action power
   end
+  
+  def get_car_no
+    max_no = CarNo.maximum(:no)
+    if max_no
+      max_no = max_no + 1
+    else
+      max_no = 1
+    end
+    CarNo.create(:no => max_no)
+    (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
+  end
 end
 
   # A custom renderer class for WillPaginate that produces markup suitable for use with Semantic.

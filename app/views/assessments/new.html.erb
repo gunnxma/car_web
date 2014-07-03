@@ -52,7 +52,8 @@
                   <div class="control-group">
                     <%= f.label :car_no, "车辆编号", :class => "control-label" %>
                     <div class="controls">
-                      <%= f.text_field :car_no, :class => "span8" %>
+                      <%= f.hidden_field :car_no %>
+                      <span class="input-xlarge uneditable-input"><%= @car.car_no %></span>
                     </div>
                   </div>
                   <div class="control-group">
