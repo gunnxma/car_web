@@ -1,0 +1,150 @@
+<div class="control-group">
+                    <%= b.label :transmission, "变速器", :class => "control-label" %>
+                    <div class="controls">
+                      <% Transmission.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= b.radio_button :transmission, r.name %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group success">
+                    <%= b.label :cc, "排气量", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.text_field :cc %><%= b.select :cc_unit, CcUnit.all.collect { |p| [ p.name, p.name ] }, {}, :style => "width:50px" %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :transfer_number, "过户次数", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.text_field :transfer_number %><span class="add-on">次</span>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :production_date, "出厂日期", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.date_field :production_date %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :registration_date, "登记日期", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.date_field :registration_date %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :registration_province, "上牌地区", :class => "control-label" %>
+                    <div class="controls city-group">
+                      <%= b.select :registration_province, options_for_select(ChinaCity.list, @car.car_property.registration_province), { include_blank: "－省份－" }, :class => "city-select" %>
+                      <%= b.select :registration_city, @car.car_property.registration_province ? [ [ChinaCity.get(@car.car_property.registration_city),@car.car_property.registration_city] ] : {}, { include_blank: "－城市－" }, :class => "city-select" %>         
+                      <%= b.select :registration_district, @car.car_property.registration_district ? [ [ChinaCity.get(@car.car_property.registration_district),@car.car_property.registration_district] ] : {}, { include_blank: "－地区－" }, :class => "city-select" %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= b.label :mileage, "行驶里程", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.text_field :mileage, :style => "width:100px;" %><span class="add-on">万公里</span>
+                        </div>
+                    </div>
+                    <div class="span4">
+                      <%= b.label :maintenance_mileage, "最后保养里程", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.text_field :maintenance_mileage, :style => "width:100px;" %><span class="add-on">万公里</span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= b.label :color, "车身颜色", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.select :color, Color.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true } %>
+                        </div>
+                    </div>
+                    <div class="span4">
+                      <%= b.label :interior_color, "内饰颜色", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.select :interior_color, InteriorColor.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true } %>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :body_class, "车身类型", :class => "control-label" %>
+                    <div class="controls">
+                      <% BodyClass.all.each do |r| %>
+                        <label class="checkbox inline">
+                          <%= b.radio_button :body_class, r.name %><%= r.name %>
+                        </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :emission_standard, "排放类型", :class => "control-label" %>
+                    <div class="controls">
+                      <% EmissionStandard.all.each do |r| %>
+                        <label class="checkbox inline">
+                          <%= b.radio_button :emission_standard, r.name %><%= r.name %>
+                        </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :use_nature, "使用性质", :class => "control-label" %>
+                    <div class="controls">
+                      <% UseNature.all.each do |r| %>
+                        <label class="checkbox inline">
+                          <%= b.radio_button :use_nature, r.name %><%= r.name %>
+                        </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :inspection_expire, "年检到期", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.date_field :inspection_expire %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= b.label :compulsory_expire, "交强险到期", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.date_field :compulsory_expire %>
+                        </div>
+                    </div>
+                    <div class="span4">
+                      <%= b.label :compulsory_company, "交强险公司", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.select :compulsory_company, CompulsoryCompany.all.collect { |p| [ p.name, p.name ] }, { include_blank: true } %>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :business_info, "商业险信息", :class => "control-label" %>
+                    <div class="controls">
+                      <% BusinessInfo.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= check_box_tag 'business_info[]', r.name, @car.car_property.business_info && (@car.car_property.business_info.include? r.name) %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= b.label :business_expire, "商业险到期", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.date_field :business_expire %>
+                        </div>
+                    </div>
+                    <div class="span4">
+                      <%= b.label :business_company, "商业险公司", :class => "control-label" %>
+                        <div class="controls">
+                          <%= b.select :business_company, BusinessCompany.all.collect { |p| [ p.name, p.name ] }, { include_blank: true } %>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :insurance_record, "出险记录", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.text_area :insurance_record, :style => "width:480px;height:50px" %>
+                    </div>
+                  </div>   

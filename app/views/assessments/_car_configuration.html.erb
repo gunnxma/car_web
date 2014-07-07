@@ -1,0 +1,46 @@
+<div class="control-group">
+                    <%= b.label :standard, "车辆配置", :class => "control-label" %>
+                    <div class="controls">
+                      <% Standard.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= b.radio_button :standard, r.name %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :safety, "安全配置", :class => "control-label" %>
+                    <div class="controls">
+                      <% Safety.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= check_box_tag "safety[]", r.name, @car.car_configuration.safety && (@car.car_configuration.safety.include? r.name) %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :comfort, "舒适配置", :class => "control-label" %>
+                    <div class="controls">
+                      <% Comfort.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= check_box_tag "comfort[]", r.name, @car.car_configuration.comfort && (@car.car_configuration.comfort.include? r.name) %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :function, "功能配置", :class => "control-label" %>
+                    <div class="controls">
+                      <% Function.all.each do |r| %>
+                      <label class="checkbox inline">
+                        <%= check_box_tag "function[]", r.name, @car.car_configuration.function && (@car.car_configuration.function.include? r.name) %><%= r.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= b.label :other, "其他配置描述", :class => "control-label" %>
+                    <div class="controls">
+                      <%= b.text_area :other, :style => "width:480px;height:50px" %>
+                    </div>
+                  </div>

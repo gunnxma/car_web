@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_info_id: 1
+  describe: MyString
+  reason: MyString
+  addtime: 2014-07-07 01:31:52
+  user_id: 1
+
+two:
+  car_info_id: 1
+  describe: MyString
+  reason: MyString
+  addtime: 2014-07-07 01:31:52
+  user_id: 1

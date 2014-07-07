@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703082805) do
+ActiveRecord::Schema.define(version: 20140707013151) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -224,6 +224,16 @@ ActiveRecord::Schema.define(version: 20140703082805) do
 
   create_table "newsfroms", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "price_logs", force: true do |t|
+    t.integer  "car_info_id"
+    t.string   "describe"
+    t.string   "reason"
+    t.datetime "addtime"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

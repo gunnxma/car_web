@@ -7,6 +7,7 @@ Car::Application.routes.draw do
   
   get 'series/ajax_search'
   
+  
   resources :brands do
     resources :series
   end

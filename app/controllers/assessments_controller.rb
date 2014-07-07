@@ -1,25 +1,63 @@
 class AssessmentsController < ApplicationController
   def index
-    @q = CarInfo.search(params[:q])
-    @cars = @q.result.paginate(:page => params[:page]).order(:addtime)
+    #@q = CarInfo.search(params[:q])
+    #@cars = @q.result.paginate(:page => params[:page]).order(:addtime)
+    @cars = CarInfo.all.order(id: :desc)
   end
   
   def new
     @car = CarInfo.new
     @car.car_no = get_car_no
     @car.saletype = "寄售"
-    @car.car_property = CarProperty.new( :business_info => "" )
-    @car.car_assess = CarAssess.new
-    @car.car_configuration = CarConfiguration.new( :safety => "", :comfort => "", :function => "" )
+    @car.init_assocation
+    
+    @series = nil
   end
   
   def create
     @car = CarInfo.new(car_params)
+    @car.addtime = DateTime.now
+    @car.status = 0
+    
+    @car.set_multi_value(params[:business_info], params[:safety], params[:comfort], params[:function])
+    
     if @car.save
       redirect_to :action => :index
     else
       render "new"
     end
+  end
+  
+  def edit
+    @car = CarInfo.find(params[:id])
+    
+    @car.init_assocation
+    
+    brand = Brand.where(:name => @car.brand).first
+    @series = brand.series if brand
+  end
+  
+  def update
+    @car = CarInfo.find(params[:id])
+    old_price = @car.price_to_hash
+    if @car.update_attributes(car_params)
+      @car.set_multi_value(params[:business_info], params[:safety], params[:comfort], params[:function])
+      @car.save
+      
+      describe = @car.price_change_describe(old_price)      
+      PriceLog.create(:car_info_id => @car.id, :describe => describe, :reason => params[:reason], :addtime => DateTime.now, :user_id => current_user.id) unless describe.blank?
+      
+      redirect_to :action => :edit, :id => @car.id
+    else
+      render "edit"
+    end
+  end
+  
+  def destroy
+    @car = CarInfo.find(params[:id])
+    @car.destroy
+    flash[:notice] = "删除成功"
+    redirect_to :action => :index
   end
   
   private

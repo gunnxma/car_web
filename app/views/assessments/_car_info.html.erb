@@ -1,0 +1,116 @@
+                  <div class="control-group">
+                    <%= f.label :car_no, "车辆编号", :class => "control-label" %>
+                    <div class="controls">
+                    <%= f.hidden_field :car_no %>
+                      <span class="input-xlarge uneditable-input"><%= @car.car_no %></span>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :saletype, "车辆类型", :class => "control-label" %>
+                    <div class="controls">
+                      <% Saletype.all.each do |saletype| %>
+                      <label class="checkbox inline">
+                        <%= f.radio_button :saletype, saletype.name %><%= saletype.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group success">
+                    <%= f.label :brand, "车辆品牌", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: "请选择品牌" }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
+                      <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :style => "width:100px" %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= f.label :vin, "VIN码", :class => "control-label" %>
+                      <div class="controls">
+                        <%= f.text_field :vin %>
+                      </div>
+                    </div>
+                    <div class="span4">
+                      <%= f.label :engineid, "发动机号", :class => "control-label" %>
+                      <div class="controls">
+                        <%= f.text_field :engineid %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :platenumber, "车牌号", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.text_field :platenumber, :placeholder => "请输入完整的车牌号，如：浙：A888R8", :class => "span8" %>
+                    </div>
+                  </div>
+                  <div class="control-group success">
+                    <%= f.label :models, "车辆型号", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.text_field :models, :class => "span8" %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="span4">
+                      <%= f.label :ownername, "车主姓名", :class => "control-label" %>
+                      <div class="controls">
+                        <%= f.text_field :ownername %>
+                      </div>
+                    </div>
+                    <div class="span4">
+                      <%= f.label :ownerphone, "车主电话", :class => "control-label" %>
+                      <div class="controls">
+                        <%= f.text_field :ownerphone %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :newsfrom, "信息来源", :class => "control-label" %>
+                    <div class="controls">
+                      <% Newsfrom.all.each do |newsfrom| %>
+                      <label class="checkbox inline">
+                        <%= f.radio_button :newsfrom, newsfrom.name, :onclick => "set_cooperation(this.value);" %><%= newsfrom.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="control-group" id="div_cooperation" style="display:<%= @car.newsfrom == "合作商户" ? "":"none"%>">
+                    <%= f.label :cooperation_id, "合作商户", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.select :cooperation_id, Cooperation.all.collect { |p| [ p.name, p.id ] }, { include_blank: true } %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :location, "车辆位置", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.text_field :location, :placeholder => "表示车辆存放点。当前车辆的位置，可以是您的库存位置，也可以是您的合作伙伴的展厅。", :class => "span8" %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :rating, "车辆等级", :class => "control-label" %>
+                    <div class="controls">
+                      <% Rating.all.each do |rating| %>
+                      <label class="checkbox inline">
+                        <%= f.radio_button :rating, rating.name %><%= rating.name %>
+                      </label>
+                      <% end %>
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <%= f.label :description, "车辆描述", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.kindeditor :description, :window_onload => true, :width => 700 %>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <%= f.label :user_id, "评估师", :class => "control-label" %>
+                    <div class="controls">
+                      <select data-placeholder="选择评估师" id="car_info_user_id" name="car_info[user_id]" data-rel="chosen">
+                        <option value=""></option>
+                        <% Department.all.each do |d| %>
+                        <optgroup label="<%= d.name %>">
+                          <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @car.user_id) %>
+                        </optgroup>
+                        <% end %>
+                      </select>
+                    </div>
+                  </div>
