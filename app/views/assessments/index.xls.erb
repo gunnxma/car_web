@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">车辆编号</Data></Cell>
+        <Cell><Data ss:Type="String">评估日期</Data></Cell>
+        <Cell><Data ss:Type="String">状态</Data></Cell>
+        <Cell><Data ss:Type="String">类型</Data></Cell>
+        <Cell><Data ss:Type="String">车辆品牌型号</Data></Cell>
+        <Cell><Data ss:Type="String">车牌号</Data></Cell>
+        <Cell><Data ss:Type="String">排量</Data></Cell>
+        <Cell><Data ss:Type="String">表显里程</Data></Cell>
+        <Cell><Data ss:Type="String">评估价</Data></Cell>
+        <Cell><Data ss:Type="String">评估师</Data></Cell>
+      </Row>
+    <% @cars.each do |car| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= car.car_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.status_str %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.saletype %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= "#{car.brand} #{car.series} #{car.models}" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.platenumber %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.car_property.mileage if car.car_property %>万公里</Data></Cell>
+        <Cell><Data ss:Type="String"><%= "#{car.evaluate_price}万元" %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.user.name if car.user %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

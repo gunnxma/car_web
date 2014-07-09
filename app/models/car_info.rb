@@ -5,6 +5,7 @@ class CarInfo < ActiveRecord::Base
   has_one :cooperation
   belongs_to :user
   has_many :price_logs
+  has_many :car_photos
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }

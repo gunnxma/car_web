@@ -3,6 +3,10 @@ class AssessmentsController < ApplicationController
     #@q = CarInfo.search(params[:q])
     #@cars = @q.result.paginate(:page => params[:page]).order(:addtime)
     @cars = CarInfo.all.order(id: :desc)
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
   
   def new

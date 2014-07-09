@@ -54,3 +54,5 @@ gem 'will_paginate', '~> 3.0'
 gem 'ruby-pinyin'
 
 gem 'rails_kindeditor'
+
+gem "paperclip", "~> 4.1"

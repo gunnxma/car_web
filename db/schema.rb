@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140707013151) do
+ActiveRecord::Schema.define(version: 20140708085723) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -105,6 +105,17 @@ ActiveRecord::Schema.define(version: 20140707013151) do
     t.integer  "no"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "car_photos", force: true do |t|
+    t.integer  "car_info_id"
+    t.integer  "photo_style"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "car_properties", force: true do |t|

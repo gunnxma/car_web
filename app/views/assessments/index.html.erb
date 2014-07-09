@@ -6,6 +6,7 @@
 				<ul class="breadcrumb">
 					<li>
 						<%= link_to "添加", :new_assessment, :class => "btn btn-info" %>
+            <%= link_to "导出Excel", assessments_path(format: "xls"), :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -58,7 +59,13 @@
                 <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
                 <td><%= car.status_str %></td>
                 <td><%= car.saletype %></td>
-                <td></td>
+                <td>
+                  <% if car.car_photos.count != 0 %>
+                  <%= link_to image_tag(car.car_photos.first.photo.url(:thumb)), photos_path(:car_info_id => car.id, :photo_style => 1), :target => "_blank" %>
+                  <% else %>
+                  <%= link_to "上传", photos_path(:car_info_id => car.id, :photo_style => 1), :class=> "btn btn-info", :target => "_blank" %>
+                  <% end %>
+                </td>
                 <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
                 <td><%= car.platenumber %></td>
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
