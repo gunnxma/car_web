@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  repair_id: 1
+  item: MyString
+  cost: 9.99
+  remark: MyString
+  is_cooperation: 1
+  cooperation_id: 1
+
+two:
+  repair_id: 1
+  item: MyString
+  cost: 9.99
+  remark: MyString
+  is_cooperation: 1
+  cooperation_id: 1

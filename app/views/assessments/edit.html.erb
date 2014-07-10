@@ -5,7 +5,8 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-            <%= link_to "返回列表", :assessments, :class => "btn btn-info" %>
+            <%= link_to "返回列表", :assessments, :class => "btn btn-info" if @car.status.nil? || @car.status == 0 %>
+            <%= link_to "返回列表", depot_index_path, :class => "btn btn-info" if @car.status == 1 %>
 					</li>
 				</ul>
 			</div>

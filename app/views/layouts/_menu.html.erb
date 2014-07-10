@@ -7,7 +7,10 @@
             </li>
 						<li class="nav-header hidden-tablet">车辆评估</li>
 						<li><%= link_to '增加车辆', :new_assessment, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-						<li><%= link_to "车辆评估", :assessments, :class => "ajax-link" %></li>
+						<li><%= link_to "评估管理", :assessments, :class => "ajax-link" %></li>
+            <li class="nav-header hidden-tablet">车辆库存</li>
+            <li><%= link_to '库存管理', depot_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '整备管理', :repairs, :class => "ajax-link", 'data-no-turbolink' => true %></li>
             <li class="nav-header hidden-tablet">系统</li>
             <li><%= link_to "退出", { controller: "index", action: "logout" }, class: "ajax-link" %></li>
 					</ul>

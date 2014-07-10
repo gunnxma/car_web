@@ -7,6 +7,9 @@ Car::Application.routes.draw do
   
   get 'series/ajax_search'
   
+  get "depot/index"
+  post "depot/add"
+  
   resources :brands do
     resources :series
   end
@@ -14,6 +17,8 @@ Car::Application.routes.draw do
   resources :assessments
   
   resources :photos
+  
+  resources :repairs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

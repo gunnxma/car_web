@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  car_info_id: 1
+  style: 1
+  man_hour: 9.99
+  start_time: 2014-07-10 08:07:08
+  end_time: 2014-07-10 08:07:08
+  cost: 9.99
+  status: 1
+  remark: MyString
+  addtime: 2014-07-10 08:07:08
+
+two:
+  car_info_id: 1
+  style: 1
+  man_hour: 9.99
+  start_time: 2014-07-10 08:07:08
+  end_time: 2014-07-10 08:07:08
+  cost: 9.99
+  status: 1
+  remark: MyString
+  addtime: 2014-07-10 08:07:08

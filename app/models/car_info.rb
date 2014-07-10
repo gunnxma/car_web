@@ -6,6 +6,7 @@ class CarInfo < ActiveRecord::Base
   belongs_to :user
   has_many :price_logs
   has_many :car_photos
+  has_many :repairs
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }

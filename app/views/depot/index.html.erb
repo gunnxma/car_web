@@ -5,8 +5,8 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<%= link_to "添加", :new_assessment, :class => "btn btn-info" %>
-            <%= link_to "导出Excel", assessments_path(format: "xls"), :class => "btn btn-info" %>
+            <%= link_to "添加", new_assessment_path(from: "depot"), :class => "btn btn-info" %>
+            <%= link_to "导出Excel", depot_index_path(format: "xls"), :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-picture"></i>车辆评估</h2>
+						<h2><i class="icon-picture"></i>车辆库存</h2>
 						<div class="box-icon">
 							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
 							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -51,8 +51,8 @@
 							<tr>
                 <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
 								<td class="center">
-                  <%= link_to "入库", depot_add_path(id: car.id), :method => :post, :class => "btn btn-info" %>
-                  <%= link_to "上架", :class => "btn btn-info" %>
+                  <%= link_to "上架", :class => "btn btn-info" if car.status == 1 %>
+                  <%= "已上架" if car.status > 1 %>
                   <%= link_to "修改", edit_assessment_path(car), :class => "btn btn-info" %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
                 </td>
