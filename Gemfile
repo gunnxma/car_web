@@ -56,3 +56,5 @@ gem 'ruby-pinyin'
 gem 'rails_kindeditor'
 
 gem "paperclip", "~> 4.1"
+
+gem 'puma'

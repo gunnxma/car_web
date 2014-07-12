@@ -1,3 +1,3 @@
 class CooperateType < ActiveRecord::Base
-  belongs_to :cooperation
+  has_many :cooperations
 end

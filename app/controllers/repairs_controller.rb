@@ -3,6 +3,8 @@ class RepairsController < ApplicationController
   end
 
   def new
+    @repair = Repair.new
+    @repair.style = 0
   end
 
   def edit
