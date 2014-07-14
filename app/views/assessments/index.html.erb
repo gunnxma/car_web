@@ -66,7 +66,7 @@
                   <%= link_to "上传", photos_path(:car_info_id => car.id, :photo_style => 1), :class=> "btn btn-info", :target => "_blank" %>
                   <% end %>
                 </td>
-                <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
+                <td><%= car.info %></td>
                 <td><%= car.platenumber %></td>
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>

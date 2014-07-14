@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   has_many :car_infos
   has_many :car_assesses
   has_many :price_logs
+  has_many :repairs
 end

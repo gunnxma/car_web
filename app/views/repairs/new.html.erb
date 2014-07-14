@@ -45,20 +45,8 @@
                     <a href="javascript:addrow()">增加一行</a>
                   </div>
 							  </div>
-                <% 20.times do |i| %>
-                <div class="control-group" id="row<%= i%>" <% if i > 4 %>style="display:none"<% end %>>
-                  <%= label_tag "item#{i}", "(#{i+1})整备项目", :class => "control-label" %>
-                  <div class="controls">
-                    <%= text_field_tag "item#{i}" %>
-                    费用:
-                    <%= text_field_tag "cost#{i}", nil, style: "width:50px" %>元
-                    &nbsp;&nbsp;说明:
-                    <%= text_field_tag "remark#{i}", nil %>
-                    <%= check_box "is_cooperation", i %>外协整备
-                    &nbsp;&nbsp;外协整备单位：
-                    <%= select "cooperation", i, CooperateType.where(:name => "维修汽配厂").first.cooperations.collect { |p| [p.name, p.id] }, { include_blank: true }, :style => "width:100px" %>
-                  </div>
-							  </div>
+                <%= f.fields_for :repair_details do |b| %>
+                <%= render "repair_details", :f => b %>
                 <% end %>
                 <div class="control-group">
                   <%= f.label :style, "整备现状", :class => "control-label" %>
@@ -92,7 +80,7 @@
                 <div class="control-group">
                   <%= f.label :cost, "合计费用", :class => "control-label" %>
                   <div class="controls">
-                    <span id="cost"></span>元
+                    <span id="cost"><%= @repair.cost %></span>元
                   </div>
 							  </div>
                 <div class="control-group">
@@ -125,7 +113,21 @@
 				</div><!--/span-->
 			
 			</div><!--/row-->
+  
+<%= content_for :javascript do %>
 <script>
+  $(function(){ 
+　　hide_rows();
+  });  
+  
+  function hide_rows() {
+    for (var i = 4; i < 20; i++) {
+      if ($("#row"+i).css("display") != "none" && $("#repair_repair_details_attributes_"+i+"_item").val() =="" ) {
+        $("#row"+i).css("display", "none");
+      }
+    }
+  }
+  
   function addrow() {
     for (var i = 0; i < 20; i++) {
       if ($("#row"+i).css("display") == "none") {
@@ -134,7 +136,16 @@
       }
     }
   }
+  
+  function add_up() {
+    var cost = 0.0;
+    for (var i=0; i < 20; i++) {
+      cost += Number($("#repair_repair_details_attributes_"+i+"_cost").val());
+    }
+    $("#cost").html(cost);
+  }
 </script>
+<% end %>
     
 					<!-- content ends -->
 			</div><!--/#content.span10-->

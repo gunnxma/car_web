@@ -18,7 +18,11 @@ Car::Application.routes.draw do
   
   resources :photos
   
-  resources :repairs
+  resources :repairs do
+    member do
+      post 'check'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

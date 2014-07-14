@@ -1,2 +1,150 @@
-<h1>Repairs#edit</h1>
-<p>Find me in app/views/repairs/edit.html.erb</p>
+<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "返回列表", :repairs, :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>
+      
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+  
+      <% if @repair.errors.any? %>
+      <div class="alert alert-info">
+        <% @repair.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </div>
+      <% end %>
+  
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-edit"></i>修改整备</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+          
+					<div class="box-content">
+            <%= form_for @repair, :html => { :class => "form-horizontal" } do |f| %>
+							<fieldset>
+							  <div class="control-group">
+                  <%= f.label :car_info_id, "整备车辆", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :car_info_id, CarInfo.where("status > 0").order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
+                    <a href="javascript:addrow()">增加一行</a>
+                  </div>
+							  </div>
+                <%= f.fields_for :repair_details do |b| %>
+                <%= render "repair_details", :f => b %>
+                <% end %>
+                <div class="control-group">
+                  <%= f.label :style, "整备现状", :class => "control-label" %>
+                  <div class="controls">
+                    <label class="checkbox inline">
+                      <%= f.radio_button :style, 0 %>首次整备
+                    </label>
+                    <label class="checkbox inline">
+                      <%= f.radio_button :style, 1 %>二次返修
+                    </label>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :man_hour, "工时预计", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :man_hour %>小时
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :start_time, "开始时间", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.date_field :start_time %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :end_time, "结束时间", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.date_field :end_time %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :cost, "合计费用", :class => "control-label" %>
+                  <div class="controls">
+                    <span id="cost"><%= @repair.cost %></span>元
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :status, "整备状态", :class => "control-label" %>
+                  <div class="controls">
+                    <label class="checkbox inline">
+                      <%= f.radio_button :status, 0 %>待整备
+                    </label>
+                    <label class="checkbox inline">
+                      <%= f.radio_button :status, 1 %>整备中
+                    </label>
+                    <label class="checkbox inline">
+                      <%= f.radio_button :status, 2 %>已完成
+                    </label>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :remark, "补充说明", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_area :remark, :style => "width:480px;height:50px" %>
+                  </div>
+							  </div>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>
+            <% end %>
+					
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+<%= content_for :javascript do %>
+<script>
+  $(function(){ 
+　　hide_rows();
+  });  
+  
+  function hide_rows() {
+    for (var i = 4; i < 20; i++) {
+      if ($("#row"+i).css("display") != "none" && $("#repair_repair_details_attributes_"+i+"_item").val() =="" ) {
+        $("#row"+i).css("display", "none");
+      }
+    }
+  }
+  
+  function addrow() {
+    for (var i = 0; i < 20; i++) {
+      if ($("#row"+i).css("display") == "none") {
+        $("#row"+i).css("display", "");
+        break;
+      }
+    }
+  }
+  
+  function add_up() {
+    var cost = 0.0;
+    for (var i=0; i < 20; i++) {
+      cost += Number($("#repair_repair_details_attributes_"+i+"_cost").val());
+    }
+    $("#cost").html(cost);
+  }
+</script>
+<% end %>
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

@@ -24,6 +24,10 @@ class CarInfo < ActiveRecord::Base
     end
   end
   
+  def info
+    "#{self.brand} #{self.series} #{self.models}"
+  end
+  
   def init_assocation
     self.car_property = CarProperty.new( :business_info => "" ) unless self.car_property
     self.car_assess = CarAssess.new unless self.car_assess

@@ -1,0 +1,13 @@
+<div class="control-group" id="row<%= f.options[:child_index] %>">
+  <%= f.label :item, "(#{f.options[:child_index]+1})整备项目", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :item %>
+                    费用:
+                    <%= f.text_field :cost, style: "width:50px", onchange: "add_up()" %>元
+                    &nbsp;&nbsp;说明:
+                    <%= f.text_field :remark %>
+                    <%= f.check_box :is_cooperation %>外协整备
+                    &nbsp;&nbsp;外协整备单位：
+                    <%= f.select :cooperation_id, CooperateType.where(:name => "维修汽配厂").first.cooperations.collect { |p| [p.name, p.id] }, { include_blank: true }, :style => "width:100px" %>
+                  </div>
+							  </div>
