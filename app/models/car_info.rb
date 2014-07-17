@@ -7,6 +7,10 @@ class CarInfo < ActiveRecord::Base
   has_many :price_logs
   has_many :car_photos
   has_many :repairs
+  belongs_to :sell_user, :class_name => "User", :foreign_key => "sell_user_id"
+  belongs_to :customer
+  belongs_to :sell_way
+  belongs_to :payment_method
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }
@@ -76,6 +80,10 @@ class CarInfo < ActiveRecord::Base
     describe += "销售限价由#{old_price[:selllimit_price]}万变更为#{self.selllimit_price}万," if old_price[:selllimit_price] != self.selllimit_price
     describe += "新车到手价由#{old_price[:price_hand]}万变更为#{self.price_hand}万," if old_price[:price_hand] != self.price_hand
     describe
+  end
+
+  def depot_day
+    Time.diff(self.depot_time, DateTime.now)[:day]
   end
   
 end

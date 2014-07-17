@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714070817) do
+ActiveRecord::Schema.define(version: 20140717092047) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
     t.string   "action"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ages", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -41,6 +47,24 @@ ActiveRecord::Schema.define(version: 20140714070817) do
   end
 
   create_table "business_infos", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "business_stages", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buy_reasons", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "call_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -100,6 +124,12 @@ ActiveRecord::Schema.define(version: 20140714070817) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "depot_time"
+    t.datetime "sell_time"
+    t.integer  "customer_id"
+    t.integer  "sell_way_id"
+    t.decimal  "deal_price",         precision: 20, scale: 2
+    t.integer  "payment_method_id"
+    t.integer  "sell_user_id"
   end
 
   create_table "car_nos", force: true do |t|
@@ -146,6 +176,12 @@ ActiveRecord::Schema.define(version: 20140714070817) do
     t.datetime "business_expire"
     t.string   "business_company"
     t.string   "insurance_record"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "car_sorts", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -209,7 +245,87 @@ ActiveRecord::Schema.define(version: 20140714070817) do
     t.datetime "updated_at"
   end
 
+  create_table "customer_needs", force: true do |t|
+    t.string   "brand"
+    t.string   "series"
+    t.string   "models"
+    t.string   "brand_others"
+    t.string   "color"
+    t.string   "interior_color"
+    t.string   "transmission"
+    t.integer  "car_sort_id"
+    t.decimal  "cc_min",                precision: 20, scale: 2
+    t.decimal  "cc_max",                precision: 20, scale: 2
+    t.string   "cc_unit"
+    t.decimal  "mileage_min",           precision: 20, scale: 2
+    t.decimal  "mileage_max",           precision: 20, scale: 2
+    t.decimal  "car_age_min",           precision: 20, scale: 2
+    t.decimal  "car_age_max",           precision: 20, scale: 2
+    t.decimal  "expectative_price_min", precision: 20, scale: 2
+    t.decimal  "expectative_price_max", precision: 20, scale: 2
+    t.string   "transfer_area"
+    t.string   "platenumber_demand"
+    t.integer  "is_mortgage"
+    t.string   "mortgage_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customer_others", force: true do |t|
+    t.integer  "experience_id"
+    t.integer  "buy_reason_id"
+    t.string   "undeal_reason"
+    t.string   "seen_models"
+    t.string   "fit_models"
+    t.string   "newsfrom"
+    t.integer  "network_id"
+    t.integer  "tag_id"
+    t.integer  "business_stage_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customer_sorts", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customer_tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customers", force: true do |t|
+    t.integer  "sort_id"
+    t.string   "no"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "weixin"
+    t.string   "address"
+    t.datetime "call_time"
+    t.integer  "call_type_id"
+    t.integer  "sex"
+    t.string   "id_number"
+    t.datetime "birthday"
+    t.integer  "age_id"
+    t.integer  "industry_id"
+    t.integer  "duty_id"
+    t.integer  "income_id"
+    t.integer  "status"
+    t.datetime "plan_deal_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "departments", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "duties", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -221,7 +337,25 @@ ActiveRecord::Schema.define(version: 20140714070817) do
     t.datetime "updated_at"
   end
 
+  create_table "experiences", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "functions", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "incomes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "industries", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -234,7 +368,19 @@ ActiveRecord::Schema.define(version: 20140714070817) do
     t.datetime "updated_at"
   end
 
+  create_table "networks", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "newsfroms", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_methods", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -290,6 +436,12 @@ ActiveRecord::Schema.define(version: 20140714070817) do
   end
 
   create_table "saletypes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sell_ways", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"

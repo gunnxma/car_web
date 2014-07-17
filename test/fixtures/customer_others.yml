@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  experience_id: 1
+  buy_reason_id: 1
+  undeal_reason: MyString
+  seen_models: MyString
+  fit_models: MyString
+  newsfrom: MyString
+  network_id: 1
+  tag_id: 1
+  business_stage_id: 1
+
+two:
+  experience_id: 1
+  buy_reason_id: 1
+  undeal_reason: MyString
+  seen_models: MyString
+  fit_models: MyString
+  newsfrom: MyString
+  network_id: 1
+  tag_id: 1
+  business_stage_id: 1

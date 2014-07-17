@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sort: 1
+  'no': MyString
+  name: MyString
+  phone: MyString
+  weixin: MyString
+  address: MyString
+  call_time: 2014-07-17 08:19:00
+  call_type_id: 1
+  sex: 1
+  id_number: MyString
+  birthday: 2014-07-17 08:19:00
+  age_id: 1
+  industry_id: 1
+  duty_id: 1
+  income_id: 1
+  status: 1
+  plan_deal_time: 2014-07-17 08:19:00
+
+two:
+  sort: 1
+  'no': MyString
+  name: MyString
+  phone: MyString
+  weixin: MyString
+  address: MyString
+  call_time: 2014-07-17 08:19:00
+  call_type_id: 1
+  sex: 1
+  id_number: MyString
+  birthday: 2014-07-17 08:19:00
+  age_id: 1
+  industry_id: 1
+  duty_id: 1
+  income_id: 1
+  status: 1
+  plan_deal_time: 2014-07-17 08:19:00

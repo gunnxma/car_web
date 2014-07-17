@@ -10,6 +10,12 @@ Car::Application.routes.draw do
   get "depot/index"
   post "depot/add"
   
+  get "sell/index"
+  post "sell/add"
+  
+  get "selloff/index"
+  post "selloff/add"
+  
   resources :brands do
     resources :series
   end

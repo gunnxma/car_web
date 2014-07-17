@@ -5,8 +5,7 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-            <%= link_to "添加", new_assessment_path(from: "depot"), :class => "btn btn-info" %>
-            <%= link_to "导出Excel", depot_index_path(format: "xls"), :class => "btn btn-info" %>
+            <%= link_to "导出Excel", sell_index_path(format: "xls"), :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -42,7 +41,7 @@
                   <th>排量</th>
                   <th>表显里程</th>
                   <th>跟进</th>
-                  <th>库存报警</th>
+                  <th>销售报警</th>
                   <th>评估价</th>
                   <th>评估师</th>
 							  </tr>
@@ -52,8 +51,8 @@
 							<tr>
                 <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
 								<td class="center">
-                  <%= link_to "上架", :class => "btn btn-info" if car.status == 1 %>
-                  <%= "已上架" if car.status > 1 %>
+                  <%= link_to "售出", :class => "btn btn-info" if car.status == 2 %>
+                  <%= "已售出" if car.status > 2 %>
                   <%= link_to "修改", edit_assessment_path(car), :class => "btn btn-info" %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
                 </td>
@@ -72,7 +71,7 @@
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>
                 <td></td>
-                <td><%= car.depot_day %>天</td>
+                <td><%= car.sell_day %>天</td>
                 <td><%= "#{car.evaluate_price}万元" %></td>
                 <td><%= car.user.name if car.user %></td>
 							</tr>

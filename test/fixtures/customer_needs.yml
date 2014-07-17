@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brand: MyString
+  series: MyString
+  models: MyString
+  brand_others: MyString
+  color: MyString
+  interior_color: MyString
+  transmission: MyString
+  car_sort_id: 1
+  cc_min: 9.99
+  cc_max: 9.99
+  cc_unit: MyString
+  mileage_min: 9.99
+  mileage_max: 9.99
+  car_age_min: 9.99
+  car_age_max: 9.99
+  expectative_price_min: 9.99
+  expectative_price_max: 9.99
+  transfer_area: MyString
+  platenumber_demand: MyString
+  is_mortgage: 1
+  mortgage_description: MyString
+
+two:
+  brand: MyString
+  series: MyString
+  models: MyString
+  brand_others: MyString
+  color: MyString
+  interior_color: MyString
+  transmission: MyString
+  car_sort_id: 1
+  cc_min: 9.99
+  cc_max: 9.99
+  cc_unit: MyString
+  mileage_min: 9.99
+  mileage_max: 9.99
+  car_age_min: 9.99
+  car_age_max: 9.99
+  expectative_price_min: 9.99
+  expectative_price_max: 9.99
+  transfer_area: MyString
+  platenumber_demand: MyString
+  is_mortgage: 1
+  mortgage_description: MyString

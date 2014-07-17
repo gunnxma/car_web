@@ -11,6 +11,9 @@
             <li class="nav-header hidden-tablet">车辆库存</li>
             <li><%= link_to '库存管理', depot_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
             <li><%= link_to '整备管理', :repairs, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li class="nav-header hidden-tablet">车辆销售</li>
+            <li><%= link_to '销售管理', sell_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '售出管理', selloff_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
             <li class="nav-header hidden-tablet">系统</li>
             <li><%= link_to "退出", { controller: "index", action: "logout" }, class: "ajax-link" %></li>
 					</ul>
