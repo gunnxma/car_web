@@ -85,5 +85,9 @@ class CarInfo < ActiveRecord::Base
   def depot_day
     Time.diff(self.depot_time, DateTime.now)[:day]
   end
+
+  def sell_day
+    Time.diff(self.sell_time, DateTime.now)[:day]
+  end
   
 end

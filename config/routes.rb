@@ -15,6 +15,7 @@ Car::Application.routes.draw do
   
   get "selloff/index"
   post "selloff/add"
+  get "selloff/new"
   
   resources :brands do
     resources :series
@@ -29,6 +30,8 @@ Car::Application.routes.draw do
       post 'check'
     end
   end
+  
+  resources :customers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

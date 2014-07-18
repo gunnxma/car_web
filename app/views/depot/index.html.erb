@@ -52,7 +52,7 @@
 							<tr>
                 <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
 								<td class="center">
-                  <%= link_to "上架", :class => "btn btn-info" if car.status == 1 %>
+                  <%= link_to "上架", sell_add_path(id: car.id), :method => :post, :class => "btn btn-info", :confirm => "确定要上架销售吗？" if car.status == 1 %>
                   <%= "已上架" if car.status > 1 %>
                   <%= link_to "修改", edit_assessment_path(car), :class => "btn btn-info" %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
