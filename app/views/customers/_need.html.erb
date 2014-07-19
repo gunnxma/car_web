@@ -1,0 +1,93 @@
+<fieldset>
+							  <div class="control-group success">
+                  <%= f.label :brand, "车辆品牌", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: "请选择品牌" }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
+                      <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :class => "car_series", :style => "width:100px" %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :models, "车辆型号", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :models %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :brand_others, "其他需求品牌", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :brand_others %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :color, "车身颜色", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :color, Color.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :interior_color, "内饰颜色", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :interior_color, InteriorColor.all.collect { |p| [ p.name, p.name, { :style => "background-color:#{p.color}" } ] }, { include_blank: true } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :transmission, "变速器要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :transmission, Transmission.all.collect { |p| [ p.name, p.name ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :car_sort_id, "车辆类型要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :car_sort_id, CarSort.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :cc_min, "排量要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :cc_min, :style => "width:50px" %> ~ <%= f.text_field :cc_max, :style => "width:50px" %><%= f.select :cc_unit, CcUnit.all.collect { |p| [ p.name, p.name ] }, {}, :style => "width:50px" %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :mileage_min, "里程要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :mileage_min, :style => "width:50px" %> ~ <%= f.text_field :mileage_max, :style => "width:50px" %>万公里
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :car_age_min, "车龄要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :car_age_min, :style => "width:50px" %> ~ <%= f.text_field :car_age_max, :style => "width:50px" %>年
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :expectative_price_min, "心理价格", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :expectative_price_min, :style => "width:50px" %> ~ <%= f.text_field :expectative_price_max, :style => "width:50px" %>万元
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :transfer_area, "过户地区", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :transfer_area %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :platenumber_demand, "牌照要求", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :platenumber_demand %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :is_mortgage, "是否按揭", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :is_mortgage, [{id: 0, name: '否'},{id: 1, name: '是'}].collect { |p| [ p[:name], p[:id] ] } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :mortgage_description, "按揭说明", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :mortgage_description %>
+                  </div>
+							  </div>
+							</fieldset>

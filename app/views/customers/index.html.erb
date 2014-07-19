@@ -47,8 +47,8 @@
 							<tr>
                 <td><%= link_to customer.no, customer_path(customer), :target => "_blank" %></td>
 								<td class="center">
-                  <%= link_to "修改", edit_customer_path(car), :class => "btn btn-info" %>
-                  <%= link_to "删除", customer_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
+                  <%= link_to "修改", edit_customer_path(customer), :class => "btn btn-info" %>
+                  <%= link_to "删除", customer_path(customer), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
                 </td>
                 <td><%= customer.status_str %></td>
                 <td><%= customer.name %></td>
@@ -56,7 +56,7 @@
                 <td><%= customer.need_price %></td>
                 <td><%= customer.business_stage %></td>
                 <td><%= customer.user.name %></td>
-                <td><%= customer.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
+                <td><%= customer.addtime.strftime("%Y-%m-%d") if customer.addtime %></td>
 							</tr>
               <% end %>
 						  </tbody>

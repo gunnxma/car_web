@@ -8,15 +8,19 @@ class Customer < ActiveRecord::Base
   belongs_to :industry
   belongs_to :duty
   belongs_to :income
+  belongs_to :user
   
   accepts_nested_attributes_for :customer_need, :customer_other
+  
+  validates :name, :presence => { :message => "姓名不能为空" }
+  validates :phone, :presence => { :message => "电话不能为空" }
   
   def status_str
     ["待定", "已成交"][self.status] unless self.status.nil?
   end
   
   def need_car
-    "#{self.customer_need.band} #{self.customer_need.series}" unless self.customer_need.nil?
+    "#{self.customer_need.brand} #{self.customer_need.series}" unless self.customer_need.nil?
   end
   
   def need_price

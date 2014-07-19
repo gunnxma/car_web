@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718083045) do
+ActiveRecord::Schema.define(version: 20140719025703) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -270,6 +270,13 @@ ActiveRecord::Schema.define(version: 20140718083045) do
     t.string   "mortgage_description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
+  end
+
+  create_table "customer_nos", force: true do |t|
+    t.integer  "no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "customer_others", force: true do |t|
@@ -284,6 +291,7 @@ ActiveRecord::Schema.define(version: 20140718083045) do
     t.integer  "business_stage_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "customer_id"
   end
 
   create_table "customer_sorts", force: true do |t|

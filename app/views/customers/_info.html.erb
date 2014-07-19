@@ -1,0 +1,99 @@
+<fieldset>
+							  <div class="control-group">
+                  <%= f.label :sort_id, "客户类别", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :sort_id, CustomerSort.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :no, "客户编号", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.hidden_field :no %>
+                    <span class="input-xlarge uneditable-input"><%= @customer.no %></span>
+                  </div>
+							  </div>
+                <div class="control-group success">
+                  <%= f.label :name, "客户名称", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :name %>
+                  </div>
+							  </div>
+                <div class="control-group success">
+                  <%= f.label :phone, "联系电话", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :phone %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :weixin, "微信号", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :weixin %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :address, "客户地址", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :address %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :call_time, "来电时间", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.datetime_local_field :call_time %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :call_type_id, "接听来电途径", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :call_type_id, CallType.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :sex, "性别", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :sex, @sex.collect { |p| [ p[:name], p[:id] ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :id_number, "身份证号", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :id_number %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :birthday, "客户生日", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.date_field :birthday %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :age_id, "年龄", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :age_id, Age.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :industry_id, "客户行业", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :industry_id, Industry.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :duty_id, "职务", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :duty_id, Duty.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :income_id, "月收入", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :income_id, Income.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
+                  </div>
+                </div><%= f.hidden_field :status %>
+                <div class="control-group">
+                  <%= f.label :plan_deal_time, "预计成交时间", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.date_field :plan_deal_time %>
+                  </div>
+							  </div>
+							</fieldset>

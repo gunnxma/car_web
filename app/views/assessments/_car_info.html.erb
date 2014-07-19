@@ -19,7 +19,7 @@
                     <%= f.label :brand, "车辆品牌", :class => "control-label" %>
                     <div class="controls">
                       <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: "请选择品牌" }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
-                      <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :style => "width:100px" %>
+                      <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :class => "car_series", :style => "width:100px" %>
                     </div>
                   </div>
                   <div class="control-group">

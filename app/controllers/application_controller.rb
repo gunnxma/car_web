@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   
   WillPaginate.per_page = 20
   
+  SEX = [{id: 1, name: '男'}, {id: 2, name: '女'}]
+  
   def current_user
     if !cookies[:user_id]
       nil
@@ -33,6 +35,17 @@ class ApplicationController < ActionController::Base
       max_no = 1
     end
     CarNo.create(:no => max_no)
+    (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
+  end
+  
+  def get_customer_no
+    max_no = CustomerNo.maximum(:no)
+    if max_no
+      max_no = max_no + 1
+    else
+      max_no = 1
+    end
+    CustomerNo.create(:no => max_no)
     (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
   end
 end
