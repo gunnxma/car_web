@@ -32,6 +32,10 @@ Car::Application.routes.draw do
   end
   
   resources :customers
+  
+  resources :payments
+  
+  resources :proceeds
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

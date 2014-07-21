@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  proceeds_id: 1
+  proceeds_reason_id: 1
+  cost: 9.99
+  remark: MyString
+  payments_way_id: 1
+
+two:
+  proceeds_id: 1
+  proceeds_reason_id: 1
+  cost: 9.99
+  remark: MyString
+  payments_way_id: 1

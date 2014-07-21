@@ -1,0 +1,12 @@
+<div class="control-group" id="row<%= f.options[:child_index] %>">
+  <%= f.label :pay_reason_id, "(#{f.options[:child_index]+1})付款原因", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :pay_reason_id, PayReason.all.collect { |p| [p.name, p.id] }, {}, :style => "width:100px" %>
+                    费用:
+                    <%= f.text_field :cost, style: "width:50px", onchange: "add_up()" %>元
+                    &nbsp;&nbsp;说明:
+                    <%= f.text_field :remark %>
+                    途径：
+                    <%= f.select :payments_way_id, PaymentsWay.all.collect { |p| [p.name, p.id] }, {}, :style => "width:100px" %>
+                  </div>
+							  </div>

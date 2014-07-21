@@ -17,6 +17,10 @@
             <li class="nav-header hidden-tablet">客户管理</li>
             <li><%= link_to '客户信息', :customers, :class => "ajax-link", 'data-no-turbolink' => true %></li>
             <li><%= link_to '跟进记录', :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li class="nav-header hidden-tablet">财务管理</li>
+            <li><%= link_to '付款管理', :payments, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '收款管理', :proceeds, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '利润分析', :class => "ajax-link", 'data-no-turbolink' => true %></li>
             <li class="nav-header hidden-tablet">系统</li>
             <li><%= link_to "退出", { controller: "index", action: "logout" }, class: "ajax-link" %></li>
 					</ul>

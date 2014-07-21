@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719025703) do
+ActiveRecord::Schema.define(version: 20140721025537) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -391,7 +391,38 @@ ActiveRecord::Schema.define(version: 20140719025703) do
     t.datetime "updated_at"
   end
 
+  create_table "pay_reasons", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_details", force: true do |t|
+    t.integer  "payment_id"
+    t.integer  "pay_reason_id"
+    t.decimal  "cost",            precision: 10, scale: 2
+    t.string   "remark"
+    t.integer  "payments_way_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "payment_methods", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", force: true do |t|
+    t.integer  "car_info_id"
+    t.integer  "user_id"
+    t.decimal  "cost",        precision: 10, scale: 2
+    t.datetime "addtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments_ways", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -403,6 +434,31 @@ ActiveRecord::Schema.define(version: 20140719025703) do
     t.string   "reason"
     t.datetime "addtime"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "proceeds", force: true do |t|
+    t.integer  "car_info_id"
+    t.integer  "user_id"
+    t.decimal  "cost",        precision: 10, scale: 2
+    t.datetime "addtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "proceeds_details", force: true do |t|
+    t.integer  "proceeds_id"
+    t.integer  "proceeds_reason_id"
+    t.decimal  "cost",               precision: 10, scale: 2
+    t.string   "remark"
+    t.integer  "payments_way_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "proceeds_reasons", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

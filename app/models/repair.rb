@@ -4,6 +4,8 @@ class Repair < ActiveRecord::Base
   has_many :repair_details, :dependent => :destroy
   accepts_nested_attributes_for :repair_details, :reject_if => lambda { |a| a[:item].blank? }, :allow_destroy => true
   
+  validates :car_info_id, :presence => { :message => "必须选择车辆信息" }
+  
   def status_str
     ["待整备", "整备中", "已完成"][self.status] unless self.status.nil?
   end

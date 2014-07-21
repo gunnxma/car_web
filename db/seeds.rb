@@ -284,3 +284,34 @@ if BusinessStage.count == 0
   BusinessStage.create(name: '谈判阶段')
   BusinessStage.create(name: '成交阶段')
 end
+
+if PaymentsWay.count == 0
+  PaymentsWay.create(name: '现金')
+  PaymentsWay.create(name: '网转')
+  PaymentsWay.create(name: '支票')
+  PaymentsWay.create(name: '其他')
+end
+
+if PayReason.count == 0
+  PayReason.create(name: '付收车全款')
+  PayReason.create(name: '付收车定金')
+  PayReason.create(name: '收车信息费')
+  PayReason.create(name: '外联集资款')
+  PayReason.create(name: '收购指标费')
+  PayReason.create(name: '售外销售提成')
+  PayReason.create(name: '置换外找（买收）')
+  PayReason.create(name: '过户费')
+end
+
+if ProceedsReason.count == 0
+  ProceedsReason.create(name: '售车全款')
+  ProceedsReason.create(name: '售车定金')
+  ProceedsReason.create(name: '售车余款')
+  ProceedsReason.create(name: '售车余款补齐')
+  ProceedsReason.create(name: '商险收入')
+  ProceedsReason.create(name: '补助收入')
+  ProceedsReason.create(name: '额外收入')  
+  ProceedsReason.create(name: '指标收入')
+  ProceedsReason.create(name: '等价置换')
+  ProceedsReason.create(name: '置换补余（栋收）')
+end

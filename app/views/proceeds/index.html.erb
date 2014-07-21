@@ -1,0 +1,80 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "添加", :new_proceed, :class => "btn btn-info" %>
+            <%= link_to "导出Excel", proceeds_path(format: "xls"), :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>
+
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+      
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-picture"></i>收款管理</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>车辆编号</th>
+                  <th>操作</th>
+                  <th>车辆信息</th>
+                  <th>VIN</th>
+                  <th>收购价</th>
+                  <th>销售成交价</th>
+                  <th>收款明细</th>
+                  <th>金额合计</th>
+                  <th>收款人</th>
+                  <th>收款时间</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+                <% @proceeds.each do |proceed| %>
+							<tr>
+                <td><%= proceed.car_info.car_no %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_proceed_path(proceed), :class => "btn btn-info" %>
+                  <%= link_to "删除", proceed_path(proceed), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
+                </td>
+                <td><%= proceed.car_info.info %></td>
+                <td><%= proceed.car_info.vin %></td>
+                <td><%= proceed.car_info.procurement_price %></td>
+                <td><%= proceed.car_info.deal_price %></td>
+                <td>
+                  共有<%= proceed.proceeds_details.count %>个项目<br>
+                  <% proceed.proceeds_details.each do |item| %>
+                  <%= "#{item.proceeds_reason.name} 金额: ￥#{item.cost} 付款方式: #{item.payments_way.name} 说明: #{item.remark}" %><br>
+                  <% end %>
+                </td>
+                <td><%= proceed.cost %>元</td>
+                <td><%= proceed.user.name if proceed.user %></td>
+                <td><%= proceed.addtime %></td>
+							</tr>
+              <% end %>
+						  </tbody>
+					  </table> 
+            
+            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

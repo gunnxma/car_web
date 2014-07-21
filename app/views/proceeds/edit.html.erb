@@ -1,0 +1,115 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "返回列表", :proceeds, :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>
+      
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+  
+      <% if @proceeds.errors.any? %>
+      <div class="alert alert-info">
+        <% @proceeds.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </div>
+      <% end %>
+  
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-edit"></i>修改收款</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+          
+					<div class="box-content">
+            <%= form_for @proceeds, :url => proceed_path, :method => :put, :html => { :class => "form-horizontal" } do |f| %>
+							<fieldset>
+							  <div class="control-group">
+                  <%= f.label :car_info_id, "车辆信息", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :car_info_id, CarInfo.where("status > 0").order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
+                    <a href="javascript:addrow()">增加一行</a>
+                  </div>
+							  </div>
+                <%= f.fields_for :proceeds_details do |b| %>
+                <%= render "proceeds_details", :f => b %>
+                <% end %>
+                <div class="control-group">
+                  <%= f.label :user_id, "付款人", :class => "control-label" %>
+                  <div class="controls">
+                    <select data-placeholder="选择" id="proceeds_user_id" name="proceeds[user_id]" data-rel="chosen">
+                      <option value=""></option>
+                      <% Department.all.each do |d| %>
+                      <optgroup label="<%= d.name %>">
+                        <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @proceeds.user_id) %>
+                      </optgroup>
+                      <% end %>
+                    </select>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :cost, "合计费用", :class => "control-label" %>
+                  <div class="controls">
+                    <span id="cost"><%= @proceeds.cost %></span>元
+                  </div>
+							  </div>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>
+            <% end %>
+					
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+  
+<%= content_for :javascript do %>
+<script>
+  $(function(){ 
+　　hide_rows();
+  });  
+  
+  function hide_rows() {
+    for (var i = 4; i < 20; i++) {
+      if ($("#row"+i).css("display") != "none" && $("#proceeds_proceeds_details_attributes_"+i+"_cost").val() =="" ) {
+        $("#row"+i).css("display", "none");
+      }
+    }
+  }
+  
+  function addrow() {
+    for (var i = 0; i < 20; i++) {
+      if ($("#row"+i).css("display") == "none") {
+        $("#row"+i).css("display", "");
+        break;
+      }
+    }
+  }
+  
+  function add_up() {
+    var cost = 0.0;
+    for (var i=0; i < 20; i++) {
+      cost += Number($("#proceeds_proceeds_details_attributes_"+i+"_cost").val());
+    }
+    $("#cost").html(cost);
+  }
+</script>
+<% end %>
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

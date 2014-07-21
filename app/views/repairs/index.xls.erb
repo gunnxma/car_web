@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">车辆编号</Data></Cell>
+        <Cell><Data ss:Type="String">审核状态</Data></Cell>
+        <Cell><Data ss:Type="String">车辆信息</Data></Cell>
+        <Cell><Data ss:Type="String">牌照</Data></Cell>
+        <Cell><Data ss:Type="String">VIN</Data></Cell>
+        <Cell><Data ss:Type="String">整备项目</Data></Cell>
+        <Cell><Data ss:Type="String">整备合计</Data></Cell>
+        <Cell><Data ss:Type="String">整备预警</Data></Cell>
+        <Cell><Data ss:Type="String">是否完成</Data></Cell>
+        <Cell><Data ss:Type="String">发布人</Data></Cell>
+        <Cell><Data ss:Type="String">发布时间</Data></Cell>
+      </Row>
+    <% @repairs.each do |repair| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= repair.car_info.car_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.check_str %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.car_info.info %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.car_info.platenumber %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.car_info.vin %></Data></Cell>
+        <Cell><Data ss:Type="String">共有<%= repair.repair_details.count %>个项目<br>
+                  <% repair.repair_details.each_with_index do |item, i| %>
+                  <%= "(#{i+1})、#{item.item}" %><%= "  外协单位：#{item.cooperation.name}" if item.is_cooperation == 1 %><br>
+                  <% end %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.cost %>元</Data></Cell>
+        <Cell><Data ss:Type="String">剩余<%= repair.remain_hour %>小时</Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.status_str %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.user.name if repair.user %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= repair.addtime %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

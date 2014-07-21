@@ -11,6 +11,8 @@ class CarInfo < ActiveRecord::Base
   belongs_to :customer
   belongs_to :sell_way
   belongs_to :payment_method
+  has_many :payments
+  has_many :proceeds
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }

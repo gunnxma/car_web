@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  payment_id: 1
+  pay_reason_id: 1
+  cost: 9.99
+  remark: MyString
+  payments_way_id: 1
+
+two:
+  payment_id: 1
+  pay_reason_id: 1
+  cost: 9.99
+  remark: MyString
+  payments_way_id: 1
