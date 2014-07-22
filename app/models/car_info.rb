@@ -12,7 +12,7 @@ class CarInfo < ActiveRecord::Base
   belongs_to :sell_way
   belongs_to :payment_method
   has_many :payments
-  has_many :proceeds
+  has_many :proceeds, :class_name => "Proceeds"
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }
@@ -90,6 +90,34 @@ class CarInfo < ActiveRecord::Base
 
   def sell_day
     Time.diff(self.sell_time, DateTime.now)[:day]
+  end
+
+  def repair_costs
+    costs = 0
+    self.repairs.each do |r|
+      costs += r.cost
+    end
+    costs / 10000
+  end
+
+  def payment_costs
+    costs = 0
+    self.payments.each do |r|
+      costs += r.cost
+    end
+    costs / 10000
+  end
+
+  def proceeds_costs
+    costs = 0
+    self.proceeds.each do |r|
+      costs += r.cost
+    end
+    costs / 10000
+  end
+
+  def profit_costs
+    self.proceeds_costs - self.payment_costs - self.repair_costs
   end
   
 end

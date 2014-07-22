@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">编号</Data></Cell>
+        <Cell><Data ss:Type="String">状态</Data></Cell>
+        <Cell><Data ss:Type="String">客户名称</Data></Cell>
+        <Cell><Data ss:Type="String">需求车辆</Data></Cell>
+        <Cell><Data ss:Type="String">需求价位</Data></Cell>
+        <Cell><Data ss:Type="String">商机阶段</Data></Cell>
+        <Cell><Data ss:Type="String">员工</Data></Cell>
+        <Cell><Data ss:Type="String">录入时间</Data></Cell>
+      </Row>
+      <% @customers.each do |customer| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= customer.no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.status_str %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.need_car %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.need_price %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.business_stage %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.user.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= customer.addtime.strftime("%Y-%m-%d") if customer.addtime %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

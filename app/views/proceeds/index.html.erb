@@ -53,8 +53,8 @@
                 </td>
                 <td><%= proceed.car_info.info %></td>
                 <td><%= proceed.car_info.vin %></td>
-                <td><%= proceed.car_info.procurement_price %></td>
-                <td><%= proceed.car_info.deal_price %></td>
+                <td><%= proceed.car_info.procurement_price %>万</td>
+                <td><%= proceed.car_info.deal_price %>万</td>
                 <td>
                   共有<%= proceed.proceeds_details.count %>个项目<br>
                   <% proceed.proceeds_details.each do |item| %>

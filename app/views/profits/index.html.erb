@@ -1,0 +1,71 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			
+
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "导出Excel", profits_path(format: "xls"), :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>
+
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+      
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2><i class="icon-picture"></i>利润分析</h2>
+						<div class="box-icon">
+							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
+							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
+							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>车辆编号</th>
+                  <th>车辆信息</th>
+                  <th>VIN</th>
+                  <th>成交人员</th>
+                  <th>整备费用</th>
+                  <th>付款合计</th>
+                  <th>收款合计</th>
+                  <th>利润</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+                <% @cars.each do |car| %>
+							<tr>
+                <td><%= car.car_no %></td>
+                <td><%= car.info %></td>
+                <td><%= car.vin %></td>
+                <td>
+                  录入人：<%= car.user.name %><br>
+                  评估人：<%= car.car_assess.user.name if car.car_assess.user %><br>
+                  成交人：<%= car.sell_user.name %>
+                </td>
+                <td><%= car.repair_costs %>万</td>
+                <td><%= car.payment_costs %>万</td>
+                <td><%= car.proceeds_costs %>万</td>
+                <td><%= car.profit_costs %>万</td>
+							</tr>
+              <% end %>
+						  </tbody>
+					  </table> 
+            
+            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

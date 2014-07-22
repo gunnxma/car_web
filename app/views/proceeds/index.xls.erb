@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">车辆编号</Data></Cell>
+        <Cell><Data ss:Type="String">车辆信息</Data></Cell>
+        <Cell><Data ss:Type="String">VIN</Data></Cell>
+        <Cell><Data ss:Type="String">收购价</Data></Cell>
+        <Cell><Data ss:Type="String">销售成交价</Data></Cell>
+        <Cell><Data ss:Type="String">收款明细</Data></Cell>
+        <Cell><Data ss:Type="String">金额合计</Data></Cell>
+        <Cell><Data ss:Type="String">收款人</Data></Cell>
+        <Cell><Data ss:Type="String">收款时间</Data></Cell>
+      </Row>
+      <% @proceeds.each do |proceed| %>
+      <Row>
+        <Cell><Data ss:Type="String"><%= proceed.car_info.car_no %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.car_info.info %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.car_info.vin %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.car_info.procurement_price %>万</Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.car_info.deal_price %>万</Data></Cell>
+        <Cell><Data ss:Type="String">
+                  共有<%= proceed.proceeds_details.count %>个项目<br>
+                  <% proceed.proceeds_details.each do |item| %>
+                  <%= "#{item.proceeds_reason.name} 金额: ￥#{item.cost} 付款方式: #{item.payments_way.name} 说明: #{item.remark}" %><br>
+                  <% end %>
+          </Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.cost %>元</Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.user.name if proceed.user %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= proceed.addtime %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
