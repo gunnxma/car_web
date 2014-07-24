@@ -23,6 +23,8 @@ Car::Application.routes.draw do
   
   resources :assessments
   
+  resources :car_infos
+  
   resources :photos
   
   resources :repairs do
