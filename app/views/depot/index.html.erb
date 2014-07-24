@@ -45,7 +45,7 @@
 						  <tbody>
               <% @cars.each do |car| %>
 							<tr>
-                <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
+                <td><%= link_to car.car_no, car_info_path(car) %></td>
 								<td class="center">
                   <%= link_to "上架", sell_add_path(id: car.id), :method => :post, :class => "btn btn-info", :confirm => "确定要上架销售吗？" if car.status <= 1 %>
                   <%= "已上架" if car.status > 1 %>

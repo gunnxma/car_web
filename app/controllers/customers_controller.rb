@@ -44,6 +44,10 @@ class CustomersController < ApplicationController
     end
   end
   
+  def show
+    @customer = Customer.find(params[:id])
+  end
+  
   def followups
     @followups = Followup.where("followupable_type = ? and user_id = ?", "Customer", current_user.id)
   end

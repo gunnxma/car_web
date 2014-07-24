@@ -10,4 +10,8 @@ class Followup < ActiveRecord::Base
   def is_finished_str
     ["否","是"][self.is_finished] unless self.is_finished.nil?
   end
+  
+  def is_finished_str2
+    ["未处理","已处理"][self.is_finished] unless self.is_finished.nil?
+  end
 end

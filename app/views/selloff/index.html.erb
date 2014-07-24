@@ -42,7 +42,7 @@
 						  <tbody>
               <% @cars.each do |car| %>
 							<tr>
-                <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
+                <td><%= link_to car.car_no, car_info_path(car) %></td>
 								<td class="center">
                   <%= link_to "修改", edit_assessment_path(car), :class => "btn btn-info" %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
