@@ -1,0 +1,2 @@
+module CustomerFollowupsHelper
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140721025537) do
+ActiveRecord::Schema.define(version: 20140723090741) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -352,6 +352,27 @@ ActiveRecord::Schema.define(version: 20140721025537) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "followup_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "followups", force: true do |t|
+    t.integer  "followup_type_id"
+    t.string   "content"
+    t.string   "next_content"
+    t.datetime "next_time"
+    t.integer  "followupable_id"
+    t.string   "followupable_type"
+    t.integer  "is_finished"
+    t.integer  "user_id"
+    t.datetime "addtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "has_next"
   end
 
   create_table "functions", force: true do |t|

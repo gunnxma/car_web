@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   has_many :repairs
   has_many :payments
   has_many :proceeds
+  has_many :followups
 end

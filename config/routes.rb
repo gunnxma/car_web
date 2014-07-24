@@ -31,7 +31,15 @@ Car::Application.routes.draw do
     end
   end
   
-  resources :customers
+  get "customers/followups"
+  
+  resources :customers do
+    resources :followups, :controller => "customer_followups"
+  end
+  
+  resources :car_infos do
+    resources :followups, :controller => "car_info_followups"
+  end
   
   resources :payments
   

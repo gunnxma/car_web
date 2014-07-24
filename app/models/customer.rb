@@ -9,8 +9,10 @@ class Customer < ActiveRecord::Base
   belongs_to :duty
   belongs_to :income
   belongs_to :user
+  has_many :followups, as: :followupable, :dependent => :destroy
   
   accepts_nested_attributes_for :customer_need, :customer_other
+  accepts_nested_attributes_for :followups, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   
   validates :name, :presence => { :message => "姓名不能为空" }
   validates :phone, :presence => { :message => "电话不能为空" }

@@ -315,3 +315,11 @@ if ProceedsReason.count == 0
   ProceedsReason.create(name: '等价置换')
   ProceedsReason.create(name: '置换补余（栋收）')
 end
+
+if FollowupType.count == 0
+  FollowupType.create(name: '电话沟通')
+  FollowupType.create(name: '当面沟通')
+  FollowupType.create(name: '邮件联系')
+  FollowupType.create(name: '其他方式')
+  FollowupType.create(name: '客户回访')
+end

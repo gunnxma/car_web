@@ -20,12 +20,7 @@
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2><i class="icon-picture"></i>车辆评估</h2>
-						<div class="box-icon">
-							<a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
-							<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
-							<a href="#" class="btn btn-close btn-round"><i class="icon-remove"></i></a>
-						</div>
+						<h2>车辆评估</h2>
 					</div>
 					<div class="box-content">
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
@@ -52,7 +47,7 @@
                 <td><%= link_to car.car_no, assessment_path(car), :target => "_blank" %></td>
 								<td class="center">
                   <%= link_to "入库", depot_add_path(id: car.id), :method => :post, :class => "btn btn-info" %>
-                  <%= link_to "上架", :class => "btn btn-info" %>
+                  <%= link_to "上架", sell_add_path(id: car.id), :method => :post, :class => "btn btn-info", :confirm => "确定要上架销售吗？" if car.status <= 1 %>
                   <%= link_to "修改", edit_assessment_path(car), :class => "btn btn-info" %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
                 </td>
@@ -70,7 +65,7 @@
                 <td><%= car.platenumber %></td>
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>
-                <td></td>
+                <td><%= link_to "(#{car.followups.count})新增", new_car_info_followup_path(car), :class => "btn btn-info" %></td>
                 <td><%= "#{car.evaluate_price}万元" %></td>
                 <td><%= car.user.name if car.user %></td>
 							</tr>

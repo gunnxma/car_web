@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  followup_type_id: 1
+  content: MyString
+  next_content: MyString
+  next_time: 2014-07-23 02:14:19
+  followupable_id: 
+  is_finished: 1
+  user_id: 1
+  addtime: 2014-07-23 02:14:19
+
+two:
+  followup_type_id: 1
+  content: MyString
+  next_content: MyString
+  next_time: 2014-07-23 02:14:19
+  followupable_id: 
+  is_finished: 1
+  user_id: 1
+  addtime: 2014-07-23 02:14:19

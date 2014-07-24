@@ -13,6 +13,7 @@ class CarInfo < ActiveRecord::Base
   belongs_to :payment_method
   has_many :payments
   has_many :proceeds, :class_name => "Proceeds"
+  has_many :followups, as: :followupable, :dependent => :destroy
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }
@@ -21,6 +22,7 @@ class CarInfo < ActiveRecord::Base
   before_save :check_price
   
   accepts_nested_attributes_for :car_property, :car_assess, :car_configuration, :cooperation
+  accepts_nested_attributes_for :followups, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
   
   def status_str
     if self.status

@@ -1,0 +1,57 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			<div>
+				<ul class="breadcrumb">
+					<li>
+					</li>
+				</ul>
+			</div>
+      
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+  
+      <div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>跟进记录</h2>
+					</div>
+					<div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>客户名称</th>
+								  <th>联系方式</th>
+                  <th>联系内容</th>
+                  <th>是否提醒</th>
+                  <th>提醒日期</th>
+                  <th>提醒内容</th>
+                  <th>是否处理</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+              <% @followups.each do |followup| %>
+							<tr>
+                <td><%= followup.followupable.name %></td>
+                <td><%= followup.followup_type.name %></td>
+                <td><%= followup.content %></td>
+                <td><%= followup.has_next_str %></td>
+                <td><%= followup.next_time %></td>
+                <td><%= followup.next_content %></td>
+                <td><%= link_to followup.is_finished_str, edit_customer_followup_path(followup.followupable, followup), :class => "btn btn-info"  %></td>
+							</tr>
+              <% end %>
+						  </tbody>
+					  </table> 
+            
+            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->
