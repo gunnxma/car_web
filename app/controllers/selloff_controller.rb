@@ -1,4 +1,5 @@
 class SelloffController < ApplicationController
+  before_filter :check_power
   def index
     @cars = CarInfo.where("status = 3").order(id: :desc)
     respond_to do |format|

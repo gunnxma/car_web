@@ -1,4 +1,5 @@
 class ProceedsController < ApplicationController
+  before_filter :check_power
   MAX_DETAIL = 20
   def index
     @proceeds = Proceeds.order(addtime: :desc)

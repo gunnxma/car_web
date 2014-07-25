@@ -1,4 +1,5 @@
 class BrandsController < ApplicationController
+  before_filter :check_power
   def index
     #@q = Brand.search(params[:q])
     #@brands = @q.result.paginate(:page => params[:page]).order(:initial)

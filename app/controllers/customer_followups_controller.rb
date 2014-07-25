@@ -1,4 +1,5 @@
 class CustomerFollowupsController < ApplicationController
+  before_filter :check_power
   before_filter :get_followups, :only => [:new, :create, :edit, :update]
   def new
     @followup = @customer.followups.build

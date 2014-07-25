@@ -1,30 +1,35 @@
 <div class="span2 main-menu-span">
 				<div class="well nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li class="nav-header hidden-tablet">信息设置</li>
+						<li class="nav-header hidden-tablet">系统设置</li>
+            <li>
+              <%= link_to '部门管理', :departments, :class => "ajax-link" if @user.has_power("departments", "index") %>
+            </li>
+            <li>
+              <%= link_to '用户管理', :users, :class => "ajax-link" if @user.has_power("users", "index") %>
+            </li>
 						<li>
-              <%= link_to '车辆品牌', :brands, :class => "ajax-link" %>
+              <%= link_to '车辆品牌', :brands, :class => "ajax-link" if @user.has_power("brands", "index") %>
             </li>
 						<li class="nav-header hidden-tablet">车辆评估</li>
-						<li><%= link_to '增加车辆', :new_assessment, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-						<li><%= link_to "评估管理", :assessments, :class => "ajax-link" %></li>
+						<li><%= link_to '增加车辆', :new_assessment, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("assessments", "new") %></li>
+            <li><%= link_to "评估管理", :assessments, :class => "ajax-link" if @user.has_power("assessments", "index") %></li>
             <li class="nav-header hidden-tablet">车辆库存</li>
-            <li><%= link_to '库存管理', depot_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li><%= link_to '整备管理', :repairs, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '库存管理', depot_index_path, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("depot", "index") %></li>
+            <li><%= link_to '整备管理', :repairs, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("repairs", "index") %></li>
             <li class="nav-header hidden-tablet">车辆销售</li>
-            <li><%= link_to '销售管理', sell_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li><%= link_to '售出管理', selloff_index_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '销售管理', sell_index_path, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("sell", "index") %></li>
+            <li><%= link_to '售出管理', selloff_index_path, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("selloff", "index") %></li>
             <li class="nav-header hidden-tablet">客户管理</li>
-            <li><%= link_to '客户信息', :customers, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li><%= link_to '跟进记录', customers_followups_path, :class => "ajax-link", 'data-no-turbolink' => true %></li>
+            <li><%= link_to '客户信息', :customers, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("customers", "index") %></li>
+            <li><%= link_to '跟进记录', customers_followups_path, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("customer_followups", "index") %></li>
             <li class="nav-header hidden-tablet">财务管理</li>
-            <li><%= link_to '付款管理', :payments, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li><%= link_to '收款管理', :proceeds, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li><%= link_to '利润分析', :profits, :class => "ajax-link", 'data-no-turbolink' => true %></li>
-            <li class="nav-header hidden-tablet">系统</li>
+            <li><%= link_to '付款管理', :payments, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("payments", "index") %></li>
+            <li><%= link_to '收款管理', :proceeds, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("proceeds", "index") %></li>
+            <li><%= link_to '利润分析', :profits, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("profits", "index") %></li>
+            <li class="nav-header hidden-tablet">&nbsp;</li>
             <li><%= link_to "退出", { controller: "index", action: "logout" }, class: "ajax-link" %></li>
 					</ul>
-					<label id="for-is-ajax" class="hidden-tablet" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>
 				</div><!--/.well -->
 			</div><!--/span-->
 			<!-- left menu ends -->

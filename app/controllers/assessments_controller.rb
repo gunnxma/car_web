@@ -1,4 +1,5 @@
 class AssessmentsController < ApplicationController
+  before_filter :check_power
   layout "nohead", :only => [ :show ]
   
   def index

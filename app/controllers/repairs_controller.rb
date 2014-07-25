@@ -1,4 +1,5 @@
 class RepairsController < ApplicationController
+  before_filter :check_power
   MAX_DETAIL = 20
   def index
     @repairs = Repair.all.order(id: :desc)

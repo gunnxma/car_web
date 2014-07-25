@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :check_power
   before_filter :sex, only: [:new, :create, :edit, :update]
   
   def index

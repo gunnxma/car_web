@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  before_filter :check_power
   layout "nohead"
   
   def index

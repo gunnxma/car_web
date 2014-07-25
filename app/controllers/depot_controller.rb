@@ -1,4 +1,5 @@
 class DepotController < ApplicationController
+  before_filter :check_power
   def index
     @cars = CarInfo.where("status > 0").order(id: :desc)
     respond_to do |format|

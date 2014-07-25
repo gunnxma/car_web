@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+  before_filter :check_power
   MAX_DETAIL = 20
   def index
     @payments = Payment.order(addtime: :desc)

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_filter :set_user
   
   WillPaginate.per_page = 20
   
@@ -24,7 +25,9 @@ class ApplicationController < ActionController::Base
   end
   
   def check_action
-    # todo check current_user has current_action power
+    if current_user.actions.where("controller = ? and action = ?", params[:controller], params[:action]).empty?
+      redirect_to controller: "index", action: "nopower"
+    end
   end
   
   def get_car_no
@@ -47,6 +50,12 @@ class ApplicationController < ActionController::Base
     end
     CustomerNo.create(:no => max_no)
     (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
+  end
+  
+  private
+  
+  def set_user
+    @user = current_user
   end
 end
 

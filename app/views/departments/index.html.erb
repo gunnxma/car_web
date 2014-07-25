@@ -1,0 +1,52 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "添加部门", :new_department, :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>
+
+      <% if flash[:notice] %>  
+			<div class="alert alert-info">
+				<%= flash[:notice] %>
+			</div>
+      <% end %>
+      
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>部门管理</h2>
+					</div>
+					<div class="box-content">
+            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+						  <thead>
+							  <tr>
+								  <th>名称</th>
+                  <th>操作</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+                <% @departments.each do |department| %>
+							<tr>
+								<td><%= department.name %></td>
+								<td class="center">
+                  <%= link_to "添加用户", new_user_path(department_id: department.id), :class => "btn btn-info" %>
+                  <%= link_to "修改", edit_department_path(department), :class => "btn btn-info" %>
+                  <%= link_to "删除", department_path(department), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>
+              <% end %>
+						  </tbody>
+					  </table> 
+            
+            
+					</div>
+				</div><!--/span-->
+			
+			</div><!--/row-->
+
+    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

@@ -1,4 +1,5 @@
 class CarInfoFollowupsController < ApplicationController
+  before_filter :check_power
   before_filter :get_followups, :only => [:new, :create, :edit, :update]
   def new
     @followup = @car_info.followups.build

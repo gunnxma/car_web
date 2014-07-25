@@ -3,6 +3,7 @@ Car::Application.routes.draw do
   get "index/index"
   get "index/login"
   get "index/logout"
+  get "index/nopower"
   post "index/checklogin"
   
   get 'series/ajax_search'
@@ -48,6 +49,10 @@ Car::Application.routes.draw do
   resources :proceeds
   
   resources :profits
+  
+  resources :departments
+  
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

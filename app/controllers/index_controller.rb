@@ -1,5 +1,4 @@
 class IndexController < ApplicationController
-  before_filter :check_power, :only => [ :index ]
   layout "nohead", :only => [ :login, :checklogin ]
   
   def index  

@@ -1,4 +1,6 @@
 class SeriesController < ApplicationController
+  before_filter :check_power, :except => [ :ajax_search ]
+  
   def index
     @brand = Brand.find(params[:brand_id])
     #@q = @brand.series.search(params[:q])
