@@ -4,7 +4,8 @@
 				<ul class="breadcrumb">
 					<li>
             <%= link_to "添加客户", :new_customer, :class => "btn btn-info" %>
-            <%= link_to "导出Excel", customers_path(format: "xls"), :class => "btn btn-info" %>
+            <% #link_to "导出Excel", customers_path(format: "xls"), :class => "btn btn-info" %>
+            <%= link_to "导出Excel", request.url.sub!("customers","customers.xls"), :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -21,6 +22,12 @@
 						<h2>客户信息</h2>
 					</div>
 					<div class="box-content">
+            <%= search_form_for @q, :url => :customers, :method => "get" do |f| %>
+            客户名称:<%= f.search_field :name_cont, style: "width:120px" %>
+            需求品牌:<%= f.select :customer_need_brand_cont, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>车系:<%= f.select :customer_need_series_cont, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: true }, :class => "car_series", :style => "width:100px" %>
+            需求价位:<%= f.search_field :customer_need_expectative_price_min_gteq, style: "width:50px" %> ~ <%= f.search_field :customer_need_expectative_price_max_lteq, style: "width:50px" %>万
+              <%= f.submit "查询" %>
+            <% end %>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -41,22 +48,23 @@
 							<tr>
                 <td><%= link_to customer.no, customer_path(customer) %></td>
 								<td class="center">
-                  <%= link_to "修改", edit_customer_path(customer), :class => "btn btn-info" %>
-                  <%= link_to "删除", customer_path(customer), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗" %>
+                  <%= link_to "修改", edit_customer_path(customer) %>
+                  <%= link_to "删除", customer_path(customer), :method => :delete, data: { confirm: "确定要删除吗" } %>
                 </td>
                 <td><%= customer.status_str %></td>
                 <td><%= customer.name %></td>
                 <td><%= customer.need_car %></td>
                 <td><%= customer.need_price %></td>
                 <td><%= customer.business_stage.name %></td>
-                <td><%= link_to "(#{customer.followups.count})新增", new_customer_followup_path(customer), :class => "btn btn-info" %></td>
+                <td><%= link_to "(#{customer.followups.count})新增", new_customer_followup_path(customer) %></td>
                 <td><%= customer.user.name %></td>
                 <td><%= customer.addtime.strftime("%Y-%m-%d") if customer.addtime %></td>
 							</tr>
               <% end %>
 						  </tbody>
 					  </table> 
-            
+            <%= page_entries_info @customers %>
+            <%= will_paginate @customers, renderer: SemanticPagination %>            
             
 					</div>
 				</div><!--/span-->

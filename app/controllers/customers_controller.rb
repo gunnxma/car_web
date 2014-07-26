@@ -3,7 +3,17 @@ class CustomersController < ApplicationController
   before_filter :sex, only: [:new, :create, :edit, :update]
   
   def index
-    @customers = Customer.all.order(id: :desc)
+    @q = Customer.all.search(params[:q])
+    if request.format == :xls
+      @customers = @q.result.order(addtime: :desc)
+    else
+      @customers = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    if params[:q] && params[:q][:brand_cont]
+      brand = Brand.where(:name => params[:q][:brand_cont]).first
+      @series = brand.series if brand
+    end
+    #@customers = Customer.all.order(id: :desc)
     respond_to do |format|
       format.html
       format.xls
@@ -50,7 +60,8 @@ class CustomersController < ApplicationController
   end
   
   def followups
-    @followups = Followup.where("followupable_type = ? and user_id = ?", "Customer", current_user.id)
+    #@followups = Followup.where("followupable_type = ? and user_id = ?", "Customer", current_user.id)
+    @followups = Followup.where("followupable_type = ? and user_id = ?", "Customer", current_user.id).paginate(:page => params[:page]).order(addtime: :desc)
   end
   
   def destroy

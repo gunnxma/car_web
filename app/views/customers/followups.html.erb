@@ -45,7 +45,8 @@
               <% end %>
 						  </tbody>
 					  </table> 
-            
+            <%= page_entries_info @followups %>
+            <%= will_paginate @followups, renderer: SemanticPagination %>               
             
 					</div>
 				</div><!--/span-->

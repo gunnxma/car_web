@@ -91,11 +91,13 @@ class CarInfo < ActiveRecord::Base
   end
 
   def depot_day
-    Time.diff(self.depot_time, DateTime.now)[:day]
+    diff = Time.diff(self.depot_time, DateTime.now)
+    diff[:year]*365 + diff[:month]*30 + diff[:week]*7 + diff[:day]
   end
 
   def sell_day
-    Time.diff(self.sell_time, DateTime.now)[:day]
+    diff = Time.diff(self.sell_time, DateTime.now)
+    diff[:year]*365 + diff[:month]*30 + diff[:week]*7 + diff[:day]
   end
 
   def repair_costs

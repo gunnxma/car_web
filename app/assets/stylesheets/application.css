@@ -9,5 +9,13 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ * require_tree .
  */
+//= require bootstrap-cerulean
+//= require bootstrap-responsive
+//= require charisma-app
+//= require jquery-ui-1.8.21.custom
+//= require chosen
+//= require uniform.default
+//= require jquery.iphone.toggle
+//= require colorbox

@@ -15,6 +15,7 @@
         <Cell><Data ss:Type="String">车牌号</Data></Cell>
         <Cell><Data ss:Type="String">排量</Data></Cell>
         <Cell><Data ss:Type="String">表显里程</Data></Cell>
+        <Cell><Data ss:Type="String">库存报警</Data></Cell>
         <Cell><Data ss:Type="String">评估价</Data></Cell>
         <Cell><Data ss:Type="String">评估师</Data></Cell>
       </Row>
@@ -28,6 +29,7 @@
         <Cell><Data ss:Type="String"><%= car.platenumber %></Data></Cell>
         <Cell><Data ss:Type="String"><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></Data></Cell>
         <Cell><Data ss:Type="String"><%= car.car_property.mileage if car.car_property %>万公里</Data></Cell>
+        <Cell><Data ss:Type="String"><%= car.depot_day %></Data></Cell>
         <Cell><Data ss:Type="String"><%= "#{car.evaluate_price}万元" %></Data></Cell>
         <Cell><Data ss:Type="String"><%= car.user.name if car.user %></Data></Cell>
       </Row>

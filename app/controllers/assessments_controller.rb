@@ -3,9 +3,17 @@ class AssessmentsController < ApplicationController
   layout "nohead", :only => [ :show ]
   
   def index
-    #@q = CarInfo.search(params[:q])
-    #@cars = @q.result.paginate(:page => params[:page]).order(:addtime)
-    @cars = CarInfo.where(status: 0).order(id: :desc)
+    @q = CarInfo.where(status: 0).search(params[:q])
+    if request.format == :xls
+      @cars = @q.result.order(addtime: :desc)
+    else
+      @cars = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    if params[:q] && params[:q][:brand_cont]
+      brand = Brand.where(:name => params[:q][:brand_cont]).first
+      @series = brand.series if brand
+    end
+    #@cars = CarInfo.where(status: 0).order(id: :desc)
     respond_to do |format|
       format.html
       format.xls

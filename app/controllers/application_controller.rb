@@ -55,7 +55,11 @@ class ApplicationController < ActionController::Base
   private
   
   def set_user
-    @user = current_user
+    if current_user
+      @user = current_user
+    else
+      @user = User.new
+    end
   end
 end
 
@@ -73,7 +77,7 @@ end
         end
       end.join(@options[:link_separator])
 
-      tag("div", list_items, class: "ui pagination menu")
+      tag("div", list_items, class: "pagination pagination-centered")
     end
 
     def container_attributes
@@ -86,9 +90,11 @@ end
       link_options = @options[:link_options] || {}
 
       if page == current_page
-        link(page, nil, :class => "active item")
+        #link(page, nil, :class => "active")
+        tag("li", link(page, nil), :class => "active")
       else
-        link(page, page, :class => "item")
+        #link(page, page)
+        tag("li", link(page, page))
       end
     end
 
@@ -96,11 +102,12 @@ end
       link_options = @options[:link_options] || {}
 
       if page
-        #tag("li", link(text, page, link_options), class: classname)
-        link(tag("i", nil, class: classname), page, class: "icon item")
+        tag("li", link(text, page, link_options))
+        #link(tag("i", nil, class: classname), page, class: "icon item")
       else
         #tag("li", tag("span", text), class: "%s disabled" % classname)
-        link(tag("i", nil, class: classname), nil, class: "icon item")
+        tag("li", link(text, nil), class: "active")
+        #link(tag("i", nil, class: classname), nil, class: "icon item")
       end
     end
 
@@ -110,12 +117,14 @@ end
 
     def previous_page
       num = @collection.current_page > 1 && @collection.current_page - 1
-      previous_or_next_page(num, @options[:previous_label], "left arrow icon")
+      #previous_or_next_page(num, @options[:previous_label], "")
+      previous_or_next_page(num, "上一页", "")
     end
 
     def next_page
       num = @collection.current_page < @collection.total_pages && @collection.current_page + 1
-      previous_or_next_page(num, @options[:next_label], "right arrow icon")
+      #previous_or_next_page(num, @options[:next_label], "")
+      previous_or_next_page(num, "下一页", "")
     end
 
     def ul_class

@@ -109,10 +109,10 @@
   
 <%= content_for :javascript do %>
 <script>
-  $(function(){ 
+  $(function(){
 　　hide_rows();
   });  
-  
+  hide_rows();
   function hide_rows() {
     for (var i = 4; i < 20; i++) {
       if ($("#row"+i).css("display") != "none" && $("#repair_repair_details_attributes_"+i+"_item").val() =="" ) {

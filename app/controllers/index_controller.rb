@@ -1,4 +1,5 @@
 class IndexController < ApplicationController
+  before_filter :check_login, :only => [:index]
   layout "nohead", :only => [ :login, :checklogin ]
   
   def index  
@@ -27,6 +28,10 @@ class IndexController < ApplicationController
   end
   
   private
+  
+  def check_login
+    redirect_to :controller => :index, :action => :login unless current_user
+  end
   
   def user_params
     params.require(:user).permit(:account, :pwd)
