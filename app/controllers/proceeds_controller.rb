@@ -2,7 +2,17 @@ class ProceedsController < ApplicationController
   before_filter :check_power
   MAX_DETAIL = 20
   def index
-    @proceeds = Proceeds.order(addtime: :desc)
+    if current_user.id == 1
+      @q = Proceeds.all.search(params[:q])
+    else
+      @q = Proceeds.where("user_id = ?", current_user.id).search(params[:q])
+    end
+    if request.format == :xls
+      @proceeds = @q.result.include(:car_info).order(addtime: :desc)
+    else
+      @proceeds = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    #@proceeds = Proceeds.order(addtime: :desc)
     respond_to do |format|
       format.html
       format.xls

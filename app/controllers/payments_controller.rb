@@ -2,7 +2,17 @@ class PaymentsController < ApplicationController
   before_filter :check_power
   MAX_DETAIL = 20
   def index
-    @payments = Payment.order(addtime: :desc)
+    if current_user.id == 1
+      @q = Payment.all.search(params[:q])
+    else
+      @q = Payment.("user_id = ?",current_user.id).search(params[:q])
+    end
+    if request.format == :xls
+      @payments = @q.result.include(:car_info).order(addtime: :desc)
+    else
+      @payments = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    #@payments = Payment.order(addtime: :desc)
     respond_to do |format|
       format.html
       format.xls

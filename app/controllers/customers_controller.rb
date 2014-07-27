@@ -3,7 +3,11 @@ class CustomersController < ApplicationController
   before_filter :sex, only: [:new, :create, :edit, :update]
   
   def index
-    @q = Customer.all.search(params[:q])
+    if current_user.id == 1
+      @q = Customer.all.search(params[:q])
+    else
+      @q = Customer.where("user_id = ?", current_user.id).search(params[:q])
+    end
     if request.format == :xls
       @customers = @q.result.order(addtime: :desc)
     else

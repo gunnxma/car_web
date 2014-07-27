@@ -28,6 +28,7 @@
             <li><%= link_to '收款管理', :proceeds, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("proceeds", "index") %></li>
             <li><%= link_to '利润分析', :profits, :class => "ajax-link", 'data-no-turbolink' => true if @user.has_power("profits", "index") %></li>
             <li class="nav-header hidden-tablet">&nbsp;</li>
+            <li><%= link_to "修改密码", { controller: "index", action: "changepwd" }, class: "ajax-link" %></li>
             <li><%= link_to "退出", { controller: "index", action: "logout" }, class: "ajax-link" %></li>
 					</ul>
 				</div><!--/.well -->

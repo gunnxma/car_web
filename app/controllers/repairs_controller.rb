@@ -2,7 +2,17 @@ class RepairsController < ApplicationController
   before_filter :check_power
   MAX_DETAIL = 20
   def index
-    @repairs = Repair.all.order(id: :desc)
+    if current_user.id == 1
+      @q = Repair.all.search(params[:q])
+    else
+      @q = Repair.where("user_id = ?", current_user.id).search(params[:q])
+    end
+    if request.format == :xls
+      @repairs = @q.result.order(addtime: :desc)
+    else
+      @repairs = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    #@repairs = Repair.all.order(id: :desc)
     respond_to do |format|
       format.html
       format.xls

@@ -5,6 +5,8 @@ Car::Application.routes.draw do
   get "index/logout"
   get "index/nopower"
   post "index/checklogin"
+  get "index/changepwd"
+  post "index/savechangepwd"
   
   get 'series/ajax_search'
   

@@ -3,7 +3,8 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-            <%= link_to "导出Excel", profits_path(format: "xls"), :class => "btn btn-info" %>
+            <% #link_to "导出Excel", profits_path(format: "xls"), :class => "btn btn-info" %>
+            <%= link_to "导出Excel", request.url.sub!("profits","profits.xls"), :class => "btn btn-info" %>
 					</li>
 				</ul>
 			</div>
@@ -20,6 +21,11 @@
 						<h2>利润分析</h2>
 					</div>
 					<div class="box-content">
+            <%= search_form_for @q, :url => :proceeds, :method => "get" do |f| %>
+            售出时间:<%= f.date_field :selloff_time_gteq, style: "width:120px" %> ~ <%= f.date_field :selloff_time_lteq, style: "width:120px" %>
+            车辆VIN码:<%= f.search_field :vin_cont, :style => "width:100px" %>
+              <%= f.submit "查询" %>
+            <% end %>
             <table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
@@ -52,7 +58,8 @@
               <% end %>
 						  </tbody>
 					  </table> 
-            
+            <%= page_entries_info @cars %>
+            <%= will_paginate @cars, renderer: SemanticPagination %>             
             
 					</div>
 				</div><!--/span-->

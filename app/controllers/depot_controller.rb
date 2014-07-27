@@ -1,7 +1,11 @@
 class DepotController < ApplicationController
   before_filter :check_power
   def index
-    @q = CarInfo.where("status > 0").search(params[:q])
+    if current_user.id == 1
+      @q = CarInfo.where("status > 0").search(params[:q])
+    else
+      @q = CarInfo.where("status > 0 and user_id = ?", current_user.id).search(params[:q])
+    end
     if request.format == :xls
       @cars = @q.result.order(addtime: :desc)
     else
