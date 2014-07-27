@@ -60,3 +60,5 @@ gem "paperclip", "~> 4.1"
 gem 'puma'
 
 gem 'time_diff'
+
+gem 'mysql'
