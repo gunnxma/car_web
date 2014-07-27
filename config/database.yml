@@ -25,4 +25,4 @@ production:
   pool: 5
   username: root
   password: mg1983
-  host: localhost
+  socket: /tmp/mysql.sock
