@@ -27,7 +27,7 @@
             状态:<%= f.select :status_eq, [{id: 0, name: '待整备'}, {id: 1, name: '整备中'}, {id: 2, name: '已完成'}].collect { |p| [ p[:name], p[:id] ] }, { include_blank: true }, { :style => "width:100px" } %>
               <%= f.submit "查询" %>
             <% end %>
-            <table class="table table-striped table-bordered bootstrap-datatable datatable">
+            <table class="table table-striped table-bordered bootstrap-datatable">
 						  <thead>
 							  <tr>
 								  <th>车辆编号</th>

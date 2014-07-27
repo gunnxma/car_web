@@ -61,4 +61,4 @@ gem 'puma'
 
 gem 'time_diff'
 
-gem 'mysql'
+gem 'mysql2'
