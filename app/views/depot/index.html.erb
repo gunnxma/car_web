@@ -58,7 +58,7 @@
 							<tr>
                 <td><%= link_to car.car_no, car_info_path(car) %></td>
 								<td class="center">
-                  <%= link_to "上架", sell_add_path(id: car.id), :method => :post, :class => "btn btn-info", :confirm => "确定要上架销售吗？" if car.status <= 1 %>
+                  <%= link_to "上架", sell_add_path(id: car.id), :method => :post, :confirm => "确定要上架销售吗？" if car.status <= 1 %>
                   <% if car.status > 1 %>
                   <span class="label label-success">已上架</span>
                   <% end %>

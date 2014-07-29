@@ -46,6 +46,7 @@ class AssessmentsController < ApplicationController
   def create
     @car = CarInfo.new(car_params)
     @car.addtime = DateTime.now
+    @car.user_id = current_user.id
     
     @car.set_multi_value(params[:business_info], params[:safety], params[:comfort], params[:function])
     

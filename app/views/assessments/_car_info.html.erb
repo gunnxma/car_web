@@ -102,16 +102,18 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <%= f.label :user_id, "评估师", :class => "control-label" %>
+                    <%= f.fields_for :car_assess do |b| %>
+                    <%= b.label :user_id, "评估师", :class => "control-label" %>
                     <div class="controls">
-                      <select data-placeholder="选择评估师" id="car_info_user_id" name="car_info[user_id]" data-rel="chosen">
+                      <select data-placeholder="选择评估师" id="car_info_car_assess_attributes_user_id" name="car_info[car_assess_attributes][user_id]" data-rel="chosen">
                         <option value=""></option>
                         <% Department.all.each do |d| %>
                         <optgroup label="<%= d.name %>">
-                          <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @car.user_id) %>
+                          <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @car.car_assess.user_id) %>
                         </optgroup>
                         <% end %>
                       </select>
                       <%= f.hidden_field :status %>
                     </div>
+                    <% end %>
                   </div>

@@ -42,7 +42,7 @@
                 <%= render "proceeds_details", :f => b %>
                 <% end %>
                 <div class="control-group">
-                  <%= f.label :user_id, "付款人", :class => "control-label" %>
+                  <%= f.label :user_id, "收款人", :class => "control-label" %>
                   <div class="controls">
                     <select data-placeholder="选择" id="proceeds_user_id" name="proceeds[user_id]" data-rel="chosen">
                       <option value=""></option>
@@ -76,6 +76,7 @@
   $(function(){ 
 　　hide_rows();
   });  
+  hide_rows();
   
   function hide_rows() {
     for (var i = 4; i < 20; i++) {
