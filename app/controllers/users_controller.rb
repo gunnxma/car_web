@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     if params[:department_id]
       @user.department_id = params[:department_id]
     end
-    @user.user_powers.build(action_id: Action.where("controller = ? and action = ?", "index", "index").first.id)
   end
   
   def create
