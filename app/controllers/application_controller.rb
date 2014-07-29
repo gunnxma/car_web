@@ -56,9 +56,9 @@ class ApplicationController < ActionController::Base
   
   def set_user
     if current_user
-      @user = current_user
+      @current_user = current_user
     else
-      @user = User.new
+      @current_user = User.new
     end
   end
 end
