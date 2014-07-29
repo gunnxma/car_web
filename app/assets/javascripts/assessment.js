@@ -3,7 +3,7 @@ function get_options(value){
     $(".car_series").append("<option value=''>选择车系</option>");
     $.ajax({  
       type: "GET",  
-      url:'/series/ajax_search.json?brand='+value,
+      url:'/series/ajax_search.json?brand='+encodeURI(value),
       data:'text',  
       success: function(data){
         for(var i = 0; i < data.length; i++) {
