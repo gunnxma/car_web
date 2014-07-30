@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729062523) do
+ActiveRecord::Schema.define(version: 20140730230353) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -109,15 +109,15 @@ ActiveRecord::Schema.define(version: 20140729062523) do
     t.integer  "cooperation_id"
     t.string   "location"
     t.string   "rating"
-    t.decimal  "customer_offer",     precision: 20, scale: 2
-    t.decimal  "evaluate_price",     precision: 20, scale: 2
-    t.decimal  "procurement_price",  precision: 20, scale: 2
-    t.decimal  "newcar_price",       precision: 20, scale: 2
-    t.decimal  "suggested_price",    precision: 20, scale: 2
-    t.decimal  "maintenance_budget", precision: 20, scale: 2
-    t.decimal  "selllimit_price",    precision: 20, scale: 2
-    t.decimal  "price_hand",         precision: 20, scale: 2
-    t.string   "description"
+    t.decimal  "customer_offer",                 precision: 20, scale: 2
+    t.decimal  "evaluate_price",                 precision: 20, scale: 2
+    t.decimal  "procurement_price",              precision: 20, scale: 2
+    t.decimal  "newcar_price",                   precision: 20, scale: 2
+    t.decimal  "suggested_price",                precision: 20, scale: 2
+    t.decimal  "maintenance_budget",             precision: 20, scale: 2
+    t.decimal  "selllimit_price",                precision: 20, scale: 2
+    t.decimal  "price_hand",                     precision: 20, scale: 2
+    t.text     "description",        limit: 255
     t.integer  "status"
     t.integer  "user_id"
     t.datetime "addtime"
@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 20140729062523) do
     t.datetime "sell_time"
     t.integer  "customer_id"
     t.integer  "sell_way_id"
-    t.decimal  "deal_price",         precision: 20, scale: 2
+    t.decimal  "deal_price",                     precision: 20, scale: 2
     t.integer  "payment_method_id"
     t.integer  "sell_user_id"
     t.datetime "selloff_time"
