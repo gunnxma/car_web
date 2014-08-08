@@ -1,0 +1,6 @@
+发布日期:<%= f.date_field :addtime_gteq, style: "width:120px" %> ~ <%= f.date_field :addtime_lteq, style: "width:120px" %>
+            出厂日期:<%= f.date_field :car_property_registration_date_gteq, style: "width:120px" %> ~ <%= f.date_field :car_property_registration_date_lteq, style: "width:120px" %><br>
+            品牌:<%= f.select :brand_cont, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>车系:<%= f.select :series_cont, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: true }, :class => "car_series", :style => "width:100px" %>
+            评估价:<%= f.search_field :evaluate_price_gteq, style: "width:50px" %> ~ <%= f.search_field :evaluate_price_lteq, style: "width:50px" %>万
+            车型:<%= f.search_field :models_cont, style: "width:100px" %>
+            vin:<%= f.search_field :vin_cont, style: "width:100px" %>

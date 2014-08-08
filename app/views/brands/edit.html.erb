@@ -1,55 +1,24 @@
 <div id="content" class="span10">
 			<!-- content starts -->
-			
-
 			<div>
 				<ul class="breadcrumb">
 					<li>
 						<%= link_to "返回列表", :brands, :class => "btn btn-info" %>
 					</li>
 				</ul>
-			</div>
-      
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-  
-      <% if @brand.errors.any? %>
-      <div class="alert alert-info">
-        <% @brand.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </div>
-      <% end %>
-  
+			</div>      
+      <%= render partial: "layouts/notice", locals: { model: @brand} %>  
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2>修改车辆品牌</h2>
-					</div>
-          
+					</div>          
 					<div class="box-content">
             <%= form_for @brand, :html => { :class => "form-horizontal" } do |f| %>
-							<fieldset>
-							  <div class="control-group">
-                  <%= f.label :name, "品牌名称", :class => "control-label" %>
-                  <div class="controls">
-                    <%= f.text_field :name, :class => "input-xlarge focused", :placeholder => "请输入品牌名称" %>
-                  </div>
-							  </div>
-							  <div class="form-actions">
-                  <%= f.submit "修改", :class => "btn btn-primary" %>
-							  </div>
-							</fieldset>
-            <% end %>
-					
+							<%= render partial: "form", locals: { f: f} %>
+            <% end %>					
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

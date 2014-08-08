@@ -8,17 +8,6 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-                <% list.each do |item| %>
-							<tr>
-                <td>
-                  <% item.describe.split(',').each do |str| %>
-                  <%= str %><br>
-                  <% end %>
-                </td>
-                <td><%= item.reason %></td>
-                <td><%= item.addtime %></td>
-                <td><%= item.user.name %></td>
-							</tr>
-                <% end %>
+                <%= render partial: "price_log_item", collection: list, as: :item %>
   </tbody>
 </table>

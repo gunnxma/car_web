@@ -1,0 +1,45 @@
+<fieldset>                
+							  <div class="control-group">
+                  <%= f.label :department_id, "所属部门", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :department_id, Department.where("id > 1").collect { |p| [ p.name, p.id ] } %>
+                  </div>
+							  </div>
+							  <div class="control-group">
+                  <%= f.label :name, "姓名", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :name, :class => "input-xlarge focused", :placeholder => "请输入用户姓名" %>
+                  </div>
+							  </div>
+							  <div class="control-group">
+                  <%= f.label :account, "帐号", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :account, :class => "input-xlarge focused", :placeholder => "请输入用户帐号" %>
+                  </div>
+							  </div>
+							  <div class="control-group">
+                  <%= f.label :pwd, "密码", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :pwd, :class => "input-xlarge focused", :placeholder => "请输入用户密码" %>
+                  </div>
+							  </div>
+							  <div class="control-group">
+                  <%= f.label :phone, "电话", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :phone, :class => "input-xlarge focused", :placeholder => "请输入用户联系电话" %>
+                  </div>
+							  </div>
+							  <div class="control-group">
+                  <%= f.label :phone, "用户权限", :class => "control-label" %>
+                  <div class="controls">
+                    <% Action.all.each_with_index do |a, i| %>
+                    <label class="checkbox inline">
+                      <%= check_box_tag "user[user_powers_attributes][#{i}][action_id]", a.id, !@user.user_powers.where("action_id = ?", a.id).empty? %><%= a.name %>
+                    </label>
+                    <% end %>
+                  </div>
+							  </div>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>

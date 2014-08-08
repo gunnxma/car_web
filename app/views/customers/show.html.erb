@@ -1,7 +1,5 @@
 <div id="content" class="span10">
 			<!-- content starts -->
-			
-
 			<div>
 				<ul class="breadcrumb">
 					<li>
@@ -9,13 +7,7 @@
 					</li>
 				</ul>
 			</div>
-
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>      
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -150,30 +142,9 @@
                 </tr>
                 <% end %>
               </thead>
-            </table>
-            
+            </table>            
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->
-
-<%= content_for :javascript do %>
-<script>
-  function printHtml(html) {
-    var bodyHtml = document.body.innerHTML;
-    document.body.innerHTML = html;
-    window.print();
-    document.body.innerHTML = bodyHtml;
-  }
-
-  function onprint() {
-    var html = $("#printArea").html();
-    printHtml(html);
-  }
-
-</script>
-<% end %>

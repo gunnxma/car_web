@@ -1,0 +1,8 @@
+<tr>
+								<td><%= department.name %></td>
+								<td class="center">
+                  <%= link_to "添加用户", new_user_path(department_id: department.id), :class => "btn btn-info" %>
+                  <%= link_to "修改", edit_department_path(department), :class => "btn btn-info" %>
+                  <%= link_to "删除", department_path(department), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>

@@ -1,23 +1,18 @@
 <div id="content" class="span10">
 			<!-- content starts -->
-			
-
 			<div>
 				<ul class="breadcrumb">
 					<li>
             <%= link_to "返回列表", :assessments, :class => "btn btn-info" %>
 					</li>
 				</ul>
-			</div>
-      
-  <%= render partial: "layouts/notice", locals: { model: @car } %>
-
+			</div>      
+      <%= render partial: "layouts/notice", locals: { model: @car } %>
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2>添加车辆</h2>
-					</div>
-          
+					</div>          
 					<div class="box-content">
             <%= form_for @car, url: :assessments, :html => { :class => "form-horizontal" } do |f| %>
             <ul class="nav nav-tabs" id="myTab">
@@ -26,38 +21,32 @@
 							<li><a href="#assess">车辆评估</a></li>
               <li><a href="#price">车辆报价</a></li>
               <li><a href="#configuration">车辆配置</a></li>
-						</ul>
-						 
+						</ul>						 
 						<div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="info">
-
                 <fieldset>
                   <%= render partial: "car_info", locals: { f: f } %>
                 </fieldset>
-              </div>
-              
+              </div>              
               <div class="tab-pane" id="property">
                 <fieldset>
                   <%= f.fields_for :car_property do |b| %>
                   <%= render partial: "car_property", locals: { b: b } %>
                   <% end %>
                 </fieldset>
-              </div>
-              
+              </div>              
               <div class="tab-pane" id="assess">
                 <fieldset>
                   <%= f.fields_for :car_assess do |b| %>
                   <%= render partial: "car_assess", locals: { b: b } %>
                   <% end %>
                 </fieldset>
-              </div>
-              
+              </div>              
               <div class="tab-pane" id="price">
                 <fieldset>
                   <%= render partial: "car_price", locals: { f: f } %>
                 </fieldset>
-              </div>
-              
+              </div>              
               <div class="tab-pane" id="configuration">
                 <fieldset>
                   <%= f.fields_for :car_configuration do |b| %>
@@ -69,13 +58,9 @@
                 <%= f.submit "保存", :class => "btn btn-primary" %>
               </div>
             </div>
-            <% end %>
-					
+            <% end %>					
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

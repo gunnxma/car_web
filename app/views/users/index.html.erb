@@ -7,13 +7,7 @@
 					</li>
 				</ul>
 			</div>
-
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>      
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -32,28 +26,11 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-                <% @users.each do |user| %>
-							<tr>
-                <td><%= user.department.name %></td>
-                <td><%= user.name %></td>
-                <td><%= user.account %></td>
-                <td><%= user.pwd %></td>
-                <td><%= user.phone %></td>
-								<td class="center">
-                  <%= link_to "修改", edit_user_path(user), :class => "btn btn-info" %>
-                  <%= link_to "删除", user_path(user), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
-                </td>
-							</tr>
-              <% end %>
+                <%= render partial: "item", collection: @users, as: :user %>
 						  </tbody>
-					  </table> 
-            
-            
+					  </table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

@@ -8,13 +8,7 @@
 					</li>
 				</ul>
 			</div>
-
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>      
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -22,14 +16,7 @@
 					</div>
 					<div class="box-content">
             <%= search_form_for @q, :url => sell_index_path, :method => "get" do |f| %>
-            发布日期:<%= f.date_field :addtime_gteq, style: "width:120px" %> ~ <%= f.date_field :addtime_lteq, style: "width:120px" %>
-            出厂日期:<%= f.date_field :car_property_registration_date_gteq, style: "width:120px" %> ~ <%= f.date_field :car_property_registration_date_lteq, style: "width:120px" %><br>
-            上架日期:<%= f.date_field :sell_time_gteq, style: "width:120px" %> ~ <%= f.date_field :sell_time_lteq, style: "width:120px" %>
-            品牌:<%= f.select :brand_cont, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>车系:<%= f.select :series_cont, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: true }, :class => "car_series", :style => "width:100px" %><br>
-            评估价:<%= f.search_field :evaluate_price_gteq, style: "width:50px" %> ~ <%= f.search_field :evaluate_price_lteq, style: "width:50px" %>万
-            车型:<%= f.search_field :models_cont, style: "width:100px" %>
-            vin:<%= f.search_field :vin_cont, style: "width:100px" %>
-              <%= f.submit "查询" %>
+            <%= render partial: "search_form", locals: {f: f} %>
             <% end %>
             <table class="table table-striped table-bordered bootstrap-datatable">
 						  <thead>
@@ -51,48 +38,13 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-              <% @cars.each do |car| %>
-							<tr>
-                <td><%= link_to car.car_no, car_info_path(car) %></td>
-								<td class="center">
-                  <%= link_to "售出", selloff_new_path(id: car.id) if car.status == 2 %>
-                  <% if car.status > 2 %>
-                  <span class="label label-success">已售出</span>
-                  <% end %>
-                  <%= link_to "修改", edit_assessment_path(car) %>
-                  <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %>
-                </td>
-                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
-                <td><%= car.status_str %></td>
-                <td><%= car.saletype %></td>
-                <td>
-                  <% if car.car_photos.count != 0 %>
-                  <%= link_to image_tag(car.car_photos.first.photo.url(:thumb)), photos_path(:car_info_id => car.id, :photo_style => 1), :target => "_blank" %>
-                  <% else %>
-                  <%= link_to "上传", photos_path(:car_info_id => car.id, :photo_style => 1), :target => "_blank" %>
-                  <% end %>
-                </td>
-                <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
-                <td><%= car.platenumber %></td>
-                <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
-                <td><%= car.car_property.mileage if car.car_property %>万公里</td>
-                <td><%= link_to "(#{car.followups.count})新增", new_car_info_followup_path(car) %></td>
-                <td><%= car.sell_day %>天</td>
-                <td><%= "#{car.evaluate_price}万元" %></td>
-                <td><%= car.user.name if car.user %></td>
-							</tr>
-              <% end %>
+                <%= render partial: "item", collection: @cars, as: :car %>
 						  </tbody>
-					  </table> 
-            
+					  </table>             
             <%= page_entries_info @cars %>
-            <%= will_paginate @cars, renderer: SemanticPagination %>
-            
+            <%= will_paginate @cars, renderer: SemanticPagination %>            
 					</div>
-				</div><!--/span-->
-			
+				</div><!--/span-->			
 			</div><!--/row-->
-
-    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

@@ -1,6 +1,5 @@
 <div id="content" class="span10">
 			<!-- content starts -->
-
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -34,10 +33,8 @@
               </tbody>
             </table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-  
+				</div><!--/span-->			
+			</div><!--/row-->  
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -57,25 +54,12 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-                <% @followups.each do |followup| %>
-							<tr>
-                <td><%= followup.followupable.name %></td>
-                <td><%= followup.followup_type.name %></td>
-                <td><%= followup.content %></td>
-                <td><%= followup.has_next_str %></td>
-                <td><%= followup.next_time %></td>
-                <td><%= followup.next_content %></td>
-                <td><%= link_to followup.is_finished_str, edit_customer_followup_path(followup.followupable, followup), :class => "btn btn-info"  %></td>
-							</tr>
-              <% end %>
+                <%= render partial: "followups_item", collection: @followups, as: :followup %>
               </tbody>
             </table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-  
-  
+				</div><!--/span-->			
+			</div><!--/row-->  
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -96,25 +80,11 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-              <% @customers.each do |customer| %>
-							<tr>
-                <td><%= link_to customer.no, customer_path(customer) %></td>
-                <td><%= link_to "修改", edit_customer_path(customer) %></td>
-                <td><%= customer.status_str %></td>
-                <td><%= customer.name %></td>
-                <td><%= customer.need_car %></td>
-                <td><%= customer.need_price %></td>
-                <td><%= customer.business_stage.name %></td>
-                <td><%= link_to "(#{customer.followups.count})新增", new_customer_followup_path(customer) %></td>
-							</tr>
-              <% end %>
+                <%= render partial: "customers_item", collection: @customers, as: :customer %>
               </tbody>
             </table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

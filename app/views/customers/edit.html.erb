@@ -7,62 +7,40 @@
 					</li>
 				</ul>
 			</div>
-      
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-  
-  <% if @customer.errors.any? %>
-      <div class="alert alert-info">
-        <% @customer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-      </div>
-      <% end %>
-  
+      <%= render partial: "layouts/notice", locals: { model: @customer} %>  
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2>修改客户</h2>
-					</div>
-          
+					</div>          
 					<div class="box-content">
             <%= form_for @customer, :html => { :class => "form-horizontal" } do |f| %>
             <ul class="nav nav-tabs" id="myTab">
 							<li class="active"><a href="#info">基本信息</a></li>
 							<li><a href="#need">需求信息</a></li>
 							<li><a href="#other">其他信息</a></li>
-						</ul>
-            
+						</ul>            
             <div id="myTabContent" class="tab-content">
 							<div class="tab-pane active" id="info">
                 <%= render partial: "info", locals: { f: f } %>
-              </div>
-            
+              </div>            
 							<div class="tab-pane" id="need">
                 <%= f.fields_for :customer_need do |b| %>
                 <%= render partial: "need", locals: { f: b } %>
                 <% end %>
-              </div>
-              
+              </div>              
               <div class="tab-pane" id="other">
                 <%= f.fields_for :customer_other do |b| %>
                 <%= render partial: "other", locals: { f: b } %>
                 <% end %>
-              </div>
-              
+              </div>              
               <div class="form-actions">
                 <%= f.submit "保存", :class => "btn btn-primary" %>
 							</div>
             </div>
-            <% end %>
-					
+            <% end %>					
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-  
+				</div><!--/span-->			
+			</div><!--/row-->  
 					<!-- content ends -->
 			</div><!--/#content.span10-->

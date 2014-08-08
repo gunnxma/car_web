@@ -1,0 +1,10 @@
+<tr>
+                <td>
+                  <% item.describe.split(',').each do |str| %>
+                  <%= str %><br>
+                  <% end %>
+                </td>
+                <td><%= item.reason %></td>
+                <td><%= item.addtime.strftime("%Y-%m-%d %H:%M") %></td>
+                <td><%= item.user.name %></td>
+							</tr>

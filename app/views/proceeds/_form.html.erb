@@ -1,0 +1,68 @@
+<fieldset>
+							  <div class="control-group">
+                  <%= f.label :car_info_id, "车辆信息", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :car_info_id, CarInfo.where("status > 0").order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
+                    <a href="javascript:addrow()">增加一行</a>
+                  </div>
+							  </div>
+                <%= f.fields_for :proceeds_details do |b| %>
+                <%= render "proceeds_details", :f => b %>
+                <% end %>
+                <div class="control-group">
+                  <%= f.label :user_id, "收款人", :class => "control-label" %>
+                  <div class="controls">
+                    <select data-placeholder="选择" id="proceeds_user_id" name="proceeds[user_id]" data-rel="chosen">
+                      <option value=""></option>
+                      <% Department.all.each do |d| %>
+                      <optgroup label="<%= d.name %>">
+                        <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @proceeds.user_id) %>
+                      </optgroup>
+                      <% end %>
+                    </select>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :cost, "合计费用", :class => "control-label" %>
+                  <div class="controls">
+                    <span id="cost"><%= @proceeds.cost %></span>元
+                  </div>
+							  </div>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>
+
+<%= content_for :javascript do %>
+<script>
+  $(function(){ 
+　　hide_rows();
+  });  
+  hide_rows();
+  
+  function hide_rows() {
+    for (var i = 4; i < 20; i++) {
+      if ($("#row"+i).css("display") != "none" && $("#proceeds_proceeds_details_attributes_"+i+"_cost").val() =="" ) {
+        $("#row"+i).css("display", "none");
+      }
+    }
+  }
+  
+  function addrow() {
+    for (var i = 0; i < 20; i++) {
+      if ($("#row"+i).css("display") == "none") {
+        $("#row"+i).css("display", "");
+        break;
+      }
+    }
+  }
+  
+  function add_up() {
+    var cost = 0.0;
+    for (var i=0; i < 20; i++) {
+      cost += Number($("#proceeds_proceeds_details_attributes_"+i+"_cost").val());
+    }
+    $("#cost").html(cost);
+  }
+</script>
+<% end %>

@@ -1,18 +1,6 @@
 <div id="content" class="span10">
-			<!-- content starts -->
-			<div>
-				<ul class="breadcrumb">
-					<li>
-					</li>
-				</ul>
-			</div>
-      
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-  
+			<!-- content starts -->      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>  
       <div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -32,27 +20,13 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-              <% @followups.each do |followup| %>
-							<tr>
-                <td><%= followup.followupable.name %></td>
-                <td><%= followup.followup_type.name %></td>
-                <td><%= followup.content %></td>
-                <td><%= followup.has_next_str %></td>
-                <td><%= followup.next_time %></td>
-                <td><%= followup.next_content %></td>
-                <td><%= link_to followup.is_finished_str, edit_customer_followup_path(followup.followupable, followup), :class => "btn btn-info"  %></td>
-							</tr>
-              <% end %>
+                <%= render partial: "followups_item", collection: @followups, as: :followup %>
 						  </tbody>
 					  </table> 
             <%= page_entries_info @followups %>
-            <%= will_paginate @followups, renderer: SemanticPagination %>               
-            
+            <%= will_paginate @followups, renderer: SemanticPagination %>            
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

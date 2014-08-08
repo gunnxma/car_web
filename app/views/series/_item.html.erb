@@ -1,0 +1,7 @@
+<tr>
+								<td><span class="label label-success"><%= series.initial %></span> <%= series.name %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_brand_series_path(@brand, series), :class => "btn btn-info" %>
+                  <%= link_to "删除", brand_series_path(@brand, series), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>

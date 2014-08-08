@@ -10,13 +10,7 @@
 					</li>
 				</ul>
 			</div>
-
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>      
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -31,24 +25,11 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-              <% @series.each do |series| %>
-							<tr>
-								<td><span class="label label-success"><%= series.initial %></span> <%= series.name %></td>
-								<td class="center">
-                  <%= link_to "修改", edit_brand_series_path(@brand, series), :class => "btn btn-info" %>
-                  <%= link_to "删除", brand_series_path(@brand, series), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
-                </td>
-							</tr>
-              <% end %>
+                <%= render partial: "item", collection: @series, as: :series %>
 						  </tbody>
-					  </table> 
-            
-            
+					  </table>
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

@@ -1,0 +1,20 @@
+<tr>
+                <td><%= payment.car_info.car_no %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_payment_path(payment) %>
+                  <%= link_to "删除", payment_path(payment), :method => :delete, data: { confirm: "确定要删除吗" } %>
+                </td>
+                <td><%= payment.car_info.info %></td>
+                <td><%= payment.car_info.vin %></td>
+                <td><%= payment.car_info.procurement_price %>万</td>
+                <td><%= payment.car_info.deal_price %>万</td>
+                <td>
+                  共有<%= payment.payment_details.count %>个项目<br>
+                  <% payment.payment_details.each do |item| %>
+                  <%= "#{item.pay_reason.name} 金额: ￥#{item.cost} 付款方式: #{item.payments_way.name} 说明: #{item.remark}" %><br>
+                  <% end %>
+                </td>
+                <td><%= payment.cost %>元</td>
+                <td><%= payment.user.name if payment.user %></td>
+                <td><%= payment.addtime.strftime("%Y-%m-%d") %></td>
+							</tr>

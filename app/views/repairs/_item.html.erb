@@ -1,0 +1,23 @@
+<tr>
+                <td><%= repair.car_info.car_no %></td>
+								<td class="center">
+                  <%= link_to "审核", check_repair_path(repair), :method => :post %>
+                  <%= link_to "修改", edit_repair_path(repair) %>
+                  <%= link_to "删除", repair_path(repair), :method => :delete, data: { confirm: "确定要删除吗" } %>
+                </td>
+                <td><%= repair.check_str %></td>
+                <td><%= repair.car_info.info %></td>
+                <td><%= repair.car_info.platenumber %></td>
+                <td><%= repair.car_info.vin %></td>
+                <td>
+                  共有<%= repair.repair_details.count %>个项目<br>
+                  <% repair.repair_details.each_with_index do |item, i| %>
+                  <%= "(#{i+1})、#{item.item}" %><%= "  外协单位：#{item.cooperation.name}" if item.is_cooperation == 1 %><br>
+                  <% end %>
+                </td>
+                <td><%= repair.cost %>元</td>
+                <td>剩余<%= repair.remain_hour %>小时</td>
+                <td><%= repair.status_str %></td>
+                <td><%= repair.user.name if repair.user %></td>
+                <td><%= repair.addtime.strftime("%Y-%m-%d") %></td>
+							</tr>

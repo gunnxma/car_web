@@ -54,3 +54,15 @@
 //= require charisma
 
 //= require assessment
+
+function printHtml(html) {
+  var bodyHtml = document.body.innerHTML;
+  document.body.innerHTML = html;
+  window.print();
+  document.body.innerHTML = bodyHtml;
+}
+
+function onprint() {
+  var html = $("#printArea").html();
+  printHtml(html);
+}

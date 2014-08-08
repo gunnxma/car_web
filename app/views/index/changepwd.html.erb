@@ -1,18 +1,11 @@
 <div id="content" class="span10">
-			<!-- content starts -->
-      
-      <% if flash[:notice] %>  
-			<div class="alert alert-info">
-				<%= flash[:notice] %>
-			</div>
-      <% end %>
-  
+			<!-- content starts -->      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>  
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
 						<h2>修改密码</h2>
-					</div>
-          
+					</div>          
 					<div class="box-content">
             <%= form_tag index_savechangepwd_path, :method => :post, :class => "form-horizontal" do %>
 							<fieldset>
@@ -38,13 +31,9 @@
                   <%= submit_tag "保存", :class => "btn btn-primary" %>
 							  </div>
 							</fieldset>
-            <% end %>
-					
+            <% end %>					
 					</div>
-				</div><!--/span-->
-			
-			</div><!--/row-->
-
-    
+				</div><!--/span-->			
+			</div><!--/row-->    
 					<!-- content ends -->
 			</div><!--/#content.span10-->

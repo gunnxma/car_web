@@ -1,0 +1,15 @@
+<tr>
+                <td><%= link_to customer.no, customer_path(customer) %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_customer_path(customer) %>
+                  <%= link_to "删除", customer_path(customer), :method => :delete, data: { confirm: "确定要删除吗" } %>
+                </td>
+                <td><%= customer.status_str %></td>
+                <td><%= customer.name %></td>
+                <td><%= customer.need_car %></td>
+                <td><%= customer.need_price %></td>
+                <td><%= customer.business_stage.name %></td>
+                <td><%= link_to "(#{customer.followups.count})新增", new_customer_followup_path(customer) %></td>
+                <td><%= customer.user.name %></td>
+                <td><%= customer.addtime.strftime("%Y-%m-%d") if customer.addtime %></td>
+							</tr>

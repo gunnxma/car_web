@@ -1,0 +1,55 @@
+<div class="control-group">
+                  <%= f.label :name, "车辆信息", :class => "control-label" %>
+                  <div class="controls">
+                    <span class="input-xlarge uneditable-input"><%= @car_info.info %></span>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :followup_type_id, "联系方式", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :followup_type_id, FollowupType.all.collect { |p| [ p.name, p.id ] } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :content, "联系内容", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_area :content, :style => "width:480px;height:50px" %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :has_next, "是否提醒", :class => "control-label" %>
+                  <div class="controls">
+                    <label class="checkbox inline">
+                      <%= f.radio_button :has_next, 1, :onclick => "set_next(this.value);" %>是
+                    </label>
+                    <label class="checkbox inline">
+                      <%= f.radio_button :has_next, 0, :onclick => "set_next(this.value);" %>否
+                    </label>
+                  </div>
+							  </div>
+                <div class="control-group" id="div_nexttime">
+                  <%= f.label :next_time, "提醒日期", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.date_field :next_time %>
+                  </div>
+							  </div>
+                <div class="control-group" id="div_nextcontent">
+                  <%= f.label :next_content, "提醒内容", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_area :next_content, :style => "width:480px;height:50px" %>
+                  </div>
+							  </div>
+
+<%= content_for :javascript do %>
+<script>
+function set_next(value) {
+  if (value == 1) {
+    $("#div_nexttime").css("display","");
+    $("#div_nextcontent").css("display","");
+  } else {
+    $("#div_nexttime").css("display","none");
+    $("#div_nextcontent").css("display","none");
+  }
+}
+</script>
+<% end %>

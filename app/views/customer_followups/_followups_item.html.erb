@@ -1,0 +1,8 @@
+<tr>
+                <td><%= followup.followup_type.name %></td>
+                <td><%= followup.content %></td>
+                <td><%= followup.has_next_str %></td>
+                <td><%= followup.next_time %></td>
+                <td><%= followup.next_content %></td>
+                <td><%= link_to followup.is_finished_str, edit_customer_followup_path(@customer, followup), :class => "btn btn-info"  %></td>
+							</tr>

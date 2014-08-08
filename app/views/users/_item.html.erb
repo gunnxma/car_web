@@ -1,0 +1,11 @@
+<tr>
+                <td><%= user.department.name %></td>
+                <td><%= user.name %></td>
+                <td><%= user.account %></td>
+                <td><%= user.pwd %></td>
+                <td><%= user.phone %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_user_path(user), :class => "btn btn-info" %>
+                  <%= link_to "删除", user_path(user), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>

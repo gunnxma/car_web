@@ -1,0 +1,14 @@
+<tr>
+                <td><%= car.car_no %></td>
+                <td><%= car.info %></td>
+                <td><%= car.vin %></td>
+                <td>
+                  录入人：<%= car.user.name %><br>
+                  评估人：<%= car.car_assess.user.name if car.car_assess.user %><br>
+                  成交人：<%= car.sell_user.name %>
+                </td>
+                <td><%= car.repair_costs %>万</td>
+                <td><%= car.payment_costs %>万</td>
+                <td><%= car.proceeds_costs %>万</td>
+                <td><%= car.profit_costs %>万</td>
+							</tr>
