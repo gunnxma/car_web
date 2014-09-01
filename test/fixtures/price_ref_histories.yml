@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  price_ref_id: 1
+  price: 9.99
+  price_date: 2014-09-01 03:00:51
+  addtime: 2014-09-01 03:00:51
+
+two:
+  price_ref_id: 1
+  price: 9.99
+  price_date: 2014-09-01 03:00:51
+  addtime: 2014-09-01 03:00:51

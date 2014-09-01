@@ -12,6 +12,7 @@
               <%= link_to '车辆品牌', :brands, :class => "ajax-link" if @current_user.has_power("brands", "index") %>
             </li>
 						<li class="nav-header hidden-tablet">车辆评估</li>
+            <li><%= link_to '历史成交', :price_refs, :class => "ajax-link", 'data-no-turbolink' => true if @current_user.has_power("price_refs", "index") %></li>
 						<li><%= link_to '增加车辆', :new_assessment, :class => "ajax-link", 'data-no-turbolink' => true if @current_user.has_power("assessments", "new") %></li>
             <li><%= link_to "评估管理", :assessments, :class => "ajax-link" if @current_user.has_power("assessments", "index") %></li>
             <li class="nav-header hidden-tablet">车辆库存</li>

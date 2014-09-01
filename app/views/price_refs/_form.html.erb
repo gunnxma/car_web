@@ -1,0 +1,90 @@
+<fieldset>
+							  <div class="control-group">
+                  <%= f.label :b, "品牌车系", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: "请选择品牌" }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
+                      <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :class => "car_series", :style => "width:100px" %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :year, "年份", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :year %>年
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :standard_id, "车型", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.select :standard_id, Standard.all.collect { |p| [ p.name, p.id ] }, { :style => "width:100px" } %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :price_newcar, "指导价", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :price_newcar %>万元
+                  </div>
+                  <a href="javascript:addrow_off()">增加一行优惠信息</a>
+							  </div>
+                <%= f.fields_for :price_ref_offs do |b| %>
+                <%= render "price_ref_offs", :f => b %>
+                <% end %>
+                <div class="control-group">
+                  <%= f.label :configuration, "重要配置", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_area :configuration, :style => "width:480px;height:50px" %>
+                  </div>
+							  </div>
+                <div class="control-group">
+                  <%= f.label :price_buy, "收购参考价", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :price_buy %>万元
+                  </div>
+                  <a href="javascript:addrow_history()">增加一行历史报价</a>
+							  </div>
+                <%= f.fields_for :price_ref_histories do |b| %>
+                <%= render "price_ref_histories", :f => b %>
+                <% end %>
+							  <div class="form-actions">
+                  <%= f.submit "保存", :class => "btn btn-primary" %>
+							  </div>
+							</fieldset>
+
+<%= content_for :javascript do %>
+<script>
+  $(function(){ 
+　　hide_rows();
+  });  
+  hide_rows();
+  
+  function hide_rows() {
+    for (var i = 4; i < 20; i++) {
+      if ($("#row_off"+i).css("display") != "none" && $("#price_ref_price_ref_offs_attributes_"+i+"_price").val() =="" ) {
+        $("#row_off"+i).css("display", "none");
+      }
+    }
+    for (var i = 4; i < 20; i++) {
+      if ($("#row_history"+i).css("display") != "none" && $("#price_ref_price_ref_offs_attributes_"+i+"_price").val() =="" ) {
+        $("#row_history"+i).css("display", "none");
+      }
+    }
+  }
+  
+  function addrow_off() {
+    for (var i = 0; i < 20; i++) {
+      if ($("#row_off"+i).css("display") == "none") {
+        $("#row_off"+i).css("display", "");
+        break;
+      }
+    }
+  }
+  
+  function addrow_history() {
+    for (var i = 0; i < 20; i++) {
+      if ($("#row_history"+i).css("display") == "none") {
+        $("#row_history"+i).css("display", "");
+        break;
+      }
+    }
+  }
+</script>
+<% end %>

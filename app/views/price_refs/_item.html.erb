@@ -1,0 +1,22 @@
+<tr>
+  <td><%= "#{price_ref.brand}#{price_ref.series}" %></td>
+  <td><%= price_ref.year %>年</td>
+  <td><%= price_ref.standard.name %></td>
+  <td><%= price_ref.price_newcar %>万</td>
+  <td>
+    <% price_ref.price_ref_offs.each_with_index do |item, i| %>
+    <%= "(#{i+1})、优惠：#{item.price}万  时间：#{item.price_date.strftime("%Y-%m-%d")}" %><br>
+    <% end %>
+  </td>
+  <td><%= price_ref.configuration %></td>
+  <td><%= price_ref.price_buy %>万</td>
+  <td>
+    <% price_ref.price_ref_histories.each_with_index do |item, i| %>
+    <%= "(#{i+1})、历史成交价：#{item.price}万  时间：#{item.price_date.strftime("%Y-%m-%d")}" %><br>
+    <% end %>
+  </td>
+	<td class="center">
+    <%= link_to "修改", edit_price_ref_path(price_ref) %>
+    <%= link_to "删除", price_ref_path(price_ref), :method => :delete, data: { confirm: "确定要删除吗" } %>
+  </td>
+</tr>

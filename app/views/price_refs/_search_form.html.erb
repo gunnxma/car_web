@@ -1,0 +1,4 @@
+品牌:<%= f.select :brand_cont, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>车系:<%= f.select :series_cont, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: true }, :class => "car_series", :style => "width:100px" %>
+年份:<%= f.search_field :year_eq, style: "width:50px" %>年
+车型:<%= f.select :standard_id_eq, Standard.all.collect { |p| [ p.name, p.id ] }, { include_blank: true }, { :style => "width:100px" } %>
+<%= f.submit "查询" %>

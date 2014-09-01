@@ -1,0 +1,24 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+			<div>
+				<ul class="breadcrumb">
+					<li>
+            <%= link_to "返回列表", :price_refs, :class => "btn btn-info" %>
+					</li>
+				</ul>
+			</div>      
+  <%= render partial: "layouts/notice", locals: { model: @price_ref} %>  
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>修改历史成交</h2>
+					</div>          
+					<div class="box-content">
+            <%= form_for @price_ref, :html => { :class => "form-horizontal" } do |f| %>
+            <%= render partial: "form", locals: {f: f} %>
+            <% end %>					
+					</div>
+				</div><!--/span-->			
+			</div><!--/row-->
+					<!-- content ends -->
+			</div><!--/#content.span10-->

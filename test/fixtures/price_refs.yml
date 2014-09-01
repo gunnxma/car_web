@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brand: MyString
+  series: MyString
+  year: 1
+  standard_id: 1
+  price_newcar: 9.99
+  price_buy: 9.99
+  configuration: MyText
+  addtime: 2014-09-01 02:57:02
+
+two:
+  brand: MyString
+  series: MyString
+  year: 1
+  standard_id: 1
+  price_newcar: 9.99
+  price_buy: 9.99
+  configuration: MyText
+  addtime: 2014-09-01 02:57:02

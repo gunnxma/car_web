@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730230353) do
+ActiveRecord::Schema.define(version: 20140901030051) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -455,6 +455,37 @@ ActiveRecord::Schema.define(version: 20140730230353) do
     t.string   "reason"
     t.datetime "addtime"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "price_ref_histories", force: true do |t|
+    t.integer  "price_ref_id"
+    t.decimal  "price",        precision: 20, scale: 2
+    t.datetime "price_date"
+    t.datetime "addtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "price_ref_offs", force: true do |t|
+    t.integer  "price_ref_id"
+    t.decimal  "price",        precision: 20, scale: 2
+    t.datetime "price_date"
+    t.datetime "addtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "price_refs", force: true do |t|
+    t.string   "brand"
+    t.string   "series"
+    t.integer  "year"
+    t.integer  "standard_id"
+    t.decimal  "price_newcar",  precision: 20, scale: 2
+    t.decimal  "price_buy",     precision: 20, scale: 2
+    t.text     "configuration"
+    t.datetime "addtime"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
