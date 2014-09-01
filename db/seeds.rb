@@ -401,7 +401,7 @@ actions = [
   {controller: 'users', action: 'create', name: '保存增加用户'},
   {controller: 'users', action: 'edit', name: '修改用户'},
   {controller: 'users', action: 'update', name: '保存修改用户'},
-  {controller: 'users', action: 'destroy', name: '删除用户'}
+  {controller: 'users', action: 'destroy', name: '删除用户'},
   {controller: 'price_refs', action: 'index', name: '历史成交列表'},
   {controller: 'price_refs', action: 'new', name: '增加历史成交'},
   {controller: 'price_refs', action: 'create', name: '保存历史成交'},
