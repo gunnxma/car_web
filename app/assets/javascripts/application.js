@@ -55,6 +55,8 @@
 
 //= require assessment
 
+//= require datepicker-zh-TW
+
 function printHtml(html) {
   var bodyHtml = document.body.innerHTML;
   document.body.innerHTML = html;

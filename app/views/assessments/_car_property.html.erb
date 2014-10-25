@@ -23,13 +23,13 @@
                   <div class="control-group">
                     <%= b.label :production_date, "出厂日期", :class => "control-label" %>
                     <div class="controls">
-                      <%= b.date_field :production_date %>
+                      <%= b.text_field :production_date, :class => "datepicker" %>
                     </div>
                   </div>
                   <div class="control-group">
                     <%= b.label :registration_date, "登记日期", :class => "control-label" %>
                     <div class="controls">
-                      <%= b.date_field :registration_date %>
+                      <%= b.text_field :registration_date, :class => "datepicker" %>
                     </div>
                   </div>
                   <div class="control-group">
@@ -101,14 +101,14 @@
                   <div class="control-group">
                     <%= b.label :inspection_expire, "年检到期", :class => "control-label" %>
                     <div class="controls">
-                      <%= b.date_field :inspection_expire %>
+                      <%= b.text_field :inspection_expire, :class => "datepicker" %>
                     </div>
                   </div>
                   <div class="control-group">
                     <div class="span4">
                       <%= b.label :compulsory_expire, "交强险到期", :class => "control-label" %>
                         <div class="controls">
-                          <%= b.date_field :compulsory_expire %>
+                          <%= b.text_field :compulsory_expire, :class => "datepicker" %>
                         </div>
                     </div>
                     <div class="span4">
@@ -132,7 +132,7 @@
                     <div class="span4">
                       <%= b.label :business_expire, "商业险到期", :class => "control-label" %>
                         <div class="controls">
-                          <%= b.date_field :business_expire %>
+                          <%= b.text_field :business_expire, :class => "datepicker" %>
                         </div>
                     </div>
                     <div class="span4">
@@ -148,3 +148,4 @@
                       <%= b.text_area :insurance_record, :style => "width:480px;height:50px" %>
                     </div>
                   </div>   
+

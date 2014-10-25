@@ -1,3 +1,3 @@
-添加时间:<%= f.date_field :addtime_gteq, style: "width:120px" %> ~ <%= f.date_field :addtime_lteq, style: "width:120px" %>
+添加时间:<%= f.text_field :addtime_gteq, :class => "datepicker", style: "width:120px" %> ~ <%= f.text_field :addtime_lteq, :class => "datepicker", style: "width:120px" %>
             状态:<%= f.select :status_eq, [{id: 0, name: '待整备'}, {id: 1, name: '整备中'}, {id: 2, name: '已完成'}].collect { |p| [ p[:name], p[:id] ] }, { include_blank: true }, { :style => "width:100px" } %>
               <%= f.submit "查询" %>

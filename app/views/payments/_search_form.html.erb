@@ -1,3 +1,3 @@
-付款时间:<%= f.date_field :addtime_gteq, style: "width:120px" %> ~ <%= f.date_field :addtime_lteq, style: "width:120px" %>
+付款时间:<%= f.text_field :addtime_gteq, :class => "datepicker", style: "width:120px" %> ~ <%= f.text_field :addtime_lteq, :class => "datepicker", style: "width:120px" %>
             车辆VIN码:<%= f.search_field :car_info_vin_cont, :style => "width:100px" %>
               <%= f.submit "查询" %>
