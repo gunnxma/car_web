@@ -50,6 +50,8 @@ class RepairsController < ApplicationController
     (MAX_DETAIL-@repair.repair_details.count).times do
       @repair.repair_details.build
     end
+    @repair.start_time = @repair.start_time.strftime("%Y/%m/%d") if @repair.start_time
+    @repair.end_time = @repair.end_time.strftime("%Y/%m/%d") if @repair.end_time
   end
   
   def update

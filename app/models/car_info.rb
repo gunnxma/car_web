@@ -18,6 +18,7 @@ class CarInfo < ActiveRecord::Base
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }
   validates :models, :presence => { :message => "型号不能为空" }
+  validates :addtime, :presence => { :message => "收购日期不能为空" }
   
   before_save :check_price
   

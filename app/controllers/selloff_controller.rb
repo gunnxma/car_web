@@ -25,6 +25,7 @@ class SelloffController < ApplicationController
   def new
     @car = CarInfo.where(:id => params[:id], :status => 2).first
     @car.status = 3
+    @car.selloff_time = DateTime.now.strftime("%Y/%m/%d")
   end
   
   def add
@@ -35,7 +36,7 @@ class SelloffController < ApplicationController
       return
     end
     
-    @car.selloff_time = DateTime.now
+    #@car.selloff_time = DateTime.now
     
     if @car.update_attributes(car_params)
       flash[:notice] = "车辆销售成功"
@@ -48,6 +49,6 @@ class SelloffController < ApplicationController
   private
   
   def car_params
-    params.require(:car_info).permit(:customer_id, :sell_way_id, :deal_price, :payment_method_id, :sell_user_id, :status)
+    params.require(:car_info).permit(:customer_id, :sell_way_id, :deal_price, :payment_method_id, :sell_user_id, :status, :selloff_time)
   end
 end

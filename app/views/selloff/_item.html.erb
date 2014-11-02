@@ -4,7 +4,7 @@
                   <%= link_to "修改", edit_assessment_path(car) %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %>
                 </td>
-                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
+                <td><%= car.selloff_time.strftime("%Y-%m-%d") if car.selloff_time %></td>
                 <td><%= car.status_str %></td>
                 <td><%= car.saletype %></td>
                 <td>

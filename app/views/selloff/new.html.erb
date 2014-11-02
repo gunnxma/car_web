@@ -35,6 +35,12 @@
                     <%= f.hidden_field :status %>
                   </div>
 							  </div>
+                <div class="control-group success">
+                  <%= f.label :selloff_time, "售出日期", :class => "control-label" %>
+                  <div class="controls">
+                    <%= f.text_field :selloff_time, :class => "datepicker" %>
+                  </div>
+                </div>
                 <div class="control-group">
                   <%= f.label :payment_method_id, "付款方式", :class => "control-label" %>
                   <div class="controls">

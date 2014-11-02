@@ -26,6 +26,7 @@ class AssessmentsController < ApplicationController
   
   def new
     @car = CarInfo.new
+    @car.addtime = DateTime.now.strftime("%Y/%m/%d")
     @car.car_no = get_car_no
     @car.saletype = "寄售"
     @car.init_assocation
@@ -45,7 +46,7 @@ class AssessmentsController < ApplicationController
   
   def create
     @car = CarInfo.new(car_params)
-    @car.addtime = DateTime.now
+    #@car.addtime = DateTime.now
     @car.user_id = current_user.id
     
     @car.set_multi_value(params[:business_info], params[:safety], params[:comfort], params[:function])
@@ -69,6 +70,12 @@ class AssessmentsController < ApplicationController
     @car = CarInfo.find(params[:id])
     
     @car.init_assocation
+    @car.addtime = @car.addtime.strftime("%Y/%m/%d") if @car.addtime
+    @car.car_property.production_date = @car.car_property.production_date.strftime("%Y/%m/%d") if @car.car_property.production_date
+    @car.car_property.registration_date = @car.car_property.registration_date.strftime("%Y/%m/%d") if @car.car_property.registration_date
+    @car.car_property.inspection_expire = @car.car_property.inspection_expire.strftime("%Y/%m/%d") if @car.car_property.inspection_expire
+    @car.car_property.compulsory_expire = @car.car_property.compulsory_expire.strftime("%Y/%m/%d") if @car.car_property.compulsory_expire
+    @car.car_property.business_expire = @car.car_property.business_expire.strftime("%Y/%m/%d") if @car.car_property.business_expire
     
     brand = Brand.where(:name => @car.brand).first
     @series = brand.series if brand
@@ -101,6 +108,6 @@ class AssessmentsController < ApplicationController
   
   def car_params
     #params.require(:car_info).permit!
-    params.require(:car_info).permit(:status, :car_no, :saletype, :brand, :series, :vin, :engineid, :platenumber, :models, :ownername, :ownerphone, :newsfrom, :cooperation_id, :location, :rating, :customer_offer, :evaluate_price, :procurement_price, :newcar_price, :suggested_price, :maintenance_budget, :selllimit_price, :price_hand, :description, :user_id, car_property_attributes: [:transmission, :cc, :cc_unit, :transfer_number, :production_date, :registration_date, :registration_province, :registration_city, :registration_district, :mileage, :maintenance_mileage, :color, :interior_color, :body_class, :emission_standard, :with_plate_number, :use_nature, :insurance_info, :inspection_expire, :compulsory_expire, :compulsory_company, :business_info, :business_expire, :business_company, :insurance_record], car_assess_attributes: [:assess_appearance, :assess_skeletons, :assess_interior, :assess_engine, :assess_transmission, :assess_comprehensive, :user_id], car_configuration_attributes: [:standard, :safety, :comfort, :function, :other])
+    params.require(:car_info).permit(:addtime, :status, :car_no, :saletype, :brand, :series, :vin, :engineid, :platenumber, :models, :ownername, :ownerphone, :newsfrom, :cooperation_id, :location, :rating, :customer_offer, :evaluate_price, :procurement_price, :newcar_price, :suggested_price, :maintenance_budget, :selllimit_price, :price_hand, :description, :user_id, car_property_attributes: [:transmission, :cc, :cc_unit, :transfer_number, :production_date, :registration_date, :registration_province, :registration_city, :registration_district, :mileage, :maintenance_mileage, :color, :interior_color, :body_class, :emission_standard, :with_plate_number, :use_nature, :insurance_info, :inspection_expire, :compulsory_expire, :compulsory_company, :business_info, :business_expire, :business_company, :insurance_record], car_assess_attributes: [:assess_appearance, :assess_skeletons, :assess_interior, :assess_engine, :assess_transmission, :assess_comprehensive, :user_id], car_configuration_attributes: [:standard, :safety, :comfort, :function, :other])
   end
 end

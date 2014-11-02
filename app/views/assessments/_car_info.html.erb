@@ -16,6 +16,12 @@
                     </div>
                   </div>
                   <div class="control-group success">
+                    <%= f.label :addtime, "收购日期", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.text_field :addtime, :class => "datepicker" %>
+                    </div>
+                  </div>
+                  <div class="control-group success">
                     <%= f.label :brand, "车辆品牌", :class => "control-label" %>
                     <div class="controls">
                       <%= f.select :brand, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: "请选择品牌" }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>
