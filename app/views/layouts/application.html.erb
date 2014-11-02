@@ -51,8 +51,13 @@
 	</div>
   
   <%= javascript_include_tag "application" %>
+  <script src="assets/datepicker-zh-TW.js"></script>
   <% #, "data-turbolinks-track" => true %>
-  
+  <script>
+    $(function() {
+      $( "#datepicker" ).datepicker( $.datepicker.regional[ "zh-TW" ] );
+    });
+  </script>
   <%= yield :javascript %>
 </body>
 </html>

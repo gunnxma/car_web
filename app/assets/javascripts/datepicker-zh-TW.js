@@ -29,6 +29,7 @@
 		isRTL: false,
 		showMonthAfterYear: true,
     changeYear: true,
+    changeMonth: true,
 		yearSuffix: '年'};
 	datepicker.setDefaults(datepicker.regional['zh-TW']);
 
