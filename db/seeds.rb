@@ -179,7 +179,7 @@ end
 
 sellway_destroy = ['58同城', '赶集网', '第一车网']
 sellway_destroy.each do |a|
-  sellway = SellWay.where("name = ?", a).first if SellWay.where("name = ?", a).any
+  sellway = SellWay.where("name = ?", a).first if SellWay.where("name = ?", a)
   sellway.destroy if sellway
 end
 
