@@ -177,10 +177,15 @@ if Function.count == 0
   Function.create(name: '钥匙遥控')
 end
 
-if SellWay.count == 0
-  SellWay.create(name: '58同城')
-  SellWay.create(name: '赶集网')
-  SellWay.create(name: '第一车网')
+sellway_destroy = ['58同城', '赶集网', '第一车网']
+sellway_destroy.each do |a|
+  sellway = SellWay.where("name = ?", a).first if SellWay.where("name = ?", a).any
+  sellway.destroy if sellway
+end
+
+sellway = ['店销', '网络', '同行批发', '中介', '其他']
+sellway.each do |a|
+  SellWay.create(name: a) if SellWay.where("name = ?", a).empty?
 end
 
 if PaymentMethod.count == 0
@@ -292,15 +297,9 @@ if PaymentsWay.count == 0
   PaymentsWay.create(name: '其他')
 end
 
-if PayReason.count == 0
-  PayReason.create(name: '付收车全款')
-  PayReason.create(name: '付收车定金')
-  PayReason.create(name: '收车信息费')
-  PayReason.create(name: '外联集资款')
-  PayReason.create(name: '收购指标费')
-  PayReason.create(name: '售外销售提成')
-  PayReason.create(name: '置换外找（买收）')
-  PayReason.create(name: '过户费')
+payreason = ['付收车全款', '付收车定金', '收车信息费', '外联集资款', '收购指标费', '售外销售提成', '置换外找（买收）', '过户费', '转入费', '运输费', '机修费', '喷漆费', '美容费']
+payreason.each do |a|
+  PayReason.create(name: a) if PayReason.where("name = ? ", a).empty?
 end
 
 if ProceedsReason.count == 0
