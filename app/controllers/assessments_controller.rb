@@ -59,6 +59,8 @@ class AssessmentsController < ApplicationController
         redirect_to :action => :index
       end
     else
+      brand = Brand.where(:name => @car.brand).first
+      @series = brand.series if brand
       render "new"
     end
   end
