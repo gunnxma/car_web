@@ -1,6 +1,8 @@
 <tr>
                 <td><%= car.car_no %></td>
                 <td><%= car.info %></td>
+                <td><%= car.addtime.strftime("%Y-%m-%d") %></td>
+                <td><%= car.selloff_time.strftime("%Y-%m-%d") %></td>
                 <td><%= car.vin %></td>
                 <td>
                   录入人：<%= car.user.name %><br>

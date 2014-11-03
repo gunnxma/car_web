@@ -297,7 +297,7 @@ if PaymentsWay.count == 0
   PaymentsWay.create(name: '其他')
 end
 
-payreason = ['付收车全款', '付收车定金', '收车信息费', '外联集资款', '收购指标费', '售外销售提成', '置换外找（买收）', '过户费', '转入费', '运输费', '机修费', '喷漆费', '美容费']
+payreason = ['付收车全款', '付收车定金', '收车信息费', '外联集资款', '收购指标费', '售外销售提成', '置换外找（买收）', '过户费', '转入费', '运输费', '机修费', '喷漆费', '美容费', '加油费', '电子件', '内饰', '其他']
 payreason.each do |a|
   PayReason.create(name: a) if PayReason.where("name = ? ", a).empty?
 end
@@ -309,7 +309,7 @@ if ProceedsReason.count == 0
   ProceedsReason.create(name: '售车余款补齐')
   ProceedsReason.create(name: '商险收入')
   ProceedsReason.create(name: '补助收入')
-  ProceedsReason.create(name: '额外收入')  
+  ProceedsReason.create(name: '额外收入')
   ProceedsReason.create(name: '指标收入')
   ProceedsReason.create(name: '等价置换')
   ProceedsReason.create(name: '置换补余（栋收）')
@@ -352,8 +352,8 @@ actions = [
   {controller: 'customers', action: 'edit', name: '修改客户'},
   {controller: 'customers', action: 'update', name: '保存修改客户'},
   {controller: 'customers', action: 'show', name: '客户详情'},
-  {controller: 'customers', action: 'followups', name: '客户跟进提醒'},  
-  {controller: 'customers', action: 'destroy', name: '删除客户'},  
+  {controller: 'customers', action: 'followups', name: '客户跟进提醒'},
+  {controller: 'customers', action: 'destroy', name: '删除客户'},
   {controller: 'depot', action: 'index', name: '库存管理'},
   {controller: 'depot', action: 'add', name: '入库操作'},
   {controller: 'payments', action: 'index', name: '付款管理'},

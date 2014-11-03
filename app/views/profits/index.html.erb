@@ -8,7 +8,7 @@
 					</li>
 				</ul>
 			</div>
-      <%= render partial: "layouts/notice", locals: { model: nil} %>      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -23,6 +23,8 @@
 							  <tr>
 								  <th>车辆编号</th>
                   <th>车辆信息</th>
+                  <th>收购日期</th>
+                  <th>售出日期</th>
                   <th>VIN</th>
                   <th>成交人员</th>
                   <th>整备费用</th>
@@ -30,15 +32,15 @@
                   <th>收款合计</th>
                   <th>利润</th>
 							  </tr>
-						  </thead>   
+						  </thead>
 						  <tbody>
                 <%= render partial: "item", collection: @cars, as: :car %>
 						  </tbody>
-					  </table> 
+					  </table>
             <%= page_entries_info @cars %>
-            <%= will_paginate @cars, renderer: SemanticPagination %>            
+            <%= will_paginate @cars, renderer: SemanticPagination %>
 					</div>
-				</div><!--/span-->			
+				</div><!--/span-->
 			</div><!--/row-->
 					<!-- content ends -->
 			</div><!--/#content.span10-->
