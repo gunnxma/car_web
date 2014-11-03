@@ -19,6 +19,9 @@ Car::Application.routes.draw do
   get "selloff/index"
   post "selloff/add"
   get "selloff/new"
+  get "selloff/edit"
+  patch "selloff/update"
+  delete "selloff/destroy"
   
   resources :brands do
     resources :series

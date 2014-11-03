@@ -46,6 +46,24 @@ class SelloffController < ApplicationController
     end
   end
   
+  def edit
+    @car = CarInfo.where(:id => params[:id]).first
+    @car.selloff_time = DateTime.now.strftime("%Y/%m/%d")
+  end
+  
+  def destroy
+    car = CarInfo.find(params[:id])
+    car.customer_id = nil
+    car.sell_way_id = nil
+    car.deal_price = nil
+    car.selloff_time = nil
+    car.payment_method_id = nil
+    car.sell_user_id = nil
+    car.status = 2
+    car.save
+    redirect_to :action => :index
+  end
+  
   private
   
   def car_params

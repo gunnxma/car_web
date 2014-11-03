@@ -1,10 +1,15 @@
 <tr>
                 <td><%= link_to car.car_no, car_info_path(car) %></td>
+                <td><%= car.vin %></td>
 								<td class="center">
-                  <%= link_to "修改", edit_assessment_path(car) %>
-                  <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %>
+                  <%= link_to "修改", edit_assessment_path(car) %><br>
+                  <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %><br>
+                  <%= link_to "售出修改", selloff_edit_path(id: car.id) %><br>
+                  <%= link_to "撤消售出", selloff_destroy_path(id: car.id), :method => :delete, cdata: { confirm: "确定要撤消吗" } %>
                 </td>
+                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
                 <td><%= car.selloff_time.strftime("%Y-%m-%d") if car.selloff_time %></td>
+                <td><%= car.car_property.production_date.strftime("%Y-%m-%d") if car.car_property.production_date %></td>
                 <td><%= car.status_str %></td>
                 <td><%= car.saletype %></td>
                 <td>
@@ -15,11 +20,10 @@
                   <% end %>
                 </td>
                 <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
-                <td><%= car.platenumber %></td>
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>
                 <td><%= link_to "(#{car.followups.count})新增", new_car_info_followup_path(car) %></td>
                 <td><%= car.deal_price %>万元</td>
-                <td><%= "#{car.evaluate_price}万元" %></td>
-                <td><%= car.user.name if car.user %></td>
+                <td><%= "#{car.selllimit_price}万元" %></td>
+                <td><%= car.sell_way.name if car.sell_way %></td>
 							</tr>
