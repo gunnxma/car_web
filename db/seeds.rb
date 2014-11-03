@@ -9,7 +9,10 @@ department = Department.create(name: 'admin') if Department.count == 0
 
 User.create(department_id: department.id, name: 'admin', account: 'admin', pwd: 'admin') if User.count == 0
 
-Saletype.create([{ name: '寄售' }, { name: '收购' }, { name: '置换' }]) if Saletype.count == 0
+saletype = ['寄售', '收购', '置换', '抵押']
+saletype.each do |a|
+  Saletype.create(name: a) if Saletype.where('name = ?', a).empty?
+end
 
 if Newsfrom.count == 0
   Newsfrom.create(name: '来电来访')
