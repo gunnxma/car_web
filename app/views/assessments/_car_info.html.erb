@@ -71,11 +71,7 @@
                   <div class="control-group">
                     <%= f.label :newsfrom, "信息来源", :class => "control-label" %>
                     <div class="controls">
-                      <% Newsfrom.all.each do |newsfrom| %>
-                      <label class="checkbox inline">
-                        <%= f.radio_button :newsfrom, newsfrom.name, :onclick => "set_cooperation(this.value);" %><%= newsfrom.name %>
-                      </label>
-                      <% end %>
+                      <%= f.text_field :newsfrom, :class => "span8" %>
                     </div>
                   </div>
                   <div class="control-group" id="div_cooperation" style="display:<%= @car.newsfrom == "合作商户" ? "":"none"%>">
