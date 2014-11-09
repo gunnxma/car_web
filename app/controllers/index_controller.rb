@@ -12,6 +12,7 @@ class IndexController < ApplicationController
     @today_selloff_count = CarInfo.where("selloff_time >= ? and selloff_time <= ?", Time.now.beginning_of_day, Time.now.end_of_day).count
     @today_customer_count = Customer.where("addtime >= ? and addtime <= ?", Time.now.beginning_of_day, Time.now.end_of_day).count
     
+    @diya_list = CarInfo.where("saletype = '抵押'").order(addtime: :desc)
     @followups = Followup.where("followupable_type = ? and user_id = ?", "Customer", current_user.id).paginate(:page => params[:page]).order(addtime: :desc).take(10)
     
     if current_user.id == 1
