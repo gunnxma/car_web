@@ -1,4 +1,4 @@
-<fieldset>                
+<fieldset>
 							  <div class="control-group">
                   <%= f.label :department_id, "所属部门", :class => "control-label" %>
                   <div class="controls">
@@ -30,16 +30,16 @@
                   </div>
 							  </div>
                 <div class="control-group">
-                  <%= f.label :phone, "所属店面", :class => "control-label" %>
+                  <%= f.label :phone, "所属店面1", :class => "control-label" %>
                   <div class="controls">
                     <% Depot.all.each_with_index do |a, i| %>
                     <label class="checkbox inline">
                       <%= check_box_tag "user[user_depots_attributes][#{i}][depot_id]", a.id, !@user.user_depots.where("depot_id = ?", a.id).empty? %><%= a.name %>
-                    </label>
+                      </label>
                     <% end %>
                   </div>
                 </div>
-							  <div class="control-group">
+			    <div class="control-group">
                   <%= f.label :phone, "用户权限", :class => "control-label" %>
                   <div class="controls">
                     <% Action.all.each_with_index do |a, i| %>

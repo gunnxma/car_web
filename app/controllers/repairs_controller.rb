@@ -5,7 +5,7 @@ class RepairsController < ApplicationController
     if current_user.id == 1
       @q = Repair.all.search(params[:q])
     else
-      @q = Repair.where("user_id = ?", current_user.id).search(params[:q])
+      @q = Repair.where("repairs.user_id = ?", current_user.id).search(params[:q])
     end
     if request.format == :xls
       @repairs = @q.result.order(addtime: :desc)
@@ -26,7 +26,7 @@ class RepairsController < ApplicationController
     end
     @repair.style = 0
   end
-  
+
   def create
     @repair = Repair.new(repair_params)
     @repair.cost = 0
@@ -37,7 +37,7 @@ class RepairsController < ApplicationController
       item.cost = 0 if item.cost.nil?
       @repair.cost += item.cost
     end
-    
+
     if @repair.save
       redirect_to :action => :index
     else
@@ -53,7 +53,7 @@ class RepairsController < ApplicationController
     @repair.start_time = @repair.start_time.strftime("%Y/%m/%d") if @repair.start_time
     @repair.end_time = @repair.end_time.strftime("%Y/%m/%d") if @repair.end_time
   end
-  
+
   def update
     @repair = Repair.find(params[:id])
     @repair.repair_details.delete_all
@@ -69,23 +69,23 @@ class RepairsController < ApplicationController
       render "edit"
     end
   end
-    
+
   def check
     @repair = Repair.find(params[:id])
     @repair.check = 1
     @repair.save
     redirect_to :action => :index
   end
-  
+
   def destroy
     @repair = Repair.find(params[:id])
     @repair.destroy
     flash[:notice] = "删除成功"
     redirect_to :action => :index
   end
-  
+
   private
-  
+
   def repair_params
     params.require(:repair).permit(:car_info_id, :style, :man_hour, :start_time, :end_time, :status, :remark, repair_details_attributes: [:item, :cost, :remark, :is_cooperation, :cooperation_id])
   end

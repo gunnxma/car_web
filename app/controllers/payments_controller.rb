@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
     if current_user.id == 1
       @q = Payment.all.search(params[:q])
     else
-      @q = Payment.where("user_id = ?",current_user.id).search(params[:q])
+      @q = Payment.where("payments.user_id = ?",current_user.id).search(params[:q])
     end
     if request.format == :xls
       @payments = @q.result.include(:car_info).order(addtime: :desc)
@@ -24,7 +24,7 @@ class PaymentsController < ApplicationController
     @payment.user_id = current_user.id
     init_new_payment
   end
-  
+
   def create
     @payment = Payment.new(payment_params)
     @payment.cost = 0
@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
       item.cost = 0 if item.cost.nil?
       @payment.cost += item.cost
     end
-    
+
     if @payment.save
       redirect_to :action => :index
     else
@@ -46,7 +46,7 @@ class PaymentsController < ApplicationController
     @payment = Payment.find(params[:id])
     init_edit_payment
   end
-  
+
   def update
     @payment = Payment.find(params[:id])
     @payment.payment_details.delete_all
@@ -63,28 +63,28 @@ class PaymentsController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
     @payment = Payment.find(params[:id])
     @payment.destroy
     flash[:notice] = "删除成功"
     redirect_to :action => :index
   end
-  
+
   private
-  
+
   def init_new_payment
     MAX_DETAIL.times do
       @payment.payment_details.build
     end
   end
-  
+
   def init_edit_payment
     (MAX_DETAIL-@payment.payment_details.count).times do
       @payment.payment_details.build
     end
   end
-  
+
   def payment_params
     params.require(:payment).permit(:car_info_id, :user_id, payment_details_attributes: [:pay_reason_id, :cost, :remark, :payments_way_id])
   end

@@ -5,7 +5,7 @@ class ProceedsController < ApplicationController
     if current_user.id == 1
       @q = Proceeds.all.search(params[:q])
     else
-      @q = Proceeds.where("user_id = ?", current_user.id).search(params[:q])
+      @q = Proceeds.where("proceeds.user_id = ?", current_user.id).search(params[:q])
     end
     if request.format == :xls
       @proceeds = @q.result.include(:car_info).order(addtime: :desc)
@@ -21,9 +21,10 @@ class ProceedsController < ApplicationController
 
   def new
     @proceeds = Proceeds.new
+    @proceeds.user_id = current_user.id
     init_new_proceeds
   end
-  
+
   def create
     @proceeds = Proceeds.new(proceeds_params)
     @proceeds.cost = 0
@@ -32,7 +33,7 @@ class ProceedsController < ApplicationController
       item.cost = 0 if item.cost.nil?
       @proceeds.cost += item.cost
     end
-    
+
     if @proceeds.save
       redirect_to :action => :index
     else
@@ -45,7 +46,7 @@ class ProceedsController < ApplicationController
     @proceeds = Proceeds.find(params[:id])
     init_edit_proceeds
   end
-  
+
   def update
     @proceeds = Proceeds.find(params[:id])
     @proceeds.proceeds_details.delete_all
@@ -62,28 +63,28 @@ class ProceedsController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
     @proceeds = Proceeds.find(params[:id])
     @proceeds.destroy
     flash[:notice] = "删除成功"
     redirect_to :action => :index
   end
-  
+
   private
-  
+
   def init_new_proceeds
     MAX_DETAIL.times do
       @proceeds.proceeds_details.build
     end
   end
-  
+
   def init_edit_proceeds
     (MAX_DETAIL-@proceeds.proceeds_details.count).times do
       @proceeds.proceeds_details.build
     end
   end
-  
+
   def proceeds_params
     params.require(:proceeds).permit(:car_info_id, :user_id, proceeds_details_attributes: [:proceeds_reason_id, :cost, :remark, :payments_way_id])
   end

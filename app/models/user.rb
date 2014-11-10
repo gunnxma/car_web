@@ -11,15 +11,15 @@ class User < ActiveRecord::Base
   has_many :followups
   has_many :user_depots, :dependent => :destroy
   has_many :depots, through: :user_depots
-  
+
   validates :name, :presence => { :message => "用户姓名不能为空" }
   validates :account, :presence => { :message => "帐号不能为空" }
   validates :pwd, :presence => { :message => "密码不能为空" }
   validates :account, uniqueness: true
-  
-  accepts_nested_attributes_for :user_powers, :reject_if => lambda { |a| a[:action_id].blank? }, :allow_destroy => true
-  accepts_nested_attributes_for :user_depots, :reject_if => lambda { |a| a[:depot_id].blank? }, :allow_destroy => true
-  
+
+  accepts_nested_attributes_for :user_powers, :reject_if => lambda { |a| a[:action_id].blank? }, :allow_destroy => :true
+  accepts_nested_attributes_for :user_depots, :reject_if => lambda { |a| a[:depot_id].blank? }, :allow_destroy => :true
+
   def has_power(controller, action)
     if self.id == 1
       true

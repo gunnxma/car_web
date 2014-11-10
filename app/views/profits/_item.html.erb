@@ -1,5 +1,6 @@
 <tr>
-                <td><%= car.car_no %></td>
+  <td><%= car.car_no %></td>
+  <td><%= car.depot.name if car.depot %></td>
                 <td><%= car.info %></td>
                 <td><%= car.addtime.strftime("%Y-%m-%d") %></td>
                 <td><%= car.selloff_time.strftime("%Y-%m-%d") %></td>
