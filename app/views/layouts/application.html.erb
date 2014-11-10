@@ -24,12 +24,12 @@
   <!-- topbar starts -->
 	<div class="navbar">
 		<div class="navbar-inner">
-			<div class="container-fluid">				
-				<a class="brand" href="/" style="width:500px"> <img alt="Charisma Logo" src="<%= asset_path("logo20.png") %>" /> <span>二手车交易管理系统</span></a>				
+			<div class="container-fluid">
+				<a class="brand" href="/" style="width:500px"> <img alt="Charisma Logo" src="<%= asset_path("logo20.png") %>" /> <span>二手车交易管理系统</span></a>
 			</div>
 		</div>
 	</div>
-  
+
   <div class="container-fluid">
 		<div class="row-fluid">
       <%= render :partial => "layouts/menu" %>
@@ -38,21 +38,67 @@
 					<h4 class="alert-heading">Warning!</h4>
 					<p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> enabled to use this site.</p>
 				</div>
-			</noscript>      
+			</noscript>
       <%= yield %>
-    </div>		
-    
+    </div>
+
     <hr>
 
 		<footer>
 			<p class="pull-left">&copy; 2014</p>
 			<p class="pull-right">Powered by: </p>
-		</footer>    
+		</footer>
 	</div>
-  
+
   <%= javascript_include_tag "application" %>
   <script src="/assets/datepicker-zh-TW.js"></script>
   <% #, "data-turbolinks-track" => true %>
   <%= yield :javascript %>
+<% if @index_price_log_list %>
+  <div id="tip-message" title="价格变动提醒" style="display:none">
+    <table class="table table-striped table-bordered bootstrap-datatable">
+						  <thead>
+                            <tr>
+                              <th>车辆编号</th>
+                              <th>品牌型号</th>
+								  <th>价格变动记录</th>
+								  <th>变动原因</th>
+								  <th>时间</th>
+							  </tr>
+						  </thead>
+                          <tbody>
+                          <% @index_price_log_list.each do |item| %>
+                            <tr>
+  <td>
+    <%= item.car_info.car_no %>
+  </td>
+                <td><%= "#{item.car_info.brand} #{item.car_info.series} #{item.car_info.models}" %></td>
+                <td>
+                  <% item.describe.split(',').each do |str| %>
+                  <%= str %><br>
+                  <% end %>
+                </td>
+                <td><%= item.reason %></td>
+                <td><%= item.addtime.strftime("%Y-%m-%d %H:%M") %></td>
+              </tr>
+            <% end %>
+
+    </tbody>
+    </table>
+  </div>
+  <% if @index_price_log_list.count > 0 %>
+  <script>
+    $("#tip-message").dialog({
+      modal: true,
+      width: 850,
+      buttons: {
+        "我知道了": function(){
+          $(this).dialog("close");
+        }
+      }
+    });
+  </script>
+  <% end %>
+<% end %>
 </body>
 </html>

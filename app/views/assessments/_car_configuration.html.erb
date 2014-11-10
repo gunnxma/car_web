@@ -1,4 +1,4 @@
-<div class="control-group">
+<div class="control-group" style="display:none">
                     <%= b.label :standard, "车辆配置", :class => "control-label" %>
                     <div class="controls">
                       <% Standard.all.each do |r| %>
@@ -8,7 +8,7 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="control-group">
+                  <div class="control-group" style="display:none">
                     <%= b.label :safety, "安全配置", :class => "control-label" %>
                     <div class="controls">
                       <% Safety.all.each do |r| %>
@@ -18,7 +18,7 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="control-group">
+                  <div class="control-group" style="display:none">
                     <%= b.label :comfort, "舒适配置", :class => "control-label" %>
                     <div class="controls">
                       <% Comfort.all.each do |r| %>
@@ -28,7 +28,7 @@
                       <% end %>
                     </div>
                   </div>
-                  <div class="control-group">
+                  <div class="control-group" style="display:none">
                     <%= b.label :function, "功能配置", :class => "control-label" %>
                     <div class="controls">
                       <% Function.all.each do |r| %>
@@ -39,7 +39,7 @@
                     </div>
                   </div>
                   <div class="control-group">
-                    <%= b.label :other, "其他配置描述", :class => "control-label" %>
+                    <%= b.label :other, "车辆标准配置", :class => "control-label" %>
                     <div class="controls">
                       <%= b.text_area :other, :style => "width:480px;height:50px" %>
                     </div>

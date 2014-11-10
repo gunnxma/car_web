@@ -9,22 +9,22 @@
                   <%= link_to "修改", edit_assessment_path(car) %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %>
                 </td>
-                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
                 <td><%= car.status_str %></td>
                 <td><%= car.saletype %></td>
-                <td>
+<!--                <td>
                   <% if car.car_photos.count != 0 %>
                   <%= link_to image_tag(car.car_photos.first.photo.url(:thumb)), photos_path(:car_info_id => car.id, :photo_style => 1), :target => "_blank" %>
                   <% else %>
                   <%= link_to "上传", photos_path(:car_info_id => car.id, :photo_style => 1), :target => "_blank" %>
                   <% end %>
-                </td>
+                </td>-->
                 <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
-                <td><%= car.platenumber %></td>
+                <td><%= car.car_property.registration_date.strftime("%Y-%m-%d") if car.car_property.registration_date %></td>
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>
                 <td><%= link_to "(#{car.followups.count})新增", new_car_info_followup_path(car) %></td>
                 <td style="background-color:<%= car.sell_day < 15 ? "white" : car.sell_day >= 15 && car.sell_day < 25 ? "pink" : car.sell_day >= 25 && car.sell_day < 35 ? "yellow" : "red" %>"><%= car.sell_day %>天</td>
-                <td><%= "#{car.evaluate_price}万元" %></td>
-                <td><%= car.user.name if car.user %></td>
+                <td><%= "#{car.suggested_price}万元" %></td>
+                <td><%= "#{car.selllimit_price}万元" %></td>
+                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
 							</tr>

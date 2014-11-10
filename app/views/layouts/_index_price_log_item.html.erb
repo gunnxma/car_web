@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= item.car_info.car_no %>
+  </td>
+                <td>
+                  <% item.describe.split(',').each do |str| %>
+                  <%= str %><br>
+                  <% end %>
+                </td>
+                <td><%= item.reason %></td>
+                <td><%= item.addtime.strftime("%Y-%m-%d %H:%M") %></td>
+							</tr>
