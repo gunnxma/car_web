@@ -56,6 +56,8 @@ Car::Application.routes.draw do
   resources :profits
   
   resources :departments
+
+  resources :cdepots
   
   resources :users
   

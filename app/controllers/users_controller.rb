@@ -42,6 +42,6 @@ class UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:department_id, :name, :account, :pwd, :phone, user_powers_attributes: [:action_id])
+    params.require(:user).permit(:department_id, :name, :account, :pwd, :phone, user_powers_attributes: [:action_id], user_depots_attributes: [:depot_id])
   end
 end

@@ -1,0 +1,7 @@
+<tr>
+								<td><%= depot.name %></td>
+								<td class="center">
+                  <%= link_to "修改", edit_cdepot_path(depot), :class => "btn btn-info" %>
+                  <%= link_to "删除", cdepot_path(depot), :method => :delete, :class => "btn btn-danger", :confirm => "确定要删除吗？" %>
+                </td>
+							</tr>

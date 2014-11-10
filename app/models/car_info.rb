@@ -14,6 +14,7 @@ class CarInfo < ActiveRecord::Base
   has_many :payments
   has_many :proceeds, :class_name => "Proceeds"
   has_many :followups, as: :followupable, :dependent => :destroy
+  belongs_to :depot
   
   validates :brand, :presence => { :message => "品牌不能为空" }
   validates :series, :presence => { :message => "车系不能为空" }

@@ -1,5 +1,6 @@
 <tr>
                 <td><%= link_to car.car_no, car_info_path(car) %></td>
+                <td><%= car.depot.name if car.depot %></td>
 								<td class="center">
                   <%= link_to "售出", selloff_new_path(id: car.id) if car.status == 2 %>
                   <% if car.status > 2 %>

@@ -5,7 +5,7 @@ class PaymentsController < ApplicationController
     if current_user.id == 1
       @q = Payment.all.search(params[:q])
     else
-      @q = Payment.("user_id = ?",current_user.id).search(params[:q])
+      @q = Payment.where("user_id = ?",current_user.id).search(params[:q])
     end
     if request.format == :xls
       @payments = @q.result.include(:car_info).order(addtime: :desc)
@@ -21,6 +21,7 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
+    @payment.user_id = current_user.id
     init_new_payment
   end
   

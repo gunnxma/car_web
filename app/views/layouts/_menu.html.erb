@@ -3,6 +3,9 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li class="nav-header hidden-tablet">系统设置</li>
             <li>
+              <%= link_to '店面管理', :cdepots, :class => "ajax-link" if @current_user.has_power("cdepots", "index") %>
+            </li>
+            <li>
               <%= link_to '部门管理', :departments, :class => "ajax-link" if @current_user.has_power("departments", "index") %>
             </li>
             <li>

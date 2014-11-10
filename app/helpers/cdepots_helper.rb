@@ -1,0 +1,2 @@
+module CdepotsHelper
+end

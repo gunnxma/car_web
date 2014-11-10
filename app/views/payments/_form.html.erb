@@ -2,7 +2,7 @@
 							  <div class="control-group">
                   <%= f.label :car_info_id, "车辆信息", :class => "control-label" %>
                   <div class="controls">
-                    <%= f.select :car_info_id, CarInfo.where("status > 0").order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
+                    <%= f.select :car_info_id, CarInfo.where("status > 0 and depot_id in (?)", @current_user.depots_id).order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
                     <a href="javascript:addrow()">增加一行</a>
                   </div>
 							  </div>
