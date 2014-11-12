@@ -3,11 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :set_user
-  
+
   WillPaginate.per_page = 20
-  
+
   SEX = [{id: 1, name: '男'}, {id: 2, name: '女'}]
-  
+
   def current_user
     if !cookies[:user_id] || cookies[:user_id].empty?
       nil
@@ -19,21 +19,38 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def check_power
     if !current_user
       redirect_to :controller => :index, :action => :login
     else
       check_action unless current_user.id == 1
+      get_price_log
     end
   end
-  
+
+  def get_price_log
+    if current_user.id != 1
+      user = User.find(current_user.id)
+      puts user.name
+      if user.tip_id
+        @index_price_log_list = PriceLog.where("id > ?", user.tip_id).order(id: :desc)
+      else
+        @index_price_log_list = PriceLog.all.order(id: :desc)
+      end
+      if @index_price_log_list.count > 0
+        user.tip_id = @index_price_log_list.first.id
+        user.save
+      end
+    end
+  end
+
   def check_action
     if current_user.actions.where("controller = ? and action = ?", params[:controller], params[:action]).empty?
       redirect_to controller: "index", action: "nopower"
     end
   end
-  
+
   def get_car_no
     max_no = CarNo.maximum(:no)
     if max_no
@@ -44,7 +61,7 @@ class ApplicationController < ActionController::Base
     CarNo.create(:no => max_no)
     (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
   end
-  
+
   def get_customer_no
     max_no = CustomerNo.maximum(:no)
     if max_no
@@ -55,9 +72,9 @@ class ApplicationController < ActionController::Base
     CustomerNo.create(:no => max_no)
     (DateTime.now.strftime("%Y%m%d").to_i*1000 + max_no).to_s
   end
-  
+
   private
-  
+
   def set_user
     if current_user
       if session[:log_time] + 10.minutes < Time.now

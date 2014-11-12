@@ -7,7 +7,7 @@
 					</li>
 				</ul>
 			</div>
-      <%= render partial: "layouts/notice", locals: { model: nil} %>      
+      <%= render partial: "layouts/notice", locals: { model: nil} %>
 			<div class="row-fluid">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
@@ -38,14 +38,14 @@
                 <tr>
                   <th>VIN码</th>
                   <td><%= @car.vin %></td>
-                  <th>使用性质</th>
-                  <td><%= @car.car_property.use_nature %></td>
+                  <th>信息来源</th>
+                  <td><%= @car.newsfrom %></td>
                   <th>过户次数</th>
                   <td><%= @car.car_property.transfer_number %></td>
                 </tr>
                 <tr>
-                  <th>车身类型</th>
-                  <td><%= @car.car_property.body_class %></td>
+                  <th>车主信息</th>
+                  <td><%= @car.owner_info %></td>
                   <th>发动机号</th>
                   <td><%= @car.engineid %></td>
                   <th>上牌日期</th>
@@ -67,7 +67,7 @@
                   <th>存放位置</th>
                   <td><%= @car.location %><td>
                 </tr>
-                <tr>
+                <tr style="display:none">
                   <th>车主信息</th>
                   <td><%= @car.owner_info %></td>
                   <th>信息来源</th>
@@ -77,10 +77,13 @@
                 </tr>
                 <tr>
                   <th>车辆标准配置</th>
-                  <td colspan="5">
+<!--                  <td colspan="5">
                     安全配置:<%= @car.car_configuration.safety %><br>
                     舒适配置:<%= @car.car_configuration.comfort %><br>
                     功能配置:<%= @car.car_configuration.function %>
+                </td>-->
+                  <td colspan="5">
+                    <%= @car.car_configuration.other %>
                   </td>
                 </tr>
                 <tr>
@@ -165,11 +168,11 @@
                   <td><%= @car.selllimit_price %>万</td>
                   <td><%= @car.maintenance_budget %>万</td>
                   <td><%= @car.deal_price %>万</td>
-                </tr>                 
+                </tr>
               </thead>
-					  </table> 
+					  </table>
 					</div>
-				</div><!--/span-->			
-			</div><!--/row-->    
+				</div><!--/span-->
+			</div><!--/row-->
 					<!-- content ends -->
 			</div><!--/#content.span10-->

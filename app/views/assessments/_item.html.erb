@@ -3,7 +3,6 @@
                 <td><%= car.depot.name if car.depot %></td>
 								<td class="center">
                   <%= link_to "入库", depot_add_path(id: car.id), :method => :post %>
-                  <%= link_to "上架", sell_add_path(id: car.id), :method => :post, data: { confirm: "确定要上架销售吗？" } if car.status <= 1 %>
                   <%= link_to "修改", edit_assessment_path(car) %>
                   <%= link_to "删除", assessment_path(car), :method => :delete, data: { confirm: "确定要删除吗" } %>
                 </td>
