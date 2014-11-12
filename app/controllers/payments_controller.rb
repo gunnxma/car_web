@@ -12,6 +12,10 @@ class PaymentsController < ApplicationController
     else
       @payments = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
     end
+    if params[:q] && params[:q][:car_info_brand_cont]
+      brand = Brand.where(:name => params[:q][:car_info_brand_cont]).first
+      @series = brand.series if brand
+    end
     #@payments = Payment.order(addtime: :desc)
     respond_to do |format|
       format.html

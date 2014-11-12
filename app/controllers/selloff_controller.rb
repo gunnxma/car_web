@@ -4,7 +4,8 @@ class SelloffController < ApplicationController
     if current_user.id == 1
       @q = CarInfo.where("status = 3").search(params[:q])
     else
-      @q = CarInfo.where("status = 3 and user_id = ?", current_user.id).search(params[:q])
+      #@q = CarInfo.where("status = 3 and user_id = ?", current_user.id).search(params[:q])
+      @q = CarInfo.where("status = 3 and sell_user_id = ?", current_user.id).search(params[:q])
     end
     if request.format == :xls
       @cars = @q.result.order(addtime: :desc)
@@ -25,6 +26,7 @@ class SelloffController < ApplicationController
   def new
     @car = CarInfo.where(:id => params[:id], :status => 2).first
     @car.status = 3
+    @car.sell_user_id = current_user.id
     @car.selloff_time = DateTime.now.strftime("%Y/%m/%d")
   end
   

@@ -12,6 +12,10 @@ class ProceedsController < ApplicationController
     else
       @proceeds = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
     end
+    if params[:q] && params[:q][:car_info_brand_cont]
+      brand = Brand.where(:name => params[:q][:car_info_brand_cont]).first
+      @series = brand.series if brand
+    end
     #@proceeds = Proceeds.order(addtime: :desc)
     respond_to do |format|
       format.html

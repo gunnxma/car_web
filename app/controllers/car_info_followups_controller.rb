@@ -36,7 +36,11 @@ class CarInfoFollowupsController < ApplicationController
   
   def get_followups
     @car_info = CarInfo.find(params[:car_info_id])
-    @followups = @car_info.followups.where(:user_id => current_user.id)
+    if current_user.id == 1
+      @followups = @car_info.followups.all
+    else
+      @followups = @car_info.followups.where(:user_id => current_user.id)
+    end
   end
   
   def followup_params

@@ -1,4 +1,6 @@
 收款时间:<%= f.text_field :addtime_gteq, :class => "datepicker", style: "width:120px" %> ~ <%= f.text_field :addtime_lteq, :class => "datepicker", style: "width:120px" %>
 店面:<%= f.select :car_info_depot_id_eq, @current_user.depots_list.collect { |p| [ p.name, p.id ] }, { include_blank: true }, { :style => "width:100px" } %>
-            车辆VIN码:<%= f.search_field :car_info_vin_cont, :style => "width:100px" %>
+            车辆VIN码:<%= f.search_field :car_info_vin_cont, :style => "width:100px" %><br>
+车辆编号:<%= f.search_field :car_info_car_no_cont, :style => "width:100px" %>
+品牌:<%= f.select :car_info_brand_cont, Brand.all.order(:initial).collect { |p| [ p.name_with_initial, p.name ] }, { include_blank: true }, { :style => "width:100px", :onchange => "get_options(this.value)" } %>车系:<%= f.select :car_info_series_cont, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: true }, :class => "car_series", :style => "width:100px" %>
               <%= f.submit "查询" %>

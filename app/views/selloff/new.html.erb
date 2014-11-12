@@ -54,7 +54,7 @@
                       <option value=""></option>
                       <% Department.all.each do |d| %>
                       <optgroup label="<%= d.name %>">
-                        <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @car.user_id) %>
+                        <%= options_for_select(d.users.collect { |p| [p.name, p.id]}, @car.sell_user_id) %>
                       </optgroup>
                       <% end %>
                     </select>

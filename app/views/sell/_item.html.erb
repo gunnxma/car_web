@@ -24,7 +24,7 @@
                 <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
                 <td><%= car.car_property.mileage if car.car_property %>万公里</td>
                 <td><%= link_to "(#{car.followups.count})新增", new_car_info_followup_path(car) %></td>
-                <td><%= car.sell_day %>天</td>
+                <td style="background-color:<%= car.sell_day < 15 ? "white" : car.sell_day >= 15 && car.sell_day < 25 ? "pink" : car.sell_day >= 25 && car.sell_day < 35 ? "yellow" : "red" %>"><%= car.sell_day %>天</td>
                 <td><%= "#{car.evaluate_price}万元" %></td>
                 <td><%= car.user.name if car.user %></td>
 							</tr>

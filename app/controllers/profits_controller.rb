@@ -4,12 +4,16 @@ class ProfitsController < ApplicationController
     if current_user.id == 1
       @q = CarInfo.where(:status => 3).search(params[:q])
     else
-      @q = CarInfo.where("status >= 3 and user_id = ?", current_user.id).search(params[:q])
+      @q = CarInfo.where("status >= 3 and sell_user_id = ?", current_user.id).search(params[:q])
     end
     if request.format == :xls
       @cars = @q.result.include(:car_info).order(addtime: :desc)
     else
       @cars = @q.result.paginate(:page => params[:page]).order(addtime: :desc)
+    end
+    if params[:q] && params[:q][:brand_cont]
+      brand = Brand.where(:name => params[:q][:brand_cont]).first
+      @series = brand.series if brand
     end
     #@cars = CarInfo.where(:status => 3)
     respond_to do |format|

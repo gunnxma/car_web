@@ -127,7 +127,8 @@ class CarInfo < ActiveRecord::Base
   end
 
   def profit_costs
-    self.proceeds_costs - self.payment_costs - self.repair_costs
+    #self.proceeds_costs - self.payment_costs - self.repair_costs
+    self.proceeds_costs - self.payment_costs
   end
   
 end

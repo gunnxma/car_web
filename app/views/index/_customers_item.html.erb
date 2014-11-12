@@ -5,6 +5,6 @@
                 <td><%= customer.name %></td>
                 <td><%= customer.need_car %></td>
                 <td><%= customer.need_price %></td>
-                <td><%= customer.business_stage.name %></td>
+                <td><%= customer.business_stage.name if customer.business_stage %></td>
                 <td><%= link_to "(#{customer.followups.count})新增", new_customer_followup_path(customer) %></td>
 							</tr>
