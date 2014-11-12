@@ -77,7 +77,7 @@ class ApplicationController < ActionController::Base
 
   def set_user
     if current_user
-      if session[:log_time] + 10.minutes < Time.now
+      if session[:log_time] && session[:log_time] + 10.minutes < Time.now
         cookies.delete(:user_id)
         session[:log_time] = nil
         reset_session
