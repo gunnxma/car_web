@@ -31,6 +31,8 @@ class IndexController < ApplicationController
     check_user = User.where( "account = ? and pwd = ?", @user.account, @user.pwd).first
     if check_user
       cookies[:user_id] = check_user.id
+      session[:log_time] = Time.now
+      #cookies[:user_id] = { :value => check_user.id, :expires => Time.now + 10}
       redirect_to :action => :index
     else
       flash[:notice] = "用户名密码错误！"

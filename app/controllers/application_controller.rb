@@ -9,10 +9,14 @@ class ApplicationController < ActionController::Base
   SEX = [{id: 1, name: '男'}, {id: 2, name: '女'}]
   
   def current_user
-    if !cookies[:user_id]
+    if !cookies[:user_id] || cookies[:user_id].empty?
       nil
     else
-      User.find(cookies[:user_id])
+      if User.find(cookies[:user_id])
+        User.find(cookies[:user_id])
+      else
+        User.new
+      end
     end
   end
   
@@ -56,7 +60,15 @@ class ApplicationController < ActionController::Base
   
   def set_user
     if current_user
-      @current_user = current_user
+      if session[:log_time] + 10.minutes < Time.now
+        cookies.delete(:user_id)
+        session[:log_time] = nil
+        reset_session
+        @current_user = User.new
+      else
+        session[:log_time] = Time.now
+        @current_user = current_user
+      end
     else
       @current_user = User.new
     end

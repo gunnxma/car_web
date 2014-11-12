@@ -1,9 +1,9 @@
 <div class="row-fluid">
-				<div class="span12 center login-header">
-					<h2>欢迎使用二手车交易管理系统</h2>
+				<div class="span12 center login-header" style="background-color:#202020">
+					<h2><img alt="Logo" src="<%= asset_path("logo20.png") %>" width="550" height="55" /></h2>
 				</div><!--/span-->
 			</div><!--/row-->			
-			<div class="row-fluid">
+			<div class="row-fluid" style="margin-top:100px">
 				<div class="well span5 center login-box">
           <%= render partial: "layouts/notice", locals: { model: nil} %>
           <%= form_for @user, url: { :action => "checklogin" }, :class => "form-horizontal" do |f| %>
