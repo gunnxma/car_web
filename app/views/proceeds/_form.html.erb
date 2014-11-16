@@ -2,8 +2,10 @@
 							  <div class="control-group">
                   <%= f.label :car_info_id, "车辆信息", :class => "control-label" %>
                   <div class="controls">
-                    <%= f.select :car_info_id, CarInfo.where("status > 0 and depot_id in (?)", @current_user.depots_id).order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>
-                    <a href="javascript:addrow()">增加一行</a>
+                    <%= f.hidden_field :car_info_id %>
+                    <!--<%= f.select :car_info_id, CarInfo.where("status > 0 and depot_id in (?)", @current_user.depots_id).order(addtime: :desc).collect { |p| [ "编号: #{p.car_no} 品牌: #{p.brand} #{p.series} 车牌号: #{p.platenumber}", p.id ] }, { include_blank: "请选择车辆" }, { "data-rel" => "chosen", style: "width:200px" } %>-->
+                    <%= "编号: #{@proceeds.car_info.car_no} 品牌: #{@proceeds.car_info.brand} #{@proceeds.car_info.series} #{@proceeds.car_info.models} VIN: #{@proceeds.car_info.vin}" %>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:addrow()" class = "btn btn-info">增加一行</a>
                   </div>
 							  </div>
                 <%= f.fields_for :proceeds_details do |b| %>

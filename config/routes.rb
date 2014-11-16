@@ -29,6 +29,9 @@ Car::Application.routes.draw do
   
   resources :assessments
   
+
+  get "car_infos/search"
+
   resources :car_infos
   
   resources :photos

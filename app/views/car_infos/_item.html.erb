@@ -1,0 +1,17 @@
+<tr>
+                <td><%= link_to car.car_no, car_info_path(car) %></td>
+                <td><%= car.depot.name if car.depot %></td>
+                <td class="center">                  
+                  <%= link_to "新增付款", new_payment_path(car_info_id: car.id),:class => "btn btn-info" %>
+                  <%= link_to "新增收款", new_proceed_path(car_info_id: car.id), :class => "btn btn-info" %>
+                </td>
+                <td><%= car.status_str %></td>
+                <td><%= car.saletype %></td>
+                <td><%= "#{car.brand} #{car.series} #{car.models}" %></td>
+                <td><%= car.car_property.registration_date.strftime("%Y-%m-%d") if car.car_property.registration_date %></td>
+                <td><%= car.car_property.cc if car.car_property %><%= car.car_property.cc_unit if car.car_property %></td>
+                <td><%= car.car_property.mileage if car.car_property %>万公里</td>
+                <td><%= "#{car.suggested_price}万元" %></td>
+                <td><%= "#{car.selllimit_price}万元" %></td>
+                <td><%= car.addtime.strftime("%Y-%m-%d") if car.addtime %></td>
+              </tr>

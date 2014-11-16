@@ -25,6 +25,7 @@ class ProceedsController < ApplicationController
 
   def new
     @proceeds = Proceeds.new
+    @proceeds.car_info_id = params[:car_info_id]
     @proceeds.user_id = current_user.id
     init_new_proceeds
   end

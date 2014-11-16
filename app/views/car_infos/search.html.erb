@@ -1,0 +1,41 @@
+<div id="content" class="span10">
+			<!-- content starts -->
+      <%= render partial: "layouts/notice", locals: { model: nil} %>      
+			<div class="row-fluid">
+				<div class="box span12">
+					<div class="box-header well" data-original-title>
+						<h2>请先搜索选择车辆，然后再进行相应的付款和收款操作</h2>
+					</div>
+					<div class="box-content">
+            <%= search_form_for @q, :url => car_infos_search_path, :method => "get" do |f| %>
+              <%= render partial: "search_form", locals: { f: f} %>
+              <%= f.submit "查询" %>
+            <% end %>
+            <table class="table table-striped table-bordered bootstrap-datatable">
+						  <thead>
+							  <tr>
+								  <th>车辆编号</th>
+								  <th>店面</th>
+                  <th>操作</th>
+                  <th>状态</th>
+                  <th>类型</th>
+                  <th>车辆品牌型号</th>
+                  <th>上牌日期</th>
+                  <th>排量</th>
+                  <th>表显里程</th>
+                  <th>建议售价</th>
+                  <th>销售限价</th>
+                  <th>收购日期</th>
+							  </tr>
+						  </thead>   
+						  <tbody>
+                <%= render partial: "item", collection: @cars, as: :car %>
+						  </tbody>
+					  </table> 
+            <%= page_entries_info @cars %>
+            <%= will_paginate @cars, renderer: SemanticPagination %>            
+					</div>
+				</div><!--/span-->			
+			</div><!--/row-->    
+					<!-- content ends -->
+			</div><!--/#content.span10-->

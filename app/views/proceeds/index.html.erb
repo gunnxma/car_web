@@ -3,7 +3,7 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-            <%= link_to "添加", :new_proceed, :class => "btn btn-info" %>
+            <%= link_to "添加", car_infos_search_path, :class => "btn btn-info" %>
             <% #link_to "导出Excel", proceeds_path(format: "xls"), :class => "btn btn-info" %>
             <%= link_to "导出Excel", request.url.sub!("proceeds","proceeds.xls"), :class => "btn btn-info" %>
 					</li>

@@ -25,6 +25,7 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
+    @payment.car_info_id = params[:car_info_id]
     @payment.user_id = current_user.id
     init_new_payment
   end
