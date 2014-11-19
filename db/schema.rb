@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110224202) do
+ActiveRecord::Schema.define(version: 20141119093033) do
 
   create_table "actions", force: true do |t|
     t.string   "controller"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 20141110224202) do
     t.string   "transmission"
     t.string   "cc"
     t.string   "cc_unit"
-    t.integer  "transfer_number"
+    t.string   "transfer_number"
     t.datetime "production_date"
     t.datetime "registration_date"
     t.string   "registration_province"
