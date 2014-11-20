@@ -1,17 +1,17 @@
 <fieldset>
-							  <div class="control-group">
+							  <div class="control-group success">
                   <%= f.label :experience_id, "购车经验", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :experience_id, Experience.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :buy_reason_id, "购车原由", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :buy_reason_id, BuyReason.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :undeal_reason, "未成交原因", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :undeal_reason %>
@@ -23,7 +23,7 @@
                     <%= f.text_field :seen_models %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :fit_models, "可匹配车型", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :fit_models %>
@@ -41,13 +41,13 @@
                     <%= f.select :network_id, Network.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :tag_id, "客户标签", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :tag_id, CustomerTag.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :business_stage_id, "商机阶段", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :business_stage_id, BusinessStage.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>

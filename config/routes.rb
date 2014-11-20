@@ -7,63 +7,66 @@ Car::Application.routes.draw do
   post "index/checklogin"
   get "index/changepwd"
   post "index/savechangepwd"
-  
+
   get 'series/ajax_search'
-  
+
   get "depot/index"
   post "depot/add"
-  
+
   get "sell/index"
   post "sell/add"
-  
+
   get "selloff/index"
   post "selloff/add"
   get "selloff/new"
   get "selloff/edit"
   patch "selloff/update"
   delete "selloff/destroy"
-  
+
   resources :brands do
     resources :series
   end
-  
+
   resources :assessments
-  
+
 
   get "car_infos/search"
 
   resources :car_infos
-  
+
   resources :photos
-  
+
   resources :repairs do
     member do
       post 'check'
     end
   end
-  
+
   get "customers/followups"
-  
+
   resources :customers do
     resources :followups, :controller => "customer_followups"
   end
-  
+
   resources :car_infos do
-    resources :followups, :controller => "car_info_followups"
+    resources :followups, :controller => "car_info_followups" do
+      get 'cancel'
+      post 'save_cancel'
+    end
   end
-  
+
   resources :payments
-  
+
   resources :proceeds
-  
+
   resources :profits
-  
+
   resources :departments
 
   resources :cdepots
-  
+
   resources :users
-  
+
   resources :price_refs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -105,7 +108,7 @@ Car::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

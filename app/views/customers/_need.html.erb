@@ -6,13 +6,13 @@
                       <%= f.select :series, @series ? @series.collect { |p| [ p.name_with_initial, p.name ] } : {}, { include_blank: "请选择车系" }, :class => "car_series", :style => "width:100px" %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :models, "车辆型号", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :models %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :brand_others, "其他需求品牌", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :brand_others %>
@@ -66,7 +66,7 @@
                     <%= f.text_field :expectative_price_min, :style => "width:50px" %> ~ <%= f.text_field :expectative_price_max, :style => "width:50px" %>万元
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :transfer_area, "过户地区", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :transfer_area %>
@@ -78,7 +78,7 @@
                     <%= f.text_field :platenumber_demand %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :is_mortgage, "是否按揭", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :is_mortgage, [{id: 0, name: '否'},{id: 1, name: '是'}].collect { |p| [ p[:name], p[:id] ] } %>

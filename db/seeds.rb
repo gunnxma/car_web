@@ -197,10 +197,9 @@ if PaymentMethod.count == 0
   PaymentMethod.create(name: '全款')
 end
 
-if CustomerSort.count == 0
-  CustomerSort.create(name: '求购')
-  CustomerSort.create(name: '置换')
-  CustomerSort.create(name: '其他')
+customer_sort = ['求购', '置换', '出售', '其他']
+customer_sort.each do |a|
+  CustomerSort.create(name: a) if CustomerSort.where("name = ?", a).empty?
 end
 
 if CallType.count == 0
@@ -420,4 +419,9 @@ actions = [
 
 actions.each do |a|
   Action.create(controller: a[:controller], action: a[:action], name: a[:name]) if Action.where("controller = ? and action = ?", a[:controller], a[:action]).empty?
+end
+
+Followup.all.each do |a|
+  a.state = 0 if !a.state
+  a.save
 end

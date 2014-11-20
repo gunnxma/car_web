@@ -6,4 +6,10 @@
                 <td><%= followup.next_time.strftime("%Y-%m-%d") %></td>
                 <td><%= followup.next_content %></td>
                 <td><%= link_to followup.is_finished_str, edit_car_info_followup_path(@car_info, followup), :class => "btn btn-info"  %></td>
+                <td>
+                  <% if followup.state == -1 %>
+                    <span class="label label-success">已放弃</span><%= "原因：#{followup.cancel_reason}" %>
+                  <% else %>
+                    <%= link_to "放弃", edit_car_info_followup_path(@car_info, followup, :op => :cancel), :class => "btn btn-info"  %></td>
+                  <% end %>
 							</tr>

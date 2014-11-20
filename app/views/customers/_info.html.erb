@@ -1,5 +1,5 @@
 <fieldset>
-							  <div class="control-group">
+							  <div class="control-group success">
                   <%= f.label :sort_id, "客户类别", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :sort_id, CustomerSort.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
@@ -24,7 +24,7 @@
                     <%= f.text_field :phone %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :visit_date, "到店时间", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :visit_date, :class => "datepicker" %>
@@ -54,7 +54,7 @@
                     <%= f.select :call_type_id, CallType.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :sex, "性别", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :sex, @sex.collect { |p| [ p[:name], p[:id] ] }, { include_blank: "请选择" } %>
@@ -72,7 +72,7 @@
                     <%= f.text_field :birthday, :class => "datepicker" %>
                   </div>
 							  </div>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :age_id, "年龄", :class => "control-label" %>
                   <div class="controls">
                     <%= f.select :age_id, Age.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
@@ -96,10 +96,16 @@
                     <%= f.select :income_id, Income.all.collect { |p| [ p.name, p.id ] }, { include_blank: "请选择" } %>
                   </div>
                 </div><%= f.hidden_field :status %>
-                <div class="control-group">
+                <div class="control-group success">
                   <%= f.label :plan_deal_time, "预计成交时间", :class => "control-label" %>
                   <div class="controls">
                     <%= f.text_field :plan_deal_time, :class => "datepicker" %>
                   </div>
-							  </div>
+                </div>
+                  <div class="control-group success">
+                    <%= f.label :other, "客户描述", :class => "control-label" %>
+                    <div class="controls">
+                      <%= f.text_area :other, :style => "width:480px;height:50px" %>
+                    </div>
+                  </div>
 							</fieldset>

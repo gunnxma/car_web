@@ -4,21 +4,11 @@
 			<div class="row-fluid sortable">
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>修改跟进提醒</h2>
+						<h2>放弃</h2>
 					</div>
 					<div class="box-content">
-            <%= form_for @followup, :url => car_info_followup_path(@car_info, @followup), :html => { :class => "form-horizontal" } do |f| %>
-              <fieldset>
-                <% if @followup.state == -1 %>
-                  <%= f.hidden_field :state %>
-                 <div class="control-group">
-                  <%= f.label :content, "放弃原因", :class => "control-label" %>
-                  <div class="controls">
-                    <%= f.text_area :cancel_reason, :style => "width:480px;height:50px" %>
-                  </div>
-							  </div>
-                <% else %>
-                <%= render partial: "form", locals: { f: f} %>
+            <%= form_for @followup, :url => car_info_followup_save_cancel_path(@car_info, @followup), :html => { :class => "form-horizontal" } do |f| %>
+							<fieldset>
                 <div class="control-group">
                   <%= f.label :is_finished, "是否处理", :class => "control-label" %>
                   <div class="controls">
@@ -29,8 +19,7 @@
                       <%= f.radio_button :is_finished, 0 %>否
                     </label>
                   </div>
-                </div>
-              <% end %>
+							  </div>
 							  <div class="form-actions">
                   <%= f.submit "保存", :class => "btn btn-primary" %>
 							  </div>
