@@ -17,7 +17,9 @@
                     <%= f.text_area :cancel_reason, :style => "width:480px;height:50px" %>
                   </div>
 							  </div>
-                <% else %>
+                            <% else %>
+                              <%= f.hidden_field :state %>
+                              <%= f.hidden_field :cancel_reason %>
                 <%= render partial: "form", locals: { f: f} %>
                 <div class="control-group">
                   <%= f.label :is_finished, "是否处理", :class => "control-label" %>

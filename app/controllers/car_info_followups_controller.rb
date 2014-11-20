@@ -30,11 +30,11 @@ class CarInfoFollowupsController < ApplicationController
   def update
     @followup = @car_info.followups.find(params[:id])
     if @followup.update_attributes(followup_params)
-      if @followup.state = -1 && @followup.cancel_reason.empty?
-        @followup.state = 0
-        @followup.save
-        @followup.state = -1
-        render "edit"
+      if @followup.state == -1 && @followup.cancel_reason.empty?
+          @followup.state = 0
+          @followup.save
+          @followup.state = -1
+          render "edit"
       else
         redirect_to :action => :new, :car_info_id => @car_info.id
       end
