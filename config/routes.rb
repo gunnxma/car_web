@@ -5,6 +5,7 @@ Car::Application.routes.draw do
   get "index/logout"
   get "index/nopower"
   post "index/checklogin"
+  post "index/checklogin_app"
   get "index/changepwd"
   post "index/savechangepwd"
 

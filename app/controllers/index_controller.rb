@@ -1,7 +1,8 @@
 class IndexController < ApplicationController
   before_filter :check_login, :only => [:index, :changepwd, :savechangepwd]
   before_filter :get_price_log, :only => [:index, :changepwd, :savechangepwd]
-  layout "nohead", :only => [ :login, :checklogin ]
+  layout "nohead", :only => [ :login, :checklogin, :checklogin_app ]
+  skip_before_filter :verify_authenticity_token
 
   def index
     @depot_count = CarInfo.where("status > 0 and status < 3").count
@@ -39,6 +40,12 @@ class IndexController < ApplicationController
       flash[:notice] = "用户名密码错误！"
       redirect_to :action => :login
     end
+  end
+
+  def checklogin_app
+    @user = User.where( "account = ? and pwd = ?", params[:account], params[:pwd]).first
+    @code = SecureRandom.hex
+    @user.user_codes.create(:code => @code)
   end
 
   def logout

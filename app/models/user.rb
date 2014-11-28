@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :followups
   has_many :user_depots, :dependent => :destroy
   has_many :depots, through: :user_depots
+  has_many :user_codes
 
   validates :name, :presence => { :message => "用户姓名不能为空" }
   validates :account, :presence => { :message => "帐号不能为空" }
